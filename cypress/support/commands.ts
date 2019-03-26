@@ -33,12 +33,10 @@ Cypress.Commands.add('ignoreGeo', (url: string, options?: any) => {
     .get('.dark-backdrop.cdk-overlay-backdrop-showing').click();
 });
 
-Cypress.Commands.add('blockIsOpenAfterClick', (headers: string, content: string, options?: any) => {
-  cy.get(headers).each((el) => {
-    cy.wrap(el).click().then(() => {
-      cy.get(content).should('be.visible')
-    });
-  })
+Cypress.Commands.add('blockIsOpenAfterClick', (link: string, content: string, options?: any) => {
+  cy.get(link).click().then(() => {
+    cy.get(content).should('be.visible')
+  });
 });
 
 Cypress.Commands.add('tabs', (container: string, content: string) => {

@@ -16,6 +16,15 @@ export class MainPage {
         yearTo: '[formcontrolname ="yearTo"]',
     }
     public reviewGalleryContainer: string = '.b-slider_review'
+    public news = {
+        content: '.b-blog',
+        link: '.b-news__list-item:first',
+    }
+    public seoText = {
+        container: '.b-information__content',
+        link: '.b-information__content [routerlink="/cars"]',
+        showMore: '.b-information__content .b-link.ng-star-inserted',
+    }
     public controls = {
         active: '.am-tag-control_active',
         question: 'am-tags-control [name="question"]',
@@ -31,7 +40,6 @@ export class MainPage {
         creditPrice: '.b-card-price__description_credit',
         info: '.b-card__info',
     }
-
     public checkingIconsControl(control: IControl) {
         cy.get(this.controls.tags).contains(control.name).click()
             .wait('@getSearchTag')

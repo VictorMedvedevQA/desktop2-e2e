@@ -12,16 +12,30 @@ const reviewGallerySpec = new ReviewGallerySpec()
 
 describe('Главная', () => {
     beforeEach(() => {
-        cy.reload()
-            .visit(urls.mainPage.main)
-            .server()
+        cy.server()
             .route('https://test.automama.ru/api/v2/auctions/search?tags=*').as('getSearchTag')
+            // .route(' https://tracker.comagic.ru').as('qwe')
+            // .reload()
+
+            .visit(urls.mainPage.main)
+        // .wait('@qwe')
+
     })
     it('тултипы у контролов', () => {
         cy.isTooltipsOpenAfterMousmoove(mainPage.controls.question)
     })
     it('тултипы УТП', () => {
         cy.isTooltipsOpenAfterMousmoove(mainPage.utpsText)
+    })
+    it('переход в статьи', () => {
+        cy.get(mainPage.news.link).click().url().should('contains', '/blog')
+    })
+    it('открытие блока инфо подробнее', () => {
+        cy.blockIsOpenAfterClick(mainPage.seoText.showMore, mainPage.seoText.link)
+    })
+    it('переход по якорной ссылке в каталог', () => {
+        cy.get(mainPage.seoText.showMore).click()
+            .get(mainPage.seoText.link).click().url().should('contains', '/cars')
     })
     // controlItems.forEach((checkedControl) => {
     //     describe('переход по контролам', () => {
