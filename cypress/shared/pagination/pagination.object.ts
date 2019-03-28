@@ -7,7 +7,6 @@ export class PaginationObject {
         item: '.b-pagination__item.ng-star-inserted',
         next: '.b-pagination__item_next',
         prev: '.b-pagination__item_prev',
-
     }
     public switchPageByArrow(container: string, direction: string, itaration: number): void {
         for (let i = 0; i < itaration; i++) {

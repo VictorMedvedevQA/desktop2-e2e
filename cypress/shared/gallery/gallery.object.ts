@@ -1,30 +1,11 @@
-declare type scrollDirection = 'left' | 'right'
-export class ReviewGalleryObject {
-
+export class GalleryObject {
     public galleryItems = {
-        detailCarLink: '.b-card-review__subtitle',
-        detailCarLinkPopup: '.b-card-review-popup__subtitle',
-        dotActive: 'b-dotnav__dot_active',
+        dotActive: '.b-dotnav__dot_active',
         dotNav: '.b-dotnav__dot',
-        giveFeedbackButton: '.b-button_center',
         itemsVisible: '.b-slider__item:visible',
-        left: '.b-slider-controlls__item_prev',
-        moreLink: '.b-slider__item .b-link',
-        reviewCardButton: '.b-slider__item .b-button',
-        reviewCardPopup: '.b-card-review-popup',
-        right: '.b-slider-controlls__item_next',
-        singleSlideGallery: '.b-gallery-preview_auto',
+        left: '.b-slider__arrow.b-slider__arrow_prev',
+        right: '.b-slider__arrow.b-slider__arrow_next',
         sliderItems: '.b-slider__item',
-    }
-
-    public scrollGalleryByArrow(container: string, direction: string, itaration: number): void {
-        for (let i = 0; i < itaration; i++) {
-            if (direction === 'right') {
-                cy.get(this.galleryItems.right).click()
-            } else if (direction === 'left') {
-                cy.get(this.galleryItems.left).click()
-            }
-        }
     }
     public checkItemChangeByArrow() {
         cy.get(this.galleryItems.dotNav).each((dot) => {
@@ -51,5 +32,8 @@ export class ReviewGalleryObject {
                 })
             }
         })
+    }
+    public scrollToTheLastItem() {
+        cy.get(this.galleryItems.dotNav).last().click()
     }
 }

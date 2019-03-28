@@ -1,5 +1,6 @@
 
 /* tslint:disable */
+
 Cypress.Commands.add('selectDropdown', { prevSubject: true }, (subject: any, text: any) => {
   cy.wrap(subject).click().then(() => {
     cy.get('amm-select-popup aml-select aml-select-item')
@@ -63,15 +64,11 @@ Cypress.Commands.add('inputDropdown', { prevSubject: true },
     });
   });
 
-
-
 // на десктоп
 
 Cypress.Commands.add('isTooltipsOpenAfterMousmoove', (headers: string, options?: any) => {
-  cy.get(headers).each((el) => {
-    cy.wrap(el).trigger('mouseenter').then(() => {
-      cy.get('.b-tooltip__description').should('be.visible')
-    });
+  cy.get(headers).trigger('mouseenter').then(() => {
+    cy.get('.b-tooltip__description').should('be.visible')
   })
 });
 

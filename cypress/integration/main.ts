@@ -1,12 +1,13 @@
 import { MainPage } from '../pages/main/main.page'
-// import { controlItems } from '../shared/fields/filter-fields/filter-fields.object'
+import { FilterObject } from '../shared/filter/filter.object'
+import { FilterSpec } from '../shared/filter/filter.spec'
 import { ReviewGallerySpec } from '../shared/gallery/review-gallery/review-gallery.spec'
-import { PaginationObject } from '../shared/pagination/pagination.object'
 import { PaginationSpec } from '../shared/pagination/pagination.spec'
 import { urls } from '../support/urls'
 
+const filterObject = new FilterObject()
+const filterSpec = new FilterSpec()
 const mainPage = new MainPage()
-const paginationObject = new PaginationObject()
 const paginationSpec = new PaginationSpec()
 const reviewGallerySpec = new ReviewGallerySpec()
 
@@ -14,15 +15,7 @@ describe('Главная', () => {
     beforeEach(() => {
         cy.server()
             .route('https://test.automama.ru/api/v2/auctions/search?tags=*').as('getSearchTag')
-            // .route(' https://tracker.comagic.ru').as('qwe')
-            // .reload()
-
             .visit(urls.mainPage.main)
-        // .wait('@qwe')
-
-    })
-    it('тултипы у контролов', () => {
-        cy.isTooltipsOpenAfterMousmoove(mainPage.controls.question)
     })
     it('тултипы УТП', () => {
         cy.isTooltipsOpenAfterMousmoove(mainPage.utpsText)
@@ -37,20 +30,18 @@ describe('Главная', () => {
         cy.get(mainPage.seoText.showMore).click()
             .get(mainPage.seoText.link).click().url().should('contains', '/cars')
     })
-    // controlItems.forEach((checkedControl) => {
-    //     describe('переход по контролам', () => {
-    //         it('проверяем смену урла ', () => {
-    //             mainPage.checkingUrl(checkedControl)
-    //         })
-    //         it('проверяем наличие иконок', () => {
-    //             mainPage.checkingIconsControl(checkedControl)
-    //         })
-    //     })
-    // })
+    it('при наведении на карточку появилась инфо', () => {
+        cy.get(filterObject.carItem.auctionItems).first().trigger('mouseenter')
+            .get(mainPage.carItems.info).should('be.visible')
+    })
+    it('переход в detail-car по клику на auction-item', () => {
+        cy.get(filterObject.carItem.auctionItems).first().click()
+            .url().should('contains', '/car/')
+    })
+    // filterSpec.isFilterWorking()
     paginationSpec.isPaginationWorking(
         mainPage.pagination.container,
         mainPage.pagination.results,
-        mainPage.carItems.auctionItems)
+        filterObject.carItem.auctionItems)
     reviewGallerySpec.isReviewGalleryWorking(mainPage.reviewGalleryContainer)
-
 })
