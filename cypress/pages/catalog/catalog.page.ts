@@ -4,4 +4,5 @@ export class CatalogPage {
         similarGalleryContainer: 'am-cars-similar am-gallery',
         urlCheckingClickItemCarsGallery: '/car/',
     }
+
 }

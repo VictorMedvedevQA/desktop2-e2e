@@ -2,36 +2,19 @@
 /* tslint:disable */
 
 Cypress.Commands.add('selectDropdown', { prevSubject: true }, (subject: any, text: any) => {
-  cy.wrap(subject).click().then(() => {
-    cy.get('amm-select-popup aml-select aml-select-item')
-      .contains(text).click()
-      .get('amm-select-popup aml-select aml-select-item').should('not.be.visible')
-      .then(() => {
-        return subject;
-      });
-  });
+  cy.wrap(subject).find('.amc-select').click()
+    .find('.amc-select__dropdown-item ')
+    .contains(text).click()
+    .then(() => {
+      return subject;
+    });
+
 });
 
 Cypress.Commands.add('toggle', { prevSubject: true }, (subject: any) => {
   cy.wrap(subject).click().then(() => {
     return subject;
   });
-});
-Cypress.Commands.add('visitGeo', (url: string, options?: any) => {
-  cy.server()
-  cy.route('https://m.test.automama.ru/api/v2/delivery/RegionCode?regionName*').as('getGeolocation');
-  let geoPopup: string = 'amm-geo-location-popup aml-button';
-  cy.visit(url, options)
-  cy.wait('@getGeolocation')
-    .get(geoPopup)
-    .contains('Да')
-    .click()
-    .get(geoPopup).should('not.be.visible')
-});
-
-Cypress.Commands.add('ignoreGeo', (url: string, options?: any) => {
-  cy.visit(url, options).get('amm-geo-location-popup aml-button')
-    .get('.dark-backdrop.cdk-overlay-backdrop-showing').click();
 });
 
 Cypress.Commands.add('blockIsOpenAfterClick', (link: string, content: string, options?: any) => {
@@ -80,8 +63,7 @@ declare namespace Cypress {
     inputDropdown: (textInput: string, textOutput: string) => Chainable<any>;
     selectDropdown: (text: any) => Chainable<any>;
     toggle: () => Chainable<any>;
-    visitGeo: (url: string, options?: any) => Chainable<any>;
-    ignoreGeo: (url: string, options?: any) => Chainable<any>;
+
     // на десктоп
     isTooltipsOpenAfterMousmoove: (headers: string, options?: any) => Chainable<any>;
   }

@@ -8,11 +8,11 @@ export class PaginationSpec {
                     .route('https://test.automama.ru/api/v2/auctions/search?offset=*').as('getSearchoffset')
             })
             it('изменился первый элемет в блоке', () => {
-                cy.get(resultContainer).find(resultItem).first().then((el) => {
+                cy.get(resultItem).first().then((el) => {
                     const firstBefore = el
                     paginationObject.switchPageByArrow(paginationContainer, 'next', 1)
                     cy.wait('@getSearchoffset')
-                        .get(resultContainer).find(resultItem).first().then((el2) => {
+                        .get(resultItem).first().then((el2) => {
                             const firstAfter = el2
                             cy.then(() => {
                                 expect(firstBefore).not.to.be.equal(firstAfter)
