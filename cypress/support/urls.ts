@@ -1,7 +1,8 @@
 
 export const urls = {
     catalog: {
-        filterredHasCar: 'https://test.automama.ru/cars/audi',
+        filterredAudi: 'https://test.automama.ru/cars/audi',
+        filterredAudiA1: 'https://test.automama.ru/cars/audi/a1',
         filterredNoCar: 'https://test.automama.ru/moscow/cars/buick',
         main: 'https://test.automama.ru/cars',
     },

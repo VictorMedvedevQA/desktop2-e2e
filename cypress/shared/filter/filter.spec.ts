@@ -1,11 +1,13 @@
 
 import { BreadcrumbsObject } from '../breadcrumbs/breadcrumbs.object'
+import { FilterFieldsObject, IField } from './filter-fields.object'
 import { FilterObject } from './filter.object'
+const filterFieldsObject = new FilterFieldsObject()
 const breadcrumbsObject = new BreadcrumbsObject()
 const filterObject = new FilterObject()
 export class FilterSpec {
     public isFilterWorking() {
-        filterObject.filterFields.forEach((field) => {
+        filterFieldsObject.filterFields.forEach((field) => {
             describe(field.name, () => {
                 beforeEach(() => {
                     filterObject.activateField(field)
@@ -18,7 +20,7 @@ export class FilterSpec {
                 })
             })
         })
-        filterObject.filterFields.forEach((field) => {
+        filterFieldsObject.filterFields.forEach((field) => {
             if (field.fieldType === 'control') {
                 describe('проверки контролов', () => {
                     it('проверяем наличие иконок ' + field.name, () => {
