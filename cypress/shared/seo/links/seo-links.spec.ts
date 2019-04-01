@@ -39,7 +39,6 @@ export class SeoLinksSpec {
                                         cy.wait('@getFilterGeneration')
                                         break
                                 }
-
                             })
                     })
                     it('изменились ссылки в нижнем блоке ', () => {

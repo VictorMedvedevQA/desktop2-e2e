@@ -11,6 +11,15 @@ Cypress.Commands.add('selectDropdown', { prevSubject: true }, (subject: any, tex
 
 });
 
+// Cypress.Commands.add('inputDropdown', { prevSubject: true }, (subject: any, text: any) => {
+//   cy.wrap(subject).find('.amc-select').click()
+//     .find('.amc-select__dropdown-item ')
+//     .contains(text).click().get ('amc-select__dropdown-item').click()
+//     .then(() => {
+//       return subject;
+//     });
+// });
+
 Cypress.Commands.add('toggle', { prevSubject: true }, (subject: any) => {
   cy.wrap(subject).click().then(() => {
     return subject;
@@ -39,12 +48,11 @@ Cypress.Commands.add('tabs', (container: string, content: string) => {
 
 Cypress.Commands.add('inputDropdown', { prevSubject: true },
   (subject: any, textInput: string, textOutput: string) => {
-    cy.wrap(subject).click().then(() => {
-      cy.get('aml-row-col .b-input__content').type(textInput);
-      cy.get('aml-row-col').contains(textOutput).click().then(() => {
+    cy.wrap(subject).find('.amc-select').click().find('input')
+      .type(textInput)
+      .get('.amc-select__dropdown-item').contains(textOutput).click().then(() => {
         return subject;
       });
-    });
   });
 
 // на десктоп

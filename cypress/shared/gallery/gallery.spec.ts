@@ -3,6 +3,9 @@ const galleryObject = new GalleryObject()
 export class GallerySpec {
     public isGalleryWorking(): void {
         describe('Тест галереи ', () => {
+            beforeEach(() => {
+                cy.get(galleryObject.galleryItems.itemsVisible).first().scrollIntoView()
+            })
             it('скролл по стрелке', () => {
                 galleryObject.checkItemChangeByArrow()
             })

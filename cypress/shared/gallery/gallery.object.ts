@@ -12,7 +12,7 @@ export class GalleryObject {
             if (!dot.hasClass('active')) {
                 cy.get(this.galleryItems.itemsVisible).first().then((item) => {
                     const firstItemBefore = item
-                    cy.get(this.galleryItems.right).click().then(() => {
+                    cy.get(this.galleryItems.right).scrollIntoView().click().then(() => {
                         const firstItemAfter = cy.get(this.galleryItems.itemsVisible).first()
                         expect(firstItemBefore).not.to.be.equal(firstItemAfter)
                     })
@@ -25,7 +25,7 @@ export class GalleryObject {
             if (!dot.hasClass('active')) {
                 cy.get(this.galleryItems.itemsVisible).first().then((item) => {
                     const firstItemBefore = item
-                    cy.wrap(dot).click().then(() => {
+                    cy.wrap(dot).scrollIntoView().click().then(() => {
                         const firstItemAfter = cy.get(this.galleryItems.itemsVisible).first()
                         expect(firstItemBefore).not.to.be.equal(firstItemAfter)
                     })

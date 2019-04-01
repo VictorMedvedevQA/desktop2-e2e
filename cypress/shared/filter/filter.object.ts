@@ -1,5 +1,6 @@
 import { PaginationObject } from '../pagination/pagination.object'
 import { FilterFieldsObject, IField } from './filter-fields.object'
+
 const filterFieldsObject = new FilterFieldsObject()
 const paginationObject = new PaginationObject()
 
@@ -47,25 +48,18 @@ export class FilterObject {
                     cy.get(field.formcontrolname).type(field.inputData).blur()
                 }
             } else if (field.fieldType === 'inputDropdown') {
-                // if (field.formcontrolname  ==='[formcontrolname="model"]') {
-                //      this.activateField(this.filterFields.)
-                // }
-                if (field.formcontrolname !== undefined && field.inputData !== undefined) {
+                if (field.formcontrolname !== undefined && field.inputData !== undefined
+                    && field.outputData !== undefined) {
                     cy.get(field.formcontrolname)
-                        .find('.amc-select').click().find('input')
-                        .type(field.inputData).selectDropdown(field.inputData)
+                        .inputDropdown(field.inputData, field.outputData)
                 }
             }
         }).wait('@getSearch')
     }
     public checkItem(param: string, value: string) {
         cy.get(this.carItem.auctionItemsResult).each((car) => {
-            switch (param) {
-                case 'make' || 'model': {
-                    cy.wrap(car).find(this.itemDescription.title).should('contain', value)
-                    break
-                }
-            }
+            cy.wrap(car).find(this.itemDescription.title).should('contain', value)
+
         })
     }
 }
