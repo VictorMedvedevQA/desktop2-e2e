@@ -22,19 +22,27 @@ export class SeoLinksSpec {
                     beforeEach(() => {
                         cy.server()
                             .route('https://test.automama.ru/api/v2/filter/models?makeId=**').as('getFilterMake')
-                            .route('https://test.automama.ru/api/v2/filter/generations*').as('getFilterGeneration')
-                            .route('https://test.automama.ru/api/v2/auctions/search?*').as('getSearch')
+                            .route('https://test.automama.ru/api/v2/filter/generations?modelId=**').as('getFilterModel')
+                            .route('https://test.automama.ru/api/v2/auctions/search?p1=audi&p2=a1&generation=6187')
+                            .as('getFilterGeneration')
                             .visit(el.urlToStart)
                             .get(seoLinksObject.linksList)
                             .find(seoLinksObject.linksItems).contains(el.value).click().then(() => {
-                                if (el.name === 'make') {
-                                    cy.wait('@getFilterMake')
-                                } else if (el.name === 'model') {
-                                    cy.wait('@getFilterGeneration')
+                                switch (el.name) {
+                                    case 'make':
+                                        cy.wait('@getFilterMake')
+                                        break
+                                    case 'model':
+                                        cy.wait('@getFilterModel')
+                                        break
+                                    case 'generation':
+                                        cy.wait('@getFilterGeneration')
+                                        break
                                 }
-                            }).wait('@getSearch')
+
+                            })
                     })
-                    it('изменились рез-ты   listseolinksitems ', () => {
+                    it('изменились ссылки в нижнем блоке ', () => {
                         cy.get(seoLinksObject.linksList)
                             .find(seoLinksObject.linksItems).contains(el.nextStageValue)
                             .should('be.visible')
