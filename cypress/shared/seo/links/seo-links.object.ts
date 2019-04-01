@@ -20,19 +20,19 @@ export class SeoLinksObject {
             urlToStart: urls.catalog.main,
             value: 'Audi',
         },
-        // {
-        //     name: 'model',
-        //     nextStageValue: 'I (8X)',
-        //     tags: 'a1',
-        //     urlToStart: urls.catalog.filterredAudi,
-        //     value: 'A1',
-        // },
-        // {
-        //     name: 'generation',
-        //     nextStageValue: 'I (8X)',
-        //     tags: 'generation=6187',
-        //     urlToStart: urls.catalog.filterredAudiA1,
-        //     value: 'I (8X)',
-        // },
+        {
+            name: 'model',
+            nextStageValue: 'I (8X)',
+            tags: 'a1',
+            urlToStart: urls.catalog.filterredAudi,
+            value: 'A1',
+        },
+        {
+            name: 'generation',
+            nextStageValue: 'I (8X)',
+            tags: 'generation=6187',
+            urlToStart: urls.catalog.filterredAudiA1,
+            value: 'I (8X)',
+        },
     ]
 }
