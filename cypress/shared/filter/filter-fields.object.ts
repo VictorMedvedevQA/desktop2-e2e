@@ -120,15 +120,16 @@ export class FilterFieldsObject {
             seoTextChange: true,
             tags: 'audi',
         },
-        // {
-        //     breadcrumbsChange: true,
-        //     fieldType: 'inputDropdown',
-        //     formcontrolname: '[formcontrolname="model"]',
-        //     hide: false,
-        //     inputData: 'A1',
-        //     name: 'Все модели',
-        //     seoTextChange: true,
-        //     tags: 'a1',
-        // },
+        {
+            breadcrumbsChange: true,
+            fieldType: 'inputDropdown',
+            formcontrolname: '[formcontrolname="model"]',
+            hide: false,
+            inputData: '1',
+            name: 'Все модели',
+            outputData: 'A1',
+            seoTextChange: true,
+            tags: 'a1',
+        },
     ]
 }

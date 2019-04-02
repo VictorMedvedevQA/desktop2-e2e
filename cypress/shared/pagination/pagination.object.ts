@@ -21,10 +21,9 @@ export class PaginationObject {
         cy.get(this.paginationItems.item).last().click()
     }
     public findNumberActive(container: string) {
-        cy.get(container).find(this.paginationItems.activ).then((el) => {
+        cy.get(container).find(this.paginationItems.activ).scrollIntoView().then((el) => {
             const activeNumber = el.text()
             return (activeNumber)
-
         })
     }
 }

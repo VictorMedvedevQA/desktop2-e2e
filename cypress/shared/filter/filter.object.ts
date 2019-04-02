@@ -7,16 +7,16 @@ const paginationObject = new PaginationObject()
 export class FilterObject {
     public filter = {
         cleanAll: 'amc-row-col:contains(Сбросить)',
-        // make: '[formcontrolname="make"]',
-        // model: '[formcontrolname="model"]',
         showAll: 'amc-row-col:contains(Все параметры)',
     }
     public carItem = {
         auctionItemsResult: '.am-cars-results__auctions auction-item',
         auctionitem: 'auction-item',
+        itemCard: '.b-card',
     }
     public itemDescription = {
         city: '.b-card-description__city',
+        info: '.b-card__info',
         title: '.b-card-description__title',
         year: '.b-card-description__year',
     }
@@ -47,12 +47,21 @@ export class FilterObject {
                 if (field.formcontrolname !== undefined && field.inputData !== undefined) {
                     cy.get(field.formcontrolname).type(field.inputData).blur()
                 }
-            } else if (field.fieldType === 'inputDropdown') {
+            } else if (field.fieldType === 'inputDropdown' && field.name !== 'Все модели') {
                 if (field.formcontrolname !== undefined && field.inputData !== undefined
                     && field.outputData !== undefined) {
                     cy.get(field.formcontrolname)
                         .inputDropdown(field.inputData, field.outputData)
                 }
+            } else if (field.name === 'Все модели') {
+                cy.get('[formcontrolname="make"]').inputDropdown('Au', 'Audi')
+                    .wait('@getSearch').then(() => {
+                        if (field.formcontrolname !== undefined && field.inputData !== undefined
+                            && field.outputData !== undefined) {
+                            cy.get(field.formcontrolname)
+                                .inputDropdown(field.inputData, field.outputData)
+                        }
+                    })
             }
         }).wait('@getSearch')
     }

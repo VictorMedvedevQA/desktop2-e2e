@@ -7,9 +7,28 @@ const catalogPage = new CatalogPage()
 const galleryObject = new GalleryObject()
 const gallerySpec = new GallerySpec()
 const seoLinksSpec = new SeoLinksSpec()
+
 describe(' галерея "похожие авто"', () => {
     beforeEach(() => {
-        cy.visit(urls.catalog.filterredAudi)
+        //         cy.window().then((w: any) => {
+
+        //             const ComagicLoadingId = setInterval(() => {
+        //                 if (w.Comagic && w.Comagic.isReady()) {
+
+        //                     clearInterval(ComagicLoadingId)
+
+        //                     setTimeout(() => {
+        //                         // alert('cs loaded');
+        // cy.get('.comagic-widget').first()
+        //                     }, 2000)
+        //                 }
+        //             }, 2000)
+        //         })
+        cy.server()
+            .route(' https://server.comagic.ru/comagic/*').as('getComagic')
+            .visit(urls.catalog.filterredAudi)
+            .wait('@getComagic')
+            .get('.comagic-widget').first()
     })
     it('если  отфильтровано и есть авто  => "похожие авто"', () => {
         cy.get(catalogPage.galleries.similarGalleryContainer).should('be.visible')
