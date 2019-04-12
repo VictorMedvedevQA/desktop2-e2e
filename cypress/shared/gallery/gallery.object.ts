@@ -7,33 +7,34 @@ export class GalleryObject {
         right: '.b-slider__arrow.b-slider__arrow_next',
         sliderItems: '.b-slider__item',
     }
-    public checkItemChangeByArrow() {
-        cy.get(this.galleryItems.dotNav).each((dot) => {
+    public checkItemChangeByArrow(galleryContainer: string) {
+        cy.get(galleryContainer).find(this.galleryItems.dotNav).each((dot) => {
             if (!dot.hasClass('active')) {
-                cy.get(this.galleryItems.itemsVisible).first().then((item) => {
+                cy.get(galleryContainer).find(this.galleryItems.itemsVisible).first().then((item) => {
                     const firstItemBefore = item
-                    cy.get(this.galleryItems.right).scrollIntoView().click().then(() => {
-                        const firstItemAfter = cy.get(this.galleryItems.itemsVisible).first()
-                        expect(firstItemBefore).not.to.be.equal(firstItemAfter)
-                    })
+                    cy.get(galleryContainer).find(this.galleryItems.right)
+                        .scrollIntoView().click().then(() => {
+                            const firstItemAfter = cy.get(galleryContainer).find(this.galleryItems.itemsVisible).first()
+                            expect(firstItemBefore).not.to.be.equal(firstItemAfter)
+                        })
                 })
             }
         })
     }
-    public checkItemChangeByDot() {
-        cy.get(this.galleryItems.dotNav).each((dot) => {
+    public checkItemChangeByDot(galleryContainer: string) {
+        cy.get(galleryContainer).find(this.galleryItems.dotNav).each((dot) => {
             if (!dot.hasClass('active')) {
-                cy.get(this.galleryItems.itemsVisible).first().then((item) => {
+                cy.get(galleryContainer).find(this.galleryItems.itemsVisible).first().then((item) => {
                     const firstItemBefore = item
                     cy.wrap(dot).scrollIntoView().click().then(() => {
-                        const firstItemAfter = cy.get(this.galleryItems.itemsVisible).first()
+                        const firstItemAfter = cy.get(galleryContainer).find(this.galleryItems.itemsVisible).first()
                         expect(firstItemBefore).not.to.be.equal(firstItemAfter)
                     })
                 })
             }
         })
     }
-    public scrollToTheLastItem() {
-        cy.get(this.galleryItems.dotNav).last().click()
+    public scrollToTheLastItem(galleryContainer: string) {
+        cy.get(galleryContainer).find(this.galleryItems.dotNav).last().click()
     }
 }

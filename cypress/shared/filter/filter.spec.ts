@@ -10,8 +10,7 @@ const filterObject = new FilterObject()
 export class FilterSpec {
     public isFilterWorking() {
         filterFieldsObject.filterFields.forEach((field) => {
-            // filterFieldsSpec.checkField(field)
-            filterFieldsSpec.checkSearchResult(field)
+            filterFieldsSpec.checkField(field)
         })
     }
 }

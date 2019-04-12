@@ -21,11 +21,14 @@ export class SeoLinksSpec {
                 describe('при переходе на ' + el.name, () => {
                     beforeEach(() => {
                         cy.server()
+                            .route(' https://server.comagic.ru/comagic/*').as('getComagic')
                             .route('https://test.automama.ru/api/v2/filter/models?makeId=**').as('getFilterMake')
                             .route('https://test.automama.ru/api/v2/filter/generations?modelId=**').as('getFilterModel')
                             .route('https://test.automama.ru/api/v2/auctions/search?p1=audi&p2=a1&generation=6187')
                             .as('getFilterGeneration')
                             .visit(el.urlToStart)
+                            .wait('@getComagic')
+                            .get('.comagic-widget').first()
                             .get(seoLinksObject.linksList)
                             .find(seoLinksObject.linksItems).contains(el.value).click().then(() => {
                                 switch (el.name) {

@@ -64,29 +64,4 @@ export class FilterFieldsSpec {
             }
         })
     }
-
-    public checkSearchResult(field: IField) {
-        describe('Изменились результаты поиска ', () => {
-            beforeEach(() => {
-                filterObject.activateField(field)
-            })
-            switch (field.formcontrolname) {
-                case ('[formcontrolname ="engineType"]' ||
-                    '[formcontrolname ="gearbox"]' ||
-                    '[formcontrolname ="bodyType"]'):
-                    it(field.name, () => {
-                        cy.get('.b-card-header:visible')
-                            .each((item) => {
-
-                                if (field.inputData !== undefined) {
-                                    cy.wrap(item).focus()
-                                        .get(filterObject.itemDescription.info).should('contains', field.inputData)
-                                }
-                            })
-                    })
-                    break
-            }
-        })
-    }
-
 }
