@@ -1,4 +1,7 @@
+import { FormTestingObject } from '../../shared/form-testing/form-testing.object'
 import { urls } from '../../support/urls'
+
+const formTestingObject = new FormTestingObject()
 
 export class AuthPage {
   public linkContainer = '.link_container'
@@ -30,5 +33,17 @@ export class AuthPage {
       .get(this.signupForm.openFormButton)
       .click()
       .get(this.loginForm.formLink)
+  }
+  public refreshСonfirmNumberFrom() {
+    cy.visit(urls.express.main)
+      .then(() => {
+        this.refreshSignupForm()
+        formTestingObject.sendValidData(
+          this.signupForm.formLink,
+          this.signupForm.submitFormButton,
+        )
+      })
+      .get(this.confirmNumberFrom.formLink)
+      .should('contain', '70000000011')
   }
 }

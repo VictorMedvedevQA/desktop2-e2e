@@ -1,15 +1,12 @@
 import { AuthPage } from '../pages/auth/auth.page'
-import {
-  FormTestingObject,
-  validData,
-} from '../shared/form-testing/form-testing.object'
+import { FormTestingObject } from '../shared/form-testing/form-testing.object'
 import { FormTestingSpec } from '../shared/form-testing/form-testing.spec'
 import { urls } from '../support/urls'
 const authPage = new AuthPage()
 const formTestingSpec = new FormTestingSpec()
 const formTestingObject = new FormTestingObject()
 
-describe('авторизация', () => {
+describe('Авторизация', () => {
   beforeEach(() => {
     cy.visit(urls.express.main)
   })
@@ -21,18 +18,6 @@ describe('авторизация', () => {
       authPage.loginForm.openFormButton,
       authPage.refreshLoginForm.bind(authPage),
     )
-  })
-
-  it('Успешно залогинились', () => {
-    cy.then(() => {
-      authPage.refreshLoginForm()
-      formTestingObject.sendValidData(
-        authPage.loginForm.formLink,
-        authPage.loginForm.submitFormButton,
-      )
-    })
-      .get(authPage.linkContainer)
-      .should('contain', 'rbarinov@gmail.com')
   })
 
   it('Переход из попапа входа в попап регистрации по ссылке ', () => {
@@ -52,6 +37,14 @@ describe('Регистрация', () => {
     cy.visit(urls.express.main)
   })
 
+  describe('Форма "Подтверждение номера телефона"', () => {
+    formTestingSpec.isPopupFormWorking(
+      authPage.confirmNumberFrom.formLink,
+      authPage.confirmNumberFrom.submitFormButton,
+      authPage.confirmNumberFrom.openFormButton,
+      authPage.refreshСonfirmNumberFrom.bind(authPage),
+    )
+  })
   describe('Форма "Регистрация"', () => {
     formTestingSpec.isPopupFormWorking(
       authPage.signupForm.formLink,
