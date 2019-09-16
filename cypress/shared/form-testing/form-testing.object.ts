@@ -14,7 +14,8 @@ export const formFields: IForm[] = [
   { type: "input", name: "password" },
   { type: "input", name: "username" },
   { type: "input", name: "confirm" },
-  { type: "input", name: "phoneNumber" }
+  { type: "input", name: "phoneNumber" },
+  { type: "input", name: "code" }
 ];
 
 export const validData = [
@@ -24,7 +25,8 @@ export const validData = [
   { name: "password", data: "1" },
   { name: "username", data: "rbarinov@gmail.com" },
   { name: "confirm", data: "1" },
-  { name: "phoneNumber", data: "00000000111" }
+  { name: "phoneNumber", data: "00000000111" },
+  { name: "code", data: "0000" }
 ];
 
 export class FormTestingObject {
@@ -123,9 +125,7 @@ export class FormTestingObject {
   }
 
   closingPopupForm(link: string, openFormButton: string) {
-    cy.get(openFormButton)
-      .click()
-      .get(link)
+    cy.get(link)
       .find(this.formButtons.closePopup)
       .click()
       .get(link)

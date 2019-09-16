@@ -22,18 +22,17 @@ export class FormTestingSpec {
   ) {
     describe('Попап', () => {
       it('форма закрывается по крестику', () => {
-        cy.get(openFormButton).then(() => {
+        cy.then(() => {
+          refreshForm()
           formTestingObject.closingPopupForm(link, openFormButton)
         })
       })
     })
     describe('тест формы в попапе', () => {
       beforeEach(() => {
-        cy.get(openFormButton)
-          .click()
-          .then(() => {
-            cy.get(link)
-          })
+        cy.then(() => {
+          refreshForm()
+        })
       })
       this.isFormWorking(link, submit, refreshForm)
     })

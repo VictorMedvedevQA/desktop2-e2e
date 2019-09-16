@@ -30,6 +30,15 @@ describe('Авторизация', () => {
       .get(authPage.signupForm.formLink)
       .should('be.visible')
   })
+
+  describe('Форма "Забыли пароль"', () => {
+    formTestingSpec.isPopupFormWorking(
+      authPage.forgotPasswordForm.formLink,
+      authPage.forgotPasswordForm.submitFormButton,
+      authPage.forgotPasswordForm.openFormButton,
+      authPage.refreshForgotPasswordForm.bind(authPage),
+    )
+  })
 })
 
 describe('Регистрация', () => {
