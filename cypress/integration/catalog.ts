@@ -1,6 +1,5 @@
 import { CatalogPage } from '../pages/catalog/catalog.page'
 import { CarsTagsGallerySpec } from '../shared/gallery/cars-tags-gallery/cars-tags-gallery.spec'
-import { GalleryObject } from '../shared/gallery/gallery.object'
 import { GallerySpec } from '../shared/gallery/gallery.spec'
 import { SeoLinksSpec } from '../shared/seo/links/seo-links.spec'
 import { urls } from '../support/urls'
@@ -62,13 +61,7 @@ seoLinksSpec.isSeoLinksWorking()
 
 describe('проданные авто', () => {
   beforeEach(() => {
-    cy.server()
-      .route(' https://server.comagic.ru/comagic/*')
-      .as('getComagic')
-      .visit(urls.catalog.filterredAudiA1)
-      .wait('@getComagic')
-      .get('.comagic-widget')
-      .first()
+    cy.visit(urls.catalog.filterredAudiA1)
   })
   it('показать проданные авто', () => {
     cy.get(catalogPage.catalog.soldCars)

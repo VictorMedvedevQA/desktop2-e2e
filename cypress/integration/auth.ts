@@ -1,5 +1,9 @@
+import * as authFormData from '..//pages/auth/auth.form.data'
 import { AuthPage } from '../pages/auth/auth.page'
-import { FormTestingObject } from '../shared/form-testing/form-testing.object'
+import {
+  FormTestingObject,
+  validData,
+} from '../shared/form-testing/form-testing.object'
 import { FormTestingSpec } from '../shared/form-testing/form-testing.spec'
 import { urls } from '../support/urls'
 const authPage = new AuthPage()
@@ -9,6 +13,9 @@ const formTestingObject = new FormTestingObject()
 describe('Авторизация', () => {
   beforeEach(() => {
     cy.visit(urls.express.main)
+      .server()
+      .route('https://test.automama.ru/auth/profile/me')
+      .as('me')
   })
 
   describe('Форма "Вход"', () => {
@@ -28,6 +35,41 @@ describe('Авторизация', () => {
       .contains('Регистрация')
       .click()
       .get(authPage.signupForm.formLink)
+      .should('be.visible')
+  })
+  it('очищаются данные после закрытия попапа ', () => {
+    cy.then(() => {
+      authPage.refreshLoginForm()
+      formTestingObject.fillElements(
+        authPage.loginForm.formLink,
+        formTestingObject.createFieldsList(authPage.loginForm.formLink),
+        validData,
+      )
+    })
+      .get(authPage.loginForm.submitFormButton)
+      .should('be.enabled')
+      .get(formTestingObject.formButtons.closePopup)
+      .click()
+      .get(authPage.loginForm.openFormButton)
+      .click()
+      .get(authPage.loginForm.submitFormButton)
+      .should('be.disabled')
+  })
+
+  it('логин в смешанном регистре', () => {
+    cy.then(() => {
+      authPage.refreshLoginForm()
+      formTestingObject.fillElements(
+        authPage.loginForm.formLink,
+        formTestingObject.createFieldsList(authPage.loginForm.formLink),
+        authFormData.mixedCaseLogin,
+      )
+    })
+      .get(authPage.loginForm.submitFormButton)
+      .click()
+      .wait('@me')
+      .get(authPage.linkContainer)
+      .contains('rbarinov@gmail.com')
       .should('be.visible')
   })
 
@@ -75,7 +117,7 @@ describe('Регистрация', () => {
       .should('contain', '70000000011')
   })
 
-  it('Переход из попапа регистрации в попап входа по ссылке ', () => {
+  it('Переход из попапа регистрации в попап входа  ', () => {
     cy.then(() => {
       authPage.refreshSignupForm()
     })

@@ -3,6 +3,10 @@ export interface IForm {
   type: "select" | "input" | "chekbox" | "textarea";
   name: string;
 }
+export interface IFormData {
+  name: string;
+  data: string;
+}
 
 export const formFields: IForm[] = [
   { type: "chekbox", name: "chekbox" },
@@ -18,7 +22,7 @@ export const formFields: IForm[] = [
   { type: "input", name: "code" }
 ];
 
-export const validData = [
+export const validData: IFormData[] = [
   { name: "name", data: "Вася" },
   { name: "phone", data: "0000000000" },
   { name: "email", data: "rbarinov@gmail.com" },
@@ -53,40 +57,23 @@ export class FormTestingObject {
     return fieldList;
   }
 
-  fillElements(link: string, fieldsList: IForm[]) {
+  fillElements(link: string, fieldsList: IForm[], data: IFormData[]) {
     cy.get(link).then(() => {
       for (let field in fieldsList) {
         let fieldName: string = fieldsList[field].name;
-        for (let eldata in validData) {
-          if (fieldName !== validData[eldata].name) {
-            continue;
-          }
-          let inputData: string = validData[eldata].data;
-          cy.then(() => {
-            if (validData[eldata].name !== "phoneNumber") {
-              cy.get(link)
-                .find('[formcontrolname="' + fieldName + '"]')
-                .find("input")
-                .type(inputData);
-            } else {
-              cy.get(link)
-                .find('[formcontrolname="' + fieldName + '"]')
-                .type(inputData);
-            }
-          });
-        }
+        this.fillElement(link, fieldName, data);
       }
     });
   }
 
-  fillElement(link: string, fieldName: string) {
-    for (let eldata in validData) {
-      if (fieldName !== validData[eldata].name) {
+  fillElement(link: string, fieldName: string, data: IFormData[]) {
+    for (let eldata in data) {
+      if (fieldName !== data[eldata].name) {
         continue;
       }
-      let inputData: string = validData[eldata].data;
+      let inputData: string = data[eldata].data;
       cy.then(() => {
-        if (validData[eldata].name !== "phoneNumber") {
+        if (data[eldata].name !== "phoneNumber") {
           cy.get(link)
             .find('[formcontrolname="' + fieldName + '"]')
             .find("input")
@@ -110,7 +97,7 @@ export class FormTestingObject {
 
   sendValidData(link: string, submit: string) {
     cy.then(() => {
-      this.fillElements(link, this.createFieldsList(link));
+      this.fillElements(link, this.createFieldsList(link), validData);
       console.log(this.createFieldsList(link));
     }).then(() => {
       this.submitForm(link, submit);
@@ -143,7 +130,11 @@ export class FormTestingObject {
               continue;
             }
             cy.then(() => {
-              this.fillElement(link, allFieldsArray[elAllFields].name);
+              this.fillElement(
+                link,
+                allFieldsArray[elAllFields].name,
+                validData
+              );
             });
           }
           cy.then(() => {
