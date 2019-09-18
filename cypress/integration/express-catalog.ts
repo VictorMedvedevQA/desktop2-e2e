@@ -25,14 +25,9 @@ describe('Видимость к-ва ставок и текущей ставки
   })
 
   it('Если залогинены - видим ставку и к-во ставок ', () => {
-    cy.get(authPage.loginForm.openFormButton)
-      .click()
-      .then(() => {
-        formTestingObject.sendValidData(
-          authPage.loginForm.formLink,
-          authPage.loginForm.submitFormButton,
-        )
-      })
+    cy.then(() => {
+      authPage.loginWithProfy()
+    })
       .get(expressCatalogPage.price)
       .each((el) => {
         cy.wrap(el).should('be.visible')

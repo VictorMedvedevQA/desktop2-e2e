@@ -7,6 +7,14 @@ export class AuthPage {
   public linkContainer = '.link_container'
   public insidePopupLink = ' a.amc-link'
   public footerPopupLink = `.b-popup-footer__link ${this.insidePopupLink}`
+
+  public oldSite = {
+    loginButton: `.b-top-navigation__link:contains(Вход)`,
+    navigationLink: '.b-top-navigation__link',
+    openOldSiteButton: `amc-link:contains(Старая версия сайта)`,
+    upMenu: 'am-up-menu-dealers',
+  }
+
   public loginForm = {
     formLink: 'am-popup .b-popup',
     openFormButton: `${this.linkContainer}:contains(Вход)`,
@@ -29,6 +37,16 @@ export class AuthPage {
     formLink: 'am-popup .b-popup:contains(Восстановление пароля )',
     openFormButton: `${this.footerPopupLink}:contains(Регистрация)`,
     submitFormButton: '[type="submit"]',
+  }
+  public loginWithProfy() {
+    cy.get(this.loginForm.openFormButton)
+      .click()
+      .then(() => {
+        formTestingObject.sendValidData(
+          this.loginForm.formLink,
+          this.loginForm.submitFormButton,
+        )
+      })
   }
 
   public refreshLoginForm() {

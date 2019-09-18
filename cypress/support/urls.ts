@@ -11,7 +11,10 @@ export const urls = {
     main: 'https://test.automama.ru/car/5652',
   },
   express: {
+    deny: 'https://test.automama.ru/dealer/deny',
+    detailCar: ' https://test.automama.ru/dealer/express-car/5749',
     main: 'https://test.automama.ru/dealer/express',
+    old: 'https://test.automama.ru/dealer/cars',
   },
   mainPage: {
     filtered: ' https://test.automama.ru/moscow/cars/audi?fromFilter=true',
