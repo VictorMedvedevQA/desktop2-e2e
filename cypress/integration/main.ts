@@ -1,3 +1,4 @@
+import { filterFields } from '../pages/main/filter-fields'
 import { MainPage } from '../pages/main/main.page'
 import { FilterFieldsSpec } from '../shared/filter/filter-fields.spec'
 import { FilterObject } from '../shared/filter/filter.object'
@@ -54,11 +55,12 @@ describe('Главная', () => {
       .url()
       .should('contains', '/car/')
   })
-  filterSpec.isFilterWorking()
+  filterSpec.isFilterWorking(filterFields)
   paginationSpec.isPaginationWorking(
     mainPage.pagination.container,
     mainPage.pagination.results,
     filterObject.carItem.auctionItemsResult,
+    mainPage.getSearchОffset,
   )
   reviewGallerySpec.isReviewGalleryWorking(mainPage.reviewGalleryContainer)
 })

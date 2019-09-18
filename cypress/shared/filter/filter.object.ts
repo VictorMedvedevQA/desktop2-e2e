@@ -40,19 +40,35 @@ export class FilterObject {
         }
       });
   }
+
+  public getSearch() {
+    cy.url().then(url => {
+      switch (url) {
+        case urls.express.main:
+          {
+            cy.server()
+              .route("https://test.automama.ru/api/v2/dealer/auctions/search?*")
+              .as("getSearch");
+          }
+          break;
+        case urls.mainPage.main:
+          {
+            cy.server()
+              .route("https://test.automama.ru/api/v2/auctions/search?*")
+              .as("getSearch");
+          }
+          break;
+      }
+    });
+  }
+
   public activateField(field: IField) {
-    // cy.url((url)=>{
-    //   switch(url){
-    //     case url ==='https://test.automama.ru/dealer/express'
-    //   }
-    // })
     cy.url()
       .then(url => {
         if (url !== urls.express.main) {
           cy.get(this.filter.showAll).click();
         }
       })
-
       .then(() => {
         if (field.fieldType === "control") {
           cy.get(this.controls.tags)

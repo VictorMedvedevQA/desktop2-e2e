@@ -11,14 +11,17 @@ export class FilterFieldsSpec {
       () => {
         describe(field.name, () => {
           beforeEach(() => {
+            filterObject.getSearch()
             filterObject.activateField(field)
           })
           it('проверяем смену урла ' + field.name, () => {
             cy.url().should('contains', field.tags)
           })
-          it('появление "сбросить" ', () => {
-            cy.get(filterObject.filter.cleanAll).should('be.visible')
-          })
+          if (field.activateClearButton === true) {
+            it('появление "сбросить" ', () => {
+              cy.get(filterObject.filter.cleanAll).should('be.visible')
+            })
+          }
         })
         if (field.fieldType === 'control') {
           describe('проверки контролов', () => {
