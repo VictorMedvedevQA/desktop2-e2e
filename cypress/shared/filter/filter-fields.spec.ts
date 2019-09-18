@@ -1,8 +1,7 @@
 import { BreadcrumbsObject } from '../breadcrumbs/breadcrumbs.object'
-import { FilterFieldsObject, IField } from './filter-fields.object'
+import { IField } from './filter-fields.object'
 import { FilterObject } from './filter.object'
 const filterObject = new FilterObject()
-const filterFieldsObject = new FilterFieldsObject()
 const breadcrumbsObject = new BreadcrumbsObject()
 export class FilterFieldsSpec {
   public checkField(field: IField) {

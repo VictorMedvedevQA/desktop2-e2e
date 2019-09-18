@@ -11,4 +11,3 @@ export interface IField {
   tags: string
   activateClearButton: boolean
 }
-export class FilterFieldsObject {}

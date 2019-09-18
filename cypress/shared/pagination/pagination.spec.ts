@@ -3,7 +3,6 @@ const paginationObject = new PaginationObject()
 export class PaginationSpec {
   public isPaginationWorking(
     paginationContainer: string,
-    resultContainer: string,
     resultItem: string,
     getSearchОffset: string,
   ) {

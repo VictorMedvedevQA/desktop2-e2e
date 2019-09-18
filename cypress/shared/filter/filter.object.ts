@@ -1,11 +1,6 @@
 // tslint:disable
-
 import { urls } from "../../support/urls";
-import { PaginationObject } from "../pagination/pagination.object";
-import { FilterFieldsObject, IField } from "./filter-fields.object";
-
-const filterFieldsObject = new FilterFieldsObject();
-const paginationObject = new PaginationObject();
+import { IField } from "./filter-fields.object";
 
 export class FilterObject {
   public filter = {

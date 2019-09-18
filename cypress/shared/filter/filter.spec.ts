@@ -1,6 +1,5 @@
-import { FilterFieldsObject, IField } from './filter-fields.object'
+import { IField } from './filter-fields.object'
 import { FilterFieldsSpec } from './filter-fields.spec'
-const filterFieldsObject = new FilterFieldsObject()
 const filterFieldsSpec = new FilterFieldsSpec()
 
 export class FilterSpec {

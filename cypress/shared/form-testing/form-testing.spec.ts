@@ -14,6 +14,7 @@ export class FormTestingSpec {
       })
     })
   }
+
   public isPopupFormWorking(
     link: string,
     submit: string,

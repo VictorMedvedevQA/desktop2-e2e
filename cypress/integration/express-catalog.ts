@@ -37,7 +37,6 @@ describe('Видимость к-ва ставок и текущей ставки
   describe('Пагинация', () => {
     paginationSpec.isPaginationWorking(
       expressCatalogPage.pagination.container,
-      expressCatalogPage.pagination.results,
       expressCatalogPage.carItem.expressItemsResult,
       expressCatalogPage.getSearchОffset,
     )
