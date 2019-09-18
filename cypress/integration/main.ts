@@ -18,22 +18,25 @@ describe('Главная', () => {
     cy.server()
       .route('https://test.automama.ru/api/v2/auctions/search?*')
       .as('getSearch')
-
       .visit(urls.mainPage.main)
   })
-  it('тултипы УТП', () => {
+
+  it('Тултипы УТП', () => {
     cy.isTooltipsOpenAfterMousmoove(mainPage.utpsText)
   })
-  it('переход в статьи', () => {
+
+  it('Переход в статьи', () => {
     cy.get(mainPage.news.link)
       .click()
       .url()
       .should('contains', '/blog')
   })
-  it('открытие блока инфо подробнее', () => {
+
+  it('Открытие блока инфо подробнее', () => {
     cy.blockIsOpenAfterClick(mainPage.seoText.showMore, mainPage.seoText.link)
   })
-  it('переход по якорной ссылке в каталог', () => {
+
+  it('Переход по якорной ссылке в каталог', () => {
     cy.get(mainPage.seoText.showMore)
       .click()
       .get(mainPage.seoText.link)
@@ -41,20 +44,23 @@ describe('Главная', () => {
       .url()
       .should('contains', '/cars')
   })
-  it('при наведении на карточку появилась инфо', () => {
+
+  it('При наведении на карточку появилась инфо', () => {
     cy.get(filterObject.carItem.auctionItemsResult)
       .first()
       .trigger('mouseenter')
       .get(mainPage.carItems.info)
       .should('be.visible')
   })
-  it('переход в detail-car по клику на auction-item', () => {
+
+  it('Переход в detail-car по клику на auction-item', () => {
     cy.get(filterObject.carItem.auctionItemsResult)
       .first()
       .click()
       .url()
       .should('contains', '/car/')
   })
+
   filterSpec.isFilterWorking(filterFields)
   paginationSpec.isPaginationWorking(
     mainPage.pagination.container,

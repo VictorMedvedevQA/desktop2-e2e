@@ -38,6 +38,7 @@ export class AuthPage {
     openFormButton: `${this.footerPopupLink}:contains(Регистрация)`,
     submitFormButton: '[type="submit"]',
   }
+
   public loginWithProfy() {
     cy.get(this.loginForm.openFormButton)
       .click()

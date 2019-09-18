@@ -14,30 +14,35 @@ export class FilterFieldsSpec {
             filterObject.getSearch()
             filterObject.activateField(field)
           })
-          it('проверяем смену урла ' + field.name, () => {
+
+          it('Проверяем смену урла ' + field.name, () => {
             cy.url().should('contains', field.tags)
           })
+
           if (field.activateClearButton === true) {
-            it('появление "сбросить" ', () => {
+            it('Появление "сбросить" ', () => {
               cy.get(filterObject.filter.cleanAll).should('be.visible')
             })
           }
         })
+
         if (field.fieldType === 'control') {
-          describe('проверки контролов', () => {
-            it('проверяем наличие иконок в результатах' + field.name, () => {
+          describe('Проверки контролов', () => {
+            it('Проверяем наличие иконок в результатах' + field.name, () => {
               cy.then(() => {
                 filterObject.activateField(field)
               }).then(() => {
                 filterObject.checkingIconsControl(field)
               })
             })
-            it('тултипы у контролов', () => {
+
+            it('Тултипы у контролов', () => {
               if (field.formcontrolname !== undefined) {
                 cy.isTooltipsOpenAfterMousmoove(field.formcontrolname)
               }
             })
-            it('контрол становится активным после клика', () => {
+
+            it('Контрол становится активным после клика', () => {
               cy.then(() => {
                 filterObject.activateField(field)
               })
@@ -46,8 +51,9 @@ export class FilterFieldsSpec {
             })
           })
         }
+
         if (field.hide === true) {
-          it('развернуть и скрыть ' + field.name, () => {
+          it('Развернуть и скрыть ' + field.name, () => {
             if (field.formcontrolname !== undefined) {
               cy.get(field.formcontrolname)
                 .find('.amc-select')
@@ -60,8 +66,9 @@ export class FilterFieldsSpec {
             }
           })
         }
+
         if (field.breadcrumbsChange === true) {
-          it('меняются хк ' + field.name, () => {
+          it('Меняются ХК ' + field.name, () => {
             cy.then(() => {
               filterObject.activateField(field)
             }).then(() => {

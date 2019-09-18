@@ -37,7 +37,8 @@ describe('Авторизация', () => {
       .get(authPage.signupForm.formLink)
       .should('be.visible')
   })
-  it('очищаются данные после закрытия попапа ', () => {
+
+  it('Очищаются данные после закрытия попапа ', () => {
     cy.then(() => {
       authPage.refreshLoginForm()
       formTestingObject.fillElements(
@@ -56,7 +57,7 @@ describe('Авторизация', () => {
       .should('be.disabled')
   })
 
-  it('логин в смешанном регистре', () => {
+  it('Логин в смешанном регистре', () => {
     cy.then(() => {
       authPage.refreshLoginForm()
       formTestingObject.fillElements(
@@ -96,6 +97,7 @@ describe('Регистрация', () => {
       authPage.refreshСonfirmNumberFrom.bind(authPage),
     )
   })
+
   describe('Форма "Регистрация"', () => {
     formTestingSpec.isPopupFormWorking(
       authPage.signupForm.formLink,

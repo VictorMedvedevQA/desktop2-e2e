@@ -8,8 +8,8 @@ const filterObject = new FilterObject();
 const seoLinksObject = new SeoLinksObject();
 export class SeoLinksSpec {
   public isSeoLinksWorking() {
-    describe("работа нижнего блока", () => {
-      it("на /cars отображаются только авто в наличии ", () => {
+    describe("Работа нижнего блока", () => {
+      it("На /cars отображаются только авто в наличии ", () => {
         cy.visit(urls.catalog.main)
           .get(seoLinksObject.linksList)
           .find(seoLinksObject.linksItems)
@@ -19,8 +19,9 @@ export class SeoLinksSpec {
           .contains("ЗАЗ")
           .should("not.be.visible");
       });
+
       seoLinksObject.seoLinks.forEach(el => {
-        describe("при переходе на " + el.name, () => {
+        describe("При переходе на " + el.name, () => {
           beforeEach(() => {
             cy.server()
               .route('https://test.automama.ru/api/v2/filter/models?makeId=**')
@@ -34,7 +35,6 @@ export class SeoLinksSpec {
               )
               .as('getFilterGeneration')
               .visit(el.urlToStart)
-
               .get(seoLinksObject.linksList)
               .find(seoLinksObject.linksItems)
               .contains(el.value)
@@ -53,23 +53,27 @@ export class SeoLinksSpec {
                 }
               })
           })
-          it('изменились ссылки в нижнем блоке ', () => {
+
+          it('Изменились ссылки в нижнем блоке ', () => {
             cy.get(seoLinksObject.linksList)
               .find(seoLinksObject.linksItems)
               .contains(el.nextStageValue)
               .should('be.visible')
           })
-          it('изменились хк ', () => {
+
+          it('Изменились хк ', () => {
             cy.get(breadcrumbsObject.container)
               .find(breadcrumbsObject.items.last)
               .contains(el.value)
               .should('be.visible')
           })
-          it('изменился урл ', () => {
+
+          it('Изменился урл ', () => {
             cy.url().should('contains', el.tags)
           })
+
           if (el.name !== 'generation') {
-            it('смена auctionItems', () => {
+            it('Смена auctionItems', () => {
               filterObject.checkItem(el.name, el.value)
             })
           }

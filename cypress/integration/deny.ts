@@ -15,6 +15,7 @@ describe('Доступ к разделу ограничен ', () => {
       .url()
       .should('contain', urls.express.deny)
   })
+
   it(' При  переходе  в  карточку авто незалогиненным из каталога', () => {
     cy.visit(urls.express.main)
       .get(expressCatalogPage.carItems)
@@ -38,6 +39,7 @@ describe('Доступ к разделу ограничен ', () => {
         .url()
         .should('contain', urls.express.main)
     })
+
     it('Выбрасывает в каталог  после входа', () => {
       cy.then(() => {
         authPage.loginWithProfy()

@@ -9,11 +9,12 @@ const catalogPage = new CatalogPage()
 const gallerySpec = new GallerySpec()
 const seoLinksSpec = new SeoLinksSpec()
 
-describe(' галерея "похожие авто"', () => {
+describe('Галерея "похожие авто"', () => {
   beforeEach(() => {
     cy.server().visit(urls.catalog.filterredAudi)
   })
-  it('если  отфильтровано и есть авто  => "похожие авто"', () => {
+
+  it('Если  отфильтровано и есть авто  => "похожие авто"', () => {
     cy.get(catalogPage.galleries.similarGalleryContainer).should('be.visible')
   })
   gallerySpec.isGalleryWorking(catalogPage.galleries.similarGalleryContainer)
@@ -23,14 +24,16 @@ describe(' галерея "похожие авто"', () => {
   )
 })
 
-describe('галерея "авто в наличии"', () => {
+describe('Галерея "авто в наличии"', () => {
   beforeEach(() => {
     cy.server().visit(urls.catalog.main)
   })
-  it('если не отфильтровано => "авто в наличии"', () => {
+
+  it('Если не отфильтровано => "авто в наличии"', () => {
     cy.get(catalogPage.galleries.carsGalleryContainer).should('be.visible')
   })
-  it('если  отфильтровано и нет авто  => "авто в наличии"', () => {
+
+  it('Если  отфильтровано и нет авто  => "авто в наличии"', () => {
     cy.visit(urls.catalog.filterredNoCar)
       .get(catalogPage.galleries.carsGalleryContainer)
       .should('be.visible')
@@ -42,8 +45,8 @@ describe('галерея "авто в наличии"', () => {
   )
 })
 
-describe('галерея "подборки авто"', () => {
-  describe('скролл', () => {
+describe('Галерея "подборки авто"', () => {
+  describe('Скролл', () => {
     beforeEach(() => {
       cy.server().visit(urls.catalog.main)
     })
@@ -51,19 +54,22 @@ describe('галерея "подборки авто"', () => {
       catalogPage.galleries.carsTagsGalleryContainer,
     )
   })
-  describe('применение тега', () => {
+
+  describe('Применение тега', () => {
     carsTagsGallerySpec.isCarsTagsGalleryWorking(
       catalogPage.galleries.carsTagsGalleryContainer,
     )
   })
 })
+
 seoLinksSpec.isSeoLinksWorking()
 
-describe('проданные авто', () => {
+describe('Проданные авто', () => {
   beforeEach(() => {
     cy.visit(urls.catalog.filterredAudiA1)
   })
-  it('показать проданные авто', () => {
+
+  it('Показать проданные авто', () => {
     cy.get(catalogPage.catalog.soldCars)
       .should('not.be.visible')
       .get(catalogPage.catalog.showSoldCars)
@@ -71,7 +77,8 @@ describe('проданные авто', () => {
     // tslint:disable-next-line:no-unused-expression
     expect(catalogPage.catalog.soldCars).to.exist
   })
-  it('скрыть проданные авто', () => {
+
+  it('Скрыть проданные авто', () => {
     cy.get(catalogPage.catalog.showSoldCars)
       .click()
       .get(catalogPage.catalog.hideSoldCars)

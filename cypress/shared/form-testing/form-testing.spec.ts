@@ -21,14 +21,15 @@ export class FormTestingSpec {
     refreshForm: any,
   ) {
     describe('Попап', () => {
-      it('форма закрывается по крестику', () => {
+      it('Форма закрывается по крестику', () => {
         cy.then(() => {
           refreshForm()
           formTestingObject.closingPopupForm(link, openFormButton)
         })
       })
     })
-    describe('тест формы в попапе', () => {
+
+    describe('Тест формы в попапе', () => {
       beforeEach(() => {
         cy.then(() => {
           refreshForm()

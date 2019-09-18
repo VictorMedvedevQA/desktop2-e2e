@@ -17,12 +17,14 @@ export class CarsTagsGallerySpec {
           .find(carsTagsGalleryObject.tag.title)
           .click()
       })
-      it('появился тег', () => {
+
+      it('Появился тег', () => {
         cy.get(carsTagsGalleryObject.tag.selector)
           .contains(carsTagsGalleryObject.tag.name)
           .should('be.visible')
       })
-      it('изменился урл', () => {
+
+      it('Изменился урл', () => {
         cy.url().should('contains', carsTagsGalleryObject.tag.urlTag)
       })
     })

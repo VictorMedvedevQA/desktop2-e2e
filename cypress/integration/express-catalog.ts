@@ -42,6 +42,7 @@ describe('Видимость к-ва ставок и текущей ставки
       expressCatalogPage.getSearchОffset,
     )
   })
+
   describe('Фильтр', () => {
     filterSpec.isFilterWorking(filterFields)
   })
