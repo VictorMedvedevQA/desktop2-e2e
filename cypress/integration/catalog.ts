@@ -11,7 +11,7 @@ const seoLinksSpec = new SeoLinksSpec();
 
 describe('Галерея "похожие авто"', () => {
 	beforeEach(() => {
-		cy.server().visit(urls.catalog.filterredAudi);
+		cy.visitRoute(urls.catalog.filterredAudi);
 	});
 
 	it('Если  отфильтровано и есть авто  => "похожие авто"', () => {
@@ -26,7 +26,7 @@ describe('Галерея "похожие авто"', () => {
 
 describe('Галерея "авто в наличии"', () => {
 	beforeEach(() => {
-		cy.server().visit(urls.catalog.main);
+		cy.server().visitRoute(urls.catalog.main);
 	});
 
 	it('Если не отфильтровано => "авто в наличии"', () => {
@@ -34,7 +34,7 @@ describe('Галерея "авто в наличии"', () => {
 	});
 
 	it('Если  отфильтровано и нет авто  => "авто в наличии"', () => {
-		cy.visit(urls.catalog.filterredNoCar)
+		cy.visitRoute(urls.catalog.filterredNoCar)
 			.get(catalogPage.galleries.carsGalleryContainer)
 			.should('be.visible');
 	});
@@ -48,7 +48,7 @@ describe('Галерея "авто в наличии"', () => {
 describe('Галерея "подборки авто"', () => {
 	describe('Скролл', () => {
 		beforeEach(() => {
-			cy.server().visit(urls.catalog.main);
+			cy.server().visitRoute(urls.catalog.main);
 		});
 		gallerySpec.isGalleryWorking(catalogPage.galleries.carsTagsGalleryContainer);
 	});
@@ -62,7 +62,7 @@ seoLinksSpec.isSeoLinksWorking();
 
 describe('Проданные авто', () => {
 	beforeEach(() => {
-		cy.visit(urls.catalog.filterredAudiA1);
+		cy.visitRoute(urls.catalog.filterredAudiA1);
 	});
 
 	it('Показать проданные авто', () => {

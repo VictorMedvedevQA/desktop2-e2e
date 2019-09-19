@@ -10,7 +10,7 @@ export class SeoLinksSpec {
 	public isSeoLinksWorking() {
 		describe('Работа нижнего блока', () => {
 			it('На /cars отображаются только авто в наличии ', () => {
-				cy.visit(urls.catalog.main)
+				cy.visitRoute(urls.catalog.main)
 					.get(seoLinksObject.linksList)
 					.find(seoLinksObject.linksItems)
 					.contains('Audi')
@@ -23,19 +23,13 @@ export class SeoLinksSpec {
 			seoLinksObject.seoLinks.forEach(el => {
 				describe('При переходе на ' + el.name, () => {
 					beforeEach(() => {
-						cy.server()
-							.route('https://test.automama.ru/api/v2/filter/models?makeId=**')
-							.as('getFilterMake')
-							.route('https://test.automama.ru/api/v2/filter/generations?modelId=**')
-							.as('getFilterModel')
-							.route('https://test.automama.ru/api/v2/auctions/search?p1=audi&p2=a1&generation=6187')
-							.as('getFilterGeneration')
-							.visit(el.urlToStart)
+						cy.visitRoute(el.urlToStart)
 							.get(seoLinksObject.linksList)
 							.find(seoLinksObject.linksItems)
 							.contains(el.value)
 							.click()
 							.then(() => {
+								// tslint:disable-next-line:switch-default
 								switch (el.name) {
 									case 'make':
 										cy.wait('@getFilterMake');
@@ -45,8 +39,6 @@ export class SeoLinksSpec {
 										break;
 									case 'generation':
 										cy.wait('@getFilterGeneration');
-										break;
-									default:
 								}
 							});
 					});

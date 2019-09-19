@@ -16,7 +16,7 @@ export class FormTestingSpec {
 			it('Форма закрывается по крестику', () => {
 				cy.then(() => {
 					refreshForm();
-					formTestingObject.closingPopupForm(link, openFormButton);
+					formTestingObject.closingPopupForm(link);
 				});
 			});
 		});

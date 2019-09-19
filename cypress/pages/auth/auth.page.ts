@@ -8,13 +8,6 @@ export class AuthPage {
 	public insidePopupLink = ' a.amc-link';
 	public footerPopupLink = `.b-popup-footer__link ${this.insidePopupLink}`;
 
-	public oldSite = {
-		loginButton: `.b-top-navigation__link:contains(Вход)`,
-		navigationLink: '.b-top-navigation__link',
-		openOldSiteButton: `amc-link:contains(Старая версия сайта)`,
-		upMenu: 'am-up-menu-dealers',
-	};
-
 	public loginForm = {
 		formLink: 'am-popup .b-popup',
 		openFormButton: `${this.linkContainer}:contains(Вход)`,
@@ -48,21 +41,21 @@ export class AuthPage {
 	}
 
 	public refreshLoginForm() {
-		cy.visit(urls.express.main)
+		cy.visitRoute(urls.express.main)
 			.get(this.loginForm.openFormButton)
 			.click()
 			.get(this.loginForm.formLink);
 	}
 
 	public refreshSignupForm() {
-		cy.visit(urls.express.main)
+		cy.visitRoute(urls.express.main)
 			.get(this.signupForm.openFormButton)
 			.click()
 			.get(this.loginForm.formLink);
 	}
 
 	public refreshСonfirmNumberFrom() {
-		cy.visit(urls.express.main)
+		cy.visitRoute(urls.express.main)
 			.then(() => {
 				this.refreshSignupForm();
 				formTestingObject.sendValidData(this.signupForm.formLink, this.signupForm.submitFormButton);
@@ -72,7 +65,7 @@ export class AuthPage {
 	}
 
 	public refreshForgotPasswordForm() {
-		cy.visit(urls.express.main)
+		cy.visitRoute(urls.express.main)
 			.then(() => {
 				this.refreshLoginForm();
 			})

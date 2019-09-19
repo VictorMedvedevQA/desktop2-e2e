@@ -1,6 +1,5 @@
 export class MainPage {
 	public reviewGalleryContainer: string = '.b-slider_review';
-	public getSearchОffset: string = 'https://test.automama.ru/api/v2/auctions/search?offset=*';
 	public news = {
 		content: '.b-blog',
 		link: '.b-news__list-item:first',

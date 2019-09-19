@@ -11,13 +11,13 @@ const denyPage = new DenyPage();
 
 describe('Доступ к разделу ограничен ', () => {
 	it(' При прямом переходе  в  карточку авто незалогиненным', () => {
-		cy.visit(urls.express.detailCar)
+		cy.visitRoute(urls.express.detailCar)
 			.url()
 			.should('contain', urls.express.deny);
 	});
 
 	it(' При  переходе  в  карточку авто незалогиненным из каталога', () => {
-		cy.visit(urls.express.main)
+		cy.visitRoute(urls.express.main)
 			.get(expressCatalogPage.carItems)
 			.first()
 			.click()
@@ -30,7 +30,7 @@ describe('Доступ к разделу ограничен ', () => {
 
 	describe('На странице ', () => {
 		beforeEach(() => {
-			cy.visit(urls.express.deny);
+			cy.visitRoute(urls.express.deny);
 		});
 
 		it('Переход в каталог по кнопке', () => {

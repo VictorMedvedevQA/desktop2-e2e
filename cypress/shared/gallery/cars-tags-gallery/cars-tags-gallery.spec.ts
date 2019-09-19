@@ -10,7 +10,7 @@ export class CarsTagsGallerySpec {
 		describe('Тест галереи подборок', () => {
 			beforeEach(() => {
 				cy.server()
-					.visit(urls.catalog.main)
+					.visitRoute(urls.catalog.main)
 					.get(container)
 					.find(galleryObject.galleryItems.itemsVisible)
 					.contains(carsTagsGalleryObject.tag.name)

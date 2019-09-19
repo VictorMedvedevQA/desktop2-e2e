@@ -13,10 +13,7 @@ const reviewGallerySpec = new ReviewGallerySpec();
 
 describe('Главная', () => {
 	beforeEach(() => {
-		cy.server()
-			.route('https://test.automama.ru/api/v2/auctions/search?*')
-			.as('getSearch')
-			.visit(urls.mainPage.main);
+		cy.visitRoute(urls.mainPage.main);
 	});
 
 	it('Тултипы УТП', () => {
@@ -60,10 +57,6 @@ describe('Главная', () => {
 	});
 
 	filterSpec.isFilterWorking(filterFields);
-	paginationSpec.isPaginationWorking(
-		mainPage.pagination.container,
-		filterObject.carItem.auctionItemsResult,
-		mainPage.getSearchОffset
-	);
+	paginationSpec.isPaginationWorking(mainPage.pagination.container, filterObject.carItem.auctionItemsResult);
 	reviewGallerySpec.isReviewGalleryWorking(mainPage.reviewGalleryContainer);
 });

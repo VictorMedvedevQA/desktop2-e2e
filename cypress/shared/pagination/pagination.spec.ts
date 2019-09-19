@@ -1,20 +1,15 @@
 import { PaginationObject } from './pagination.object';
 const paginationObject = new PaginationObject();
 export class PaginationSpec {
-	public isPaginationWorking(paginationContainer: string, resultItem: string, getSearchОffset: string) {
+	public isPaginationWorking(paginationContainer: string, resultItem: string) {
 		describe('Пагинация', () => {
-			beforeEach(() => {
-				cy.server()
-					.route(getSearchОffset)
-					.as('getSearchoffset');
-			});
 			it('изменился первый элемет в блоке', () => {
 				cy.get(resultItem)
 					.first()
 					.then(el => {
 						const firstBefore = el;
 						paginationObject.switchPageByArrow(paginationContainer, 'next', 1);
-						cy.wait('@getSearchoffset')
+						cy.wait('@getSearchOffset')
 							.get(resultItem)
 							.first()
 							.then(el2 => {
@@ -29,8 +24,7 @@ export class PaginationSpec {
 				cy.url().then(el => {
 					const urlBefore = el;
 					paginationObject.switchPageByArrow(paginationContainer, 'next', 1);
-
-					cy.wait('@getSearchoffset')
+					cy.wait('@getSearchOffset')
 						.url()
 						.then(el2 => {
 							const urlAfter = el2;
@@ -46,7 +40,7 @@ export class PaginationSpec {
 					return activeBefore;
 				}).then(activeBefore => {
 					paginationObject.switchPageByArrow(paginationContainer, 'next', 1);
-					cy.wait('@getSearchoffset')
+					cy.wait('@getSearchOffset')
 						.then(() => {
 							const activeAfter = paginationObject.findNumberActive(paginationContainer);
 							return activeAfter;

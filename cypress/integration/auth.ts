@@ -9,10 +9,7 @@ const formTestingObject = new FormTestingObject();
 
 describe('Авторизация', () => {
 	beforeEach(() => {
-		cy.visit(urls.express.main)
-			.server()
-			.route('https://test.automama.ru/auth/profile/me')
-			.as('me');
+		cy.visitRoute(urls.express.main);
 	});
 
 	describe('Форма "Вход"', () => {

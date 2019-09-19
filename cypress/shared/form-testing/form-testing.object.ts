@@ -67,24 +67,30 @@ export class FormTestingObject {
 	}
 
 	fillElement(link: string, fieldName: string, data: IFormData[]) {
-		for (let eldata in data) {
-			if (fieldName !== data[eldata].name) {
-				continue;
+		let el = data.find(field => field.name === fieldName);
+		cy.then(() => {
+			if (el) {
+				cy.get(link)
+					.find('[formcontrolname="' + fieldName + '"]')
+					.parent()
+					.find('input')
+					.type(el.data);
 			}
-			let inputData: string = data[eldata].data;
-			cy.then(() => {
-				if (data[eldata].name !== 'phoneNumber') {
-					cy.get(link)
-						.find('[formcontrolname="' + fieldName + '"]')
-						.find('input')
-						.type(inputData);
-				} else {
-					cy.get(link)
-						.find('[formcontrolname="' + fieldName + '"]')
-						.type(inputData);
-				}
-			});
-		}
+		});
+
+		// for (let eldata in data) {
+		// 	if (fieldName !== data[eldata].name) {
+		// 		continue;
+		// 	}
+		// 	let inputData: string = data[eldata].data;
+		// 	cy.then(() => {
+		// 		cy.get(link)
+		// 			.find('[formcontrolname="' + fieldName + '"]')
+		// 			.parent()
+		// 			.find('input')
+		// 			.type(inputData);
+		// 	});
+		// }
 	}
 
 	submitForm(link: string, submit: string) {
@@ -98,7 +104,6 @@ export class FormTestingObject {
 	sendValidData(link: string, submit: string) {
 		cy.then(() => {
 			this.fillElements(link, this.createFieldsList(link), validData);
-			console.log(this.createFieldsList(link));
 		}).then(() => {
 			this.submitForm(link, submit);
 		});
@@ -111,7 +116,7 @@ export class FormTestingObject {
 			.should('be.visible');
 	}
 
-	closingPopupForm(link: string, openFormButton: string) {
+	closingPopupForm(link: string) {
 		cy.get(link)
 			.find(this.formButtons.closePopup)
 			.click()

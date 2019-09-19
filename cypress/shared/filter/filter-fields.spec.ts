@@ -8,7 +8,6 @@ export class FilterFieldsSpec {
 		describe('Поведение контролов и странцы после применения ' + field.name, () => {
 			describe(field.name, () => {
 				beforeEach(() => {
-					filterObject.getSearch();
 					filterObject.activateField(field);
 				});
 

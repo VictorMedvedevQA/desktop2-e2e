@@ -36,27 +36,6 @@ export class FilterObject {
 			});
 	}
 
-	public getSearch() {
-		cy.url().then(url => {
-			switch (url) {
-				case urls.express.main:
-					{
-						cy.server()
-							.route('https://test.automama.ru/api/v2/dealer/auctions/search?*')
-							.as('getSearch');
-					}
-					break;
-				case urls.mainPage.main:
-					{
-						cy.server()
-							.route('https://test.automama.ru/api/v2/auctions/search?*')
-							.as('getSearch');
-					}
-					break;
-			}
-		});
-	}
-
 	public activateField(field: IField) {
 		cy.url()
 			.then(url => {
@@ -90,13 +69,9 @@ export class FilterObject {
 				} else if (field.name === 'Все модели') {
 					cy.get('[formcontrolname="make"]')
 						.inputDropdown('Au', 'Audi')
-						.wait('@getSearch')
+						.wait('@getFilterMake')
 						.then(() => {
-							if (
-								field.formcontrolname !== undefined &&
-								field.inputData !== undefined &&
-								field.outputData !== undefined
-							) {
+							if (field.formcontrolname && field.inputData && field.outputData) {
 								cy.get(field.formcontrolname).inputDropdown(field.inputData, field.outputData);
 							}
 						});
