@@ -1,6 +1,6 @@
 // tslint:disable
 import { urls } from '../../support/urls';
-import { IField } from './filter-fields.object';
+import { IFilterField } from './filter-fields.object';
 
 export class FilterObject {
 	public filter = {
@@ -23,12 +23,12 @@ export class FilterObject {
 		question: 'am-tags-control [name="question"]',
 		tags: 'am-tags-control',
 	};
-	public checkingIconsControl(control: IField) {
+	public checkingTagsControl(control: IFilterField) {
 		cy.get(this.controls.active)
 			.should('be.visible')
 			.get(this.carItem.auctionItemsResult)
 			.each(item => {
-				if (control.iconSelector !== undefined) {
+				if (control.iconSelector) {
 					cy.wrap(item)
 						.find(control.iconSelector)
 						.should('be.visible');
@@ -36,7 +36,7 @@ export class FilterObject {
 			});
 	}
 
-	public activateField(field: IField) {
+	public activateField(field: IFilterField) {
 		cy.url()
 			.then(url => {
 				if (url !== urls.express.main) {
@@ -44,37 +44,57 @@ export class FilterObject {
 				}
 			})
 			.then(() => {
-				if (field.fieldType === 'control') {
-					cy.get(this.controls.tags)
-						.contains(field.name)
-						.click();
-				} else if (field.fieldType === 'dropdown') {
-					if (field.formcontrolname !== undefined && field.inputData !== undefined) {
-						cy.get(field.formcontrolname).selectDropdown(field.inputData);
-					}
-				} else if (field.fieldType === 'input') {
-					if (field.formcontrolname !== undefined && field.inputData !== undefined) {
-						cy.get(field.formcontrolname)
-							.type(field.inputData)
-							.blur();
-					}
-				} else if (field.fieldType === 'inputDropdown' && field.name !== 'Все модели') {
-					if (
-						field.formcontrolname !== undefined &&
-						field.inputData !== undefined &&
-						field.outputData !== undefined
-					) {
-						cy.get(field.formcontrolname).inputDropdown(field.inputData, field.outputData);
-					}
-				} else if (field.name === 'Все модели') {
-					cy.get('[formcontrolname="make"]')
-						.inputDropdown('Au', 'Audi')
-						.wait('@getFilterMake')
-						.then(() => {
-							if (field.formcontrolname && field.inputData && field.outputData) {
-								cy.get(field.formcontrolname).inputDropdown(field.inputData, field.outputData);
+				switch (field.fieldType) {
+					case 'control':
+						{
+							cy.get(this.controls.tags)
+								.contains(field.name)
+								.click();
+						}
+						break;
+					case 'dropdown':
+						{
+							if (field.formcontrolname && field.inputData) {
+								cy.get(field.formcontrolname).selectDropdown(field.inputData);
 							}
-						});
+						}
+						break;
+					case 'input':
+						{
+							if (field.formcontrolname && field.inputData) {
+								cy.get(field.formcontrolname)
+									.type(field.inputData)
+									.blur();
+							}
+						}
+						break;
+					case 'inputDropdown':
+						{
+							if (
+								field.name !== 'Все модели' &&
+								field.formcontrolname &&
+								field.inputData &&
+								field.outputData
+							) {
+								cy.get(field.formcontrolname).inputDropdown(field.inputData, field.outputData);
+							} else if (field.name === 'Все модели') {
+								cy.get('[formcontrolname="make"]')
+									.inputDropdown('Au', 'Audi')
+									.wait('@getFilterSearch')
+									.wait('@getSearch')
+									// ".wait(2000)"  убрать когда исправят лишние запросы при фильтрации по модели на главном и в аукционах
+									.wait(2000)
+									.then(() => {
+										if (field.formcontrolname && field.inputData && field.outputData) {
+											cy.get(field.formcontrolname).inputDropdown(
+												field.inputData,
+												field.outputData
+											);
+										}
+									});
+							}
+						}
+						break;
 				}
 			})
 			.wait('@getSearch');

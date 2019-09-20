@@ -1,5 +1,5 @@
-import { IField } from '../../shared/filter/filter-fields.object';
-export const filterFields: IField[] = [
+import { IFilterField } from '../../shared/filter/filter-fields.object';
+export const filterFields: IFilterField[] = [
 	{
 		activateClearButton: false,
 		breadcrumbsChange: false,

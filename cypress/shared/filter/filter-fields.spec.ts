@@ -1,10 +1,10 @@
 import { BreadcrumbsObject } from '../breadcrumbs/breadcrumbs.object';
-import { IField } from './filter-fields.object';
+import { IFilterField } from './filter-fields.object';
 import { FilterObject } from './filter.object';
 const filterObject = new FilterObject();
 const breadcrumbsObject = new BreadcrumbsObject();
 export class FilterFieldsSpec {
-	public checkField(field: IField) {
+	public checkField(field: IFilterField) {
 		describe('Поведение контролов и странцы после применения ' + field.name, () => {
 			describe(field.name, () => {
 				beforeEach(() => {
@@ -15,7 +15,7 @@ export class FilterFieldsSpec {
 					cy.url().should('contains', field.tags);
 				});
 
-				if (field.activateClearButton === true) {
+				if (field.activateClearButton) {
 					it('Появление "сбросить" ', () => {
 						cy.get(filterObject.filter.cleanAll).should('be.visible');
 					});
@@ -28,13 +28,13 @@ export class FilterFieldsSpec {
 						cy.then(() => {
 							filterObject.activateField(field);
 						}).then(() => {
-							filterObject.checkingIconsControl(field);
+							filterObject.checkingTagsControl(field);
 						});
 					});
 
 					it('Тултипы у контролов', () => {
-						if (field.formcontrolname !== undefined) {
-							cy.isTooltipsOpenAfterMousmoove(field.formcontrolname);
+						if (field.formcontrolname) {
+							cy.isTooltipsOpenAfterMousmove(field.formcontrolname);
 						}
 					});
 
@@ -48,9 +48,9 @@ export class FilterFieldsSpec {
 				});
 			}
 
-			if (field.hide === true) {
+			if (field.hide) {
 				it('Развернуть и скрыть ' + field.name, () => {
-					if (field.formcontrolname !== undefined) {
+					if (field.formcontrolname) {
 						cy.get(field.formcontrolname)
 							.find('.amc-select')
 							.should('not.be.visible')
@@ -63,12 +63,12 @@ export class FilterFieldsSpec {
 				});
 			}
 
-			if (field.breadcrumbsChange === true) {
+			if (field.breadcrumbsChange) {
 				it('Меняются ХК ' + field.name, () => {
 					cy.then(() => {
 						filterObject.activateField(field);
 					}).then(() => {
-						if (field.inputData !== undefined) {
+						if (field.inputData) {
 							cy.get(breadcrumbsObject.container)
 								.find(breadcrumbsObject.items.last)
 								.contains(field.inputData)

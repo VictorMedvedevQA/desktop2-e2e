@@ -15,29 +15,29 @@ describe('Видимость к-ва ставок и текущей ставки
 		cy.visitRoute(urls.express.main);
 	});
 
-	// it('Если не залогинены - не видим ставку и к-во ставок ', () => {
-	// 	cy.get(authPage.loginForm.openFormButton)
-	// 		.should('be.visible')
-	// 		.get(expressCatalogPage.price)
-	// 		.should('not.be.visible');
-	// });
+	it('Если не залогинены - не видим ставку и к-во ставок ', () => {
+		cy.get(authPage.loginForm.openFormButton)
+			.should('be.visible')
+			.get(expressCatalogPage.price)
+			.should('not.be.visible');
+	});
 
-	// it('Если залогинены - видим ставку и к-во ставок ', () => {
-	// 	cy.then(() => {
-	// 		authPage.loginWithProfy();
-	// 	})
-	// 		.get(expressCatalogPage.price)
-	// 		.each(el => {
-	// 			cy.wrap(el).should('be.visible');
-	// 		});
-	// });
+	it('Если залогинены - видим ставку и к-во ставок ', () => {
+		cy.then(() => {
+			authPage.loginWithProfy();
+		})
+			.get(expressCatalogPage.price)
+			.each(el => {
+				cy.wrap(el).should('be.visible');
+			});
+	});
 
-	// describe('Пагинация', () => {
-	// 	paginationSpec.isPaginationWorking(
-	// 		expressCatalogPage.pagination.container,
-	// 		expressCatalogPage.carItem.expressItemsResult
-	// 	);
-	// });
+	describe('Пагинация', () => {
+		paginationSpec.isPaginationWorking(
+			expressCatalogPage.pagination.container,
+			expressCatalogPage.carItem.expressItemsResult
+		);
+	});
 
 	describe('Фильтр', () => {
 		filterSpec.isFilterWorking(filterFields);

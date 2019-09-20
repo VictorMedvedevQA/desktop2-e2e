@@ -1,4 +1,4 @@
-export interface IField {
+export interface IFilterField {
 	breadcrumbsChange: boolean;
 	fieldType: 'input' | 'dropdown' | 'inputDropdown' | 'control';
 	formcontrolname?: string;

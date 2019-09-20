@@ -48,10 +48,9 @@ export class FormTestingObject {
 			.find('[formcontrolname]')
 			.each(field => {
 				let a = field.attr('formcontrolname');
-				for (let el in formFields) {
-					if (formFields[el].name === a) {
-						fieldList.push(formFields[el]);
-					}
+				let el = formFields.find(field => field.name === a);
+				if (el) {
+					fieldList.push(el);
 				}
 			});
 		return fieldList;
@@ -60,8 +59,7 @@ export class FormTestingObject {
 	fillElements(link: string, fieldsList: IForm[], data: IFormData[]) {
 		cy.get(link).then(() => {
 			for (let field in fieldsList) {
-				let fieldName: string = fieldsList[field].name;
-				this.fillElement(link, fieldName, data);
+				this.fillElement(link, fieldsList[field].name, data);
 			}
 		});
 	}
@@ -77,20 +75,6 @@ export class FormTestingObject {
 					.type(el.data);
 			}
 		});
-
-		// for (let eldata in data) {
-		// 	if (fieldName !== data[eldata].name) {
-		// 		continue;
-		// 	}
-		// 	let inputData: string = data[eldata].data;
-		// 	cy.then(() => {
-		// 		cy.get(link)
-		// 			.find('[formcontrolname="' + fieldName + '"]')
-		// 			.parent()
-		// 			.find('input')
-		// 			.type(inputData);
-		// 	});
-		// }
 	}
 
 	submitForm(link: string, submit: string) {
@@ -127,9 +111,8 @@ export class FormTestingObject {
 	submitWithoutRequiredFields(link: string, submit: string, refreshForm: any) {
 		cy.then(() => {
 			let allFieldsArray: IForm[] = this.createFieldsList(link);
-			let requiredFieldsArray: IForm[] = allFieldsArray;
 			cy.then(() => {
-				requiredFieldsArray.forEach(elReq => {
+				allFieldsArray.forEach(elReq => {
 					for (let elAllFields in allFieldsArray) {
 						if (elReq.name === allFieldsArray[elAllFields].name) {
 							continue;
@@ -143,9 +126,7 @@ export class FormTestingObject {
 							.find(submit)
 							.should('be.disabled');
 					}).then(() => {
-						cy.then(() => {
-							refreshForm();
-						});
+						refreshForm();
 					});
 				});
 			});

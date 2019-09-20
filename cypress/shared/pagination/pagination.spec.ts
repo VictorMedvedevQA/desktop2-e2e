@@ -6,14 +6,12 @@ export class PaginationSpec {
 			it('изменился первый элемет в блоке', () => {
 				cy.get(resultItem)
 					.first()
-					.then(el => {
-						const firstBefore = el;
+					.then(firstBefore => {
 						paginationObject.switchPageByArrow(paginationContainer, 'next', 1);
 						cy.wait('@getSearchOffset')
 							.get(resultItem)
 							.first()
-							.then(el2 => {
-								const firstAfter = el2;
+							.then(firstAfter => {
 								cy.then(() => {
 									expect(firstBefore).not.to.be.equal(firstAfter);
 								});
@@ -21,13 +19,11 @@ export class PaginationSpec {
 					});
 			});
 			it('изменился урл', () => {
-				cy.url().then(el => {
-					const urlBefore = el;
+				cy.url().then(urlBefore => {
 					paginationObject.switchPageByArrow(paginationContainer, 'next', 1);
 					cy.wait('@getSearchOffset')
 						.url()
-						.then(el2 => {
-							const urlAfter = el2;
+						.then(urlAfter => {
 							cy.then(() => {
 								expect(urlBefore).not.to.be.equal(urlAfter);
 							});

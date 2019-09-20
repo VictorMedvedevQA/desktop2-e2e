@@ -17,7 +17,7 @@ describe('Главная', () => {
 	});
 
 	it('Тултипы УТП', () => {
-		cy.isTooltipsOpenAfterMousmoove(mainPage.utpsText);
+		cy.isTooltipsOpenAfterMousmove(mainPage.utpsText);
 	});
 
 	it('Переход в статьи', () => {

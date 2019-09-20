@@ -1,5 +1,5 @@
 /* tslint:disable */
-import { urls } from './urls';
+import { urls, SITE_URL_API_V2, SITE_URL } from './urls';
 
 Cypress.Commands.add('visitRoute', (url: any) => {
 	cy.then(() => {
@@ -7,14 +7,14 @@ Cypress.Commands.add('visitRoute', (url: any) => {
 			case urls.express.main:
 				{
 					cy.server()
-						.route('https://test.automama.ru/api/v2/dealer/auctions/search?*')
+						.route(`${SITE_URL_API_V2}dealer/auctions/search?*`)
 						.as('getSearch')
-						.route('https://test.automama.ru/auth/profile/me')
+						.route(`${SITE_URL}auth/profile/me`)
 						.as('me')
-						.route('https://test.automama.ru/api/v2/dealer/auctions/searchDealers?offset=*')
+						.route(`${SITE_URL_API_V2}dealer/auctions/searchDealers?offset=*`)
 						.as('getSearchOffset')
-						.route('https://test.automama.ru/api/v2/dealer/filter/models?makeId=**')
-						.as('getFilterMake');
+						.route(`${SITE_URL_API_V2}dealer/filter/*`)
+						.as('getFilterSearch');
 				}
 				break;
 			case urls.mainPage.main:
@@ -24,15 +24,17 @@ Cypress.Commands.add('visitRoute', (url: any) => {
 			case urls.catalog.filterredAudiA1:
 				{
 					cy.server()
-						.route('https://test.automama.ru/api/v2/auctions/search?*')
+						.route(`${SITE_URL_API_V2}auctions/search?*`)
 						.as('getSearch')
-						.route('https://test.automama.ru/api/v2/auctions/search?offset=*')
-						.as('getSearchoffset')
-						.route('https://test.automama.ru/api/v2/filter/models?makeId=**')
+						.route(`${SITE_URL_API_V2}auctions/search?offset=*`)
+						.as('getSearchOffset')
+						.route(`${SITE_URL_API_V2}filter/*`)
+						.as('getFilterSearch')
+						.route(`${SITE_URL_API_V2}filter/models?makeId=**`)
 						.as('getFilterMake')
-						.route('https://test.automama.ru/api/v2/filter/generations?modelId=**')
+						.route(`${SITE_URL_API_V2}filter/generations?modelId=**`)
 						.as('getFilterModel')
-						.route('https://test.automama.ru/api/v2/auctions/search?p1=audi&p2=a1&generation=6187')
+						.route(`${SITE_URL_API_V2}auctions/search?p1=audi&p2=a1&generation=6187`)
 						.as('getFilterGeneration');
 				}
 				break;
@@ -102,7 +104,7 @@ Cypress.Commands.add('inputDropdown', { prevSubject: true }, (subject: any, text
 
 // на десктоп
 
-Cypress.Commands.add('isTooltipsOpenAfterMousmoove', (headers: string, options?: any) => {
+Cypress.Commands.add('isTooltipsOpenAfterMousmove', (headers: string, options?: any) => {
 	cy.get(headers)
 		.trigger('mouseenter')
 		.then(() => {
@@ -122,7 +124,7 @@ declare global {
 			visitRoute: (url: any) => Chainable<any>;
 
 			// на десктоп
-			isTooltipsOpenAfterMousmoove: (headers: string, options?: any) => Chainable<any>;
+			isTooltipsOpenAfterMousmove: (headers: string, options?: any) => Chainable<any>;
 		}
 	}
 }

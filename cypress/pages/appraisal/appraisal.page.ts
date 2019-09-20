@@ -91,7 +91,7 @@ export class AppraisalPage {
 		for (const parameter in data) {
 			if (parameter) {
 				cy.then(() => {
-					if (data[parameter].isHide === true) {
+					if (data[parameter].isHide   ) {
 						cy.get(this.itemsList.showAll).click();
 					}
 				}).then(() => {
