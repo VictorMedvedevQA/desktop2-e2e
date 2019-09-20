@@ -1,4 +1,3 @@
-declare type switchDirection = 'prev' | 'next';
 export class PaginationObject {
 	public paginationItems = {
 		active: '.b-pagination__item_active',
