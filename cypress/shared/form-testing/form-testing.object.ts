@@ -129,7 +129,7 @@ export class FormTestingObject {
 						});
 					}
 					cy.then(() => {
-						assertion(link, submit);
+						assertion();
 					}).then(() => {
 						refreshForm();
 					});

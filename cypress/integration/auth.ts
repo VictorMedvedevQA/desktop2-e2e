@@ -18,7 +18,7 @@ describe('Авторизация', () => {
 			authPage.loginForm.submitFormButton,
 			authPage.loginForm.openFormButton,
 			authPage.refreshLoginForm.bind(authPage),
-			authPage.assertion
+			authPage.assertion.bind(authPage)
 		);
 	});
 
@@ -75,7 +75,7 @@ describe('Авторизация', () => {
 			authPage.forgotPasswordForm.submitFormButton,
 			authPage.forgotPasswordForm.openFormButton,
 			authPage.refreshForgotPasswordForm.bind(authPage),
-			authPage.assertion
+			authPage.assertion.bind(authPage)
 		);
 	});
 });
@@ -91,7 +91,7 @@ describe('Регистрация', () => {
 			authPage.confirmNumberFrom.submitFormButton,
 			authPage.confirmNumberFrom.openFormButton,
 			authPage.refreshСonfirmNumberFrom.bind(authPage),
-			authPage.assertion
+			authPage.assertion.bind(authPage)
 		);
 	});
 
@@ -101,7 +101,7 @@ describe('Регистрация', () => {
 			authPage.signupForm.submitFormButton,
 			authPage.signupForm.openFormButton,
 			authPage.refreshSignupForm.bind(authPage),
-			authPage.assertion
+			authPage.assertion.bind(authPage)
 		);
 	});
 

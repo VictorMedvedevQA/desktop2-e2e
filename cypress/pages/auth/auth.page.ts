@@ -7,29 +7,31 @@ export class AuthPage {
 	public linkContainer = '.link_container';
 	public insidePopupLink = ' a.amc-link';
 	public footerPopupLink = `.b-popup-footer__link ${this.insidePopupLink}`;
+	public commonLink = 'am-popup .b-popup';
+	public commonSubmit = '[type="submit"]';
 
 	public loginForm = {
-		formLink: 'am-popup .b-popup',
+		formLink: this.commonLink,
 		openFormButton: `${this.linkContainer}:contains(Вход)`,
-		submitFormButton: '[type="submit"]',
+		submitFormButton: this.commonSubmit,
 	};
 
 	public signupForm = {
-		formLink: 'am-popup .b-popup',
+		formLink: this.commonLink,
 		openFormButton: `${this.linkContainer}:contains(Регистрация)`,
-		submitFormButton: '[type="submit"]',
+		submitFormButton: this.commonSubmit,
 	};
 
 	public confirmNumberFrom = {
-		formLink: 'am-popup .b-popup:contains(Регистрация)',
+		formLink: `${this.commonLink}:contains(Регистрация)`,
 		openFormButton: `${this.linkContainer}:contains(Регистрация)`,
-		submitFormButton: '[type="submit"]',
+		submitFormButton: this.commonSubmit,
 	};
 
 	public forgotPasswordForm = {
-		formLink: 'am-popup .b-popup:contains(Восстановление пароля )',
+		formLink: `${this.commonLink}:contains(Восстановление пароля )`,
 		openFormButton: `${this.footerPopupLink}:contains(Регистрация)`,
-		submitFormButton: '[type="submit"]',
+		submitFormButton: this.commonSubmit,
 	};
 
 	public loginWithProfy() {
@@ -76,9 +78,9 @@ export class AuthPage {
 			.get(this.forgotPasswordForm.formLink)
 			.should('be.visible');
 	}
-	public assertion(link: string, submit: string) {
-		cy.get(link)
-			.find(submit)
+	public assertion() {
+		cy.get(this.commonLink)
+			.find(this.commonSubmit)
 			.should('be.disabled');
 	}
 }
