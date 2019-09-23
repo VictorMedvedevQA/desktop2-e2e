@@ -52,12 +52,12 @@ export class FilterFieldsSpec {
 				it('Развернуть и скрыть ' + field.name, () => {
 					if (field.formcontrolname) {
 						cy.get(field.formcontrolname)
-							.find('.amc-select')
+							.parent()
 							.should('not.be.visible')
 							.get(filterObject.filter.showAll)
 							.click()
 							.get(field.formcontrolname)
-							.find('.amc-select')
+							.parent()
 							.should('be.visible');
 					}
 				});

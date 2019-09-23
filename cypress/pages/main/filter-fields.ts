@@ -1,9 +1,9 @@
-import { IFilterField } from '../../shared/filter/filter-fields.object';
+import { IFilterField, filterFieldType } from '../../shared/filter/filter-fields.object';
 export const filterFields: IFilterField[] = [
 	{
 		activateClearButton: true,
 		breadcrumbsChange: false,
-		fieldType: 'control',
+		fieldType: filterFieldType.control,
 		hide: false,
 		iconSelector: '.b-card-features__icon_offer-week',
 		name: 'Предложение недели',
@@ -13,7 +13,7 @@ export const filterFields: IFilterField[] = [
 	{
 		activateClearButton: true,
 		breadcrumbsChange: false,
-		fieldType: 'control',
+		fieldType: filterFieldType.control,
 		hide: false,
 		iconSelector: '.b-card-features__icon_best-price',
 		name: 'Лучшая цена на рынке',
@@ -23,7 +23,7 @@ export const filterFields: IFilterField[] = [
 	{
 		activateClearButton: true,
 		breadcrumbsChange: false,
-		fieldType: 'control',
+		fieldType: filterFieldType.control,
 		hide: false,
 		iconSelector: '.b-card-features__icon_best-state',
 		name: 'Идеальное состояние',
@@ -33,7 +33,7 @@ export const filterFields: IFilterField[] = [
 	{
 		activateClearButton: true,
 		breadcrumbsChange: true,
-		fieldType: 'dropdown',
+		fieldType: filterFieldType.dropdown,
 		formcontrolname: '[formcontrolname ="engineType"]',
 		hide: true,
 		inputData: 'Бензиновый',
@@ -44,7 +44,7 @@ export const filterFields: IFilterField[] = [
 	{
 		activateClearButton: true,
 		breadcrumbsChange: true,
-		fieldType: 'dropdown',
+		fieldType: filterFieldType.dropdown,
 		formcontrolname: '[formcontrolname ="city"]',
 		hide: false,
 		inputData: 'Краснодар',
@@ -55,7 +55,7 @@ export const filterFields: IFilterField[] = [
 	{
 		activateClearButton: true,
 		breadcrumbsChange: true,
-		fieldType: 'dropdown',
+		fieldType: filterFieldType.dropdown,
 		formcontrolname: '[formcontrolname ="gearbox"]',
 		hide: true,
 		inputData: 'Автомат',
@@ -66,7 +66,7 @@ export const filterFields: IFilterField[] = [
 	{
 		activateClearButton: true,
 		breadcrumbsChange: true,
-		fieldType: 'dropdown',
+		fieldType: filterFieldType.dropdown,
 		formcontrolname: '[formcontrolname ="bodyType"]',
 		hide: true,
 		inputData: 'Седан',
@@ -77,7 +77,7 @@ export const filterFields: IFilterField[] = [
 	{
 		activateClearButton: true,
 		breadcrumbsChange: false,
-		fieldType: 'input',
+		fieldType: filterFieldType.dropdown,
 		formcontrolname: '[formcontrolname ="priceFrom"]',
 		hide: false,
 		inputData: '40000',
@@ -88,7 +88,7 @@ export const filterFields: IFilterField[] = [
 	{
 		activateClearButton: true,
 		breadcrumbsChange: true,
-		fieldType: 'dropdown',
+		fieldType: filterFieldType.dropdown,
 		formcontrolname: '[formcontrolname ="yearFrom"]',
 		hide: true,
 		inputData: '2012',
@@ -99,7 +99,7 @@ export const filterFields: IFilterField[] = [
 	{
 		activateClearButton: true,
 		breadcrumbsChange: false,
-		fieldType: 'dropdown',
+		fieldType: filterFieldType.dropdown,
 		formcontrolname: '[formcontrolname ="yearTo"]',
 		hide: true,
 		inputData: '2017',
@@ -110,7 +110,7 @@ export const filterFields: IFilterField[] = [
 	{
 		activateClearButton: true,
 		breadcrumbsChange: true,
-		fieldType: 'inputDropdown',
+		fieldType: filterFieldType.inputDropdown,
 		formcontrolname: '[formcontrolname="make"]',
 		hide: false,
 		inputData: 'Au',
@@ -122,7 +122,7 @@ export const filterFields: IFilterField[] = [
 	{
 		activateClearButton: true,
 		breadcrumbsChange: true,
-		fieldType: 'inputDropdown',
+		fieldType: filterFieldType.inputDropdown,
 		formcontrolname: '[formcontrolname="model"]',
 		hide: false,
 		inputData: '1',

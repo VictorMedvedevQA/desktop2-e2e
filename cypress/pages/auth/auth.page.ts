@@ -76,4 +76,9 @@ export class AuthPage {
 			.get(this.forgotPasswordForm.formLink)
 			.should('be.visible');
 	}
+	public assertion(link: string, submit: string) {
+		cy.get(link)
+			.find(submit)
+			.should('be.disabled');
+	}
 }

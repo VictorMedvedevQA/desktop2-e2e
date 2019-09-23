@@ -1,6 +1,12 @@
+export enum filterFieldType {
+	input = 'input',
+	dropdown = 'dropdown',
+	inputDropdown = 'inputDropdown',
+	control = 'control',
+}
 export interface IFilterField {
 	breadcrumbsChange: boolean;
-	fieldType: 'input' | 'dropdown' | 'inputDropdown' | 'control';
+	fieldType: filterFieldType;
 	formcontrolname?: string;
 	hide: boolean;
 	iconSelector?: string;

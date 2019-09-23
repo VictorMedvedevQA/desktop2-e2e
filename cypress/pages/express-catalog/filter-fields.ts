@@ -1,9 +1,9 @@
-import { IFilterField } from '../../shared/filter/filter-fields.object';
+import { IFilterField, filterFieldType } from '../../shared/filter/filter-fields.object';
 export const filterFields: IFilterField[] = [
 	{
 		activateClearButton: false,
 		breadcrumbsChange: false,
-		fieldType: 'dropdown',
+		fieldType: filterFieldType.dropdown,
 		formcontrolname: '[formcontrolname ="regionId"]',
 		hide: false,
 		inputData: 'Краснодар',
@@ -14,7 +14,7 @@ export const filterFields: IFilterField[] = [
 	{
 		activateClearButton: false,
 		breadcrumbsChange: false,
-		fieldType: 'dropdown',
+		fieldType: filterFieldType.dropdown,
 		formcontrolname: '[formcontrolname ="yearFrom"]',
 		hide: false,
 		inputData: '2012',
@@ -25,7 +25,7 @@ export const filterFields: IFilterField[] = [
 	{
 		activateClearButton: false,
 		breadcrumbsChange: false,
-		fieldType: 'dropdown',
+		fieldType: filterFieldType.dropdown,
 		formcontrolname: '[formcontrolname ="yearTo"]',
 		hide: false,
 		inputData: '2017',
@@ -36,7 +36,7 @@ export const filterFields: IFilterField[] = [
 	{
 		activateClearButton: false,
 		breadcrumbsChange: false,
-		fieldType: 'inputDropdown',
+		fieldType: filterFieldType.inputDropdown,
 		formcontrolname: '[formcontrolname="make"]',
 		hide: false,
 		inputData: 'Au',
@@ -48,7 +48,7 @@ export const filterFields: IFilterField[] = [
 	{
 		activateClearButton: false,
 		breadcrumbsChange: false,
-		fieldType: 'inputDropdown',
+		fieldType: filterFieldType.inputDropdown,
 		formcontrolname: '[formcontrolname="model"]',
 		hide: false,
 		inputData: '1',

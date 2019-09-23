@@ -1,6 +1,13 @@
 /* tslint:disable */
+export enum formFieldType {
+	input = 'input',
+	select = 'select',
+	chekbox = 'chekbox',
+	textarea = 'textarea',
+}
+
 export interface IForm {
-	type: 'select' | 'input' | 'chekbox' | 'textarea';
+	type: formFieldType;
 	name: string;
 }
 export interface IFormData {
@@ -9,17 +16,17 @@ export interface IFormData {
 }
 
 export const formFields: IForm[] = [
-	{ type: 'chekbox', name: 'chekbox' },
-	{ type: 'input', name: 'name' },
-	{ type: 'input', name: 'phone' },
-	{ type: 'input', name: 'agreement' },
-	{ type: 'input', name: 'check' },
-	{ type: 'input', name: 'email' },
-	{ type: 'input', name: 'password' },
-	{ type: 'input', name: 'username' },
-	{ type: 'input', name: 'confirm' },
-	{ type: 'input', name: 'phoneNumber' },
-	{ type: 'input', name: 'code' },
+	{ type: formFieldType.chekbox, name: 'chekbox' },
+	{ type: formFieldType.input, name: 'name' },
+	{ type: formFieldType.input, name: 'phone' },
+	{ type: formFieldType.input, name: 'agreement' },
+	{ type: formFieldType.input, name: 'check' },
+	{ type: formFieldType.input, name: 'email' },
+	{ type: formFieldType.input, name: 'password' },
+	{ type: formFieldType.input, name: 'username' },
+	{ type: formFieldType.input, name: 'confirm' },
+	{ type: formFieldType.input, name: 'phoneNumber' },
+	{ type: formFieldType.input, name: 'code' },
 ];
 
 export const validData: IFormData[] = [
@@ -108,7 +115,7 @@ export class FormTestingObject {
 			.should('be.not.visible');
 	}
 
-	submitWithoutRequiredFields(link: string, submit: string, refreshForm: any) {
+	submitWithoutRequiredFields(link: string, submit: string, refreshForm: any, assertion: any) {
 		cy.then(() => {
 			let allFieldsArray: IForm[] = this.createFieldsList(link);
 			cy.then(() => {
@@ -122,9 +129,7 @@ export class FormTestingObject {
 						});
 					}
 					cy.then(() => {
-						cy.get(link)
-							.find(submit)
-							.should('be.disabled');
+						assertion(link, submit);
 					}).then(() => {
 						refreshForm();
 					});

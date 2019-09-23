@@ -1,3 +1,5 @@
+declare type switchDirection = 'prev' | 'next';
+
 export class PaginationObject {
 	public paginationItems = {
 		active: '.b-pagination__item_active',
@@ -7,7 +9,7 @@ export class PaginationObject {
 		prev: '.b-pagination__item_prev',
 	};
 
-	public switchPageByArrow(container: string, direction: string, itaration: number): void {
+	public switchPageByArrow(container: string, direction: switchDirection, itaration: number): void {
 		for (let i = 0; i < itaration; i++) {
 			if (direction === 'prev') {
 				cy.get(this.paginationItems.prev).click();
