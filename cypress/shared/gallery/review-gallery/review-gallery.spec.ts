@@ -1,15 +1,12 @@
 import { ReviewGalleryObject } from '../review-gallery/review-gallery.object';
+import { GallerySpec } from '../gallery.spec';
+
+const gallerySpec = new GallerySpec();
 const reviewGalleryObject = new ReviewGalleryObject();
 export class ReviewGallerySpec {
-	public isReviewGalleryWorking(container: string): void {
+	public isReviewGalleryWorking(): void {
 		describe('Тест галереи отзывов', () => {
-			it('Скролл по стрелке', () => {
-				reviewGalleryObject.checkItemChangeByArrow();
-			});
-
-			it('Переключение по точкам', () => {
-				reviewGalleryObject.checkItemChangeByDot();
-			});
+			gallerySpec.isGalleryWorking(reviewGalleryObject.reviewGallery);
 
 			it('Открытие попапа полного текста комментария', () => {
 				cy.get(reviewGalleryObject.galleryItems.moreLink)

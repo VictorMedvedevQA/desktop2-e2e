@@ -1,18 +1,16 @@
 import { urls } from '../../../support/urls';
-import { GalleryObject } from '..//gallery.object';
+import { GallerySpec } from '../gallery.spec';
 import { CarsTagsGalleryObject } from '../cars-tags-gallery/cars-tags-gallery.object';
 
-const galleryObject = new GalleryObject();
 const carsTagsGalleryObject = new CarsTagsGalleryObject();
-
+const gallerySpec = new GallerySpec();
 export class CarsTagsGallerySpec {
-	public isCarsTagsGalleryWorking(container: string): void {
+	public isCarsTagsGalleryWorking(): void {
 		describe('Тест галереи подборок', () => {
 			beforeEach(() => {
 				cy.server()
 					.visitRoute(urls.catalog.main)
-					.get(container)
-					.find(galleryObject.galleryItems.itemsVisible)
+					.get(carsTagsGalleryObject.carTagGallery.items)
 					.contains(carsTagsGalleryObject.tag.name)
 					.find(carsTagsGalleryObject.tag.title)
 					.click();
@@ -27,6 +25,8 @@ export class CarsTagsGallerySpec {
 			it('Изменился урл', () => {
 				cy.url().should('contains', carsTagsGalleryObject.tag.urlTag);
 			});
+
+			gallerySpec.isGalleryWorking(carsTagsGalleryObject.carTagGallery);
 		});
 	}
 }

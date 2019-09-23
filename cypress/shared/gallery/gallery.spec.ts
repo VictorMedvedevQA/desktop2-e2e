@@ -1,32 +1,27 @@
-import { GalleryObject } from './gallery.object';
+import { GalleryObject, IGallery } from './gallery.object';
 
 const galleryObject = new GalleryObject();
 
 export class GallerySpec {
-	public isGalleryWorking(galleryContainer: string): void {
+	public isGalleryWorking(gallery: IGallery): void {
 		describe('Тест галереи ', () => {
 			beforeEach(() => {
-				cy.get(galleryContainer)
-					.find(galleryObject.galleryItems.itemsVisible)
-					.first()
-					.scrollIntoView();
+				cy.findFirstVisible(gallery.container, gallery.items).scrollIntoView();
 			});
 
 			it('Скролл по стрелке', () => {
-				galleryObject.checkItemChangeByArrow(galleryContainer);
+				galleryObject.checkItemChangeByArrow(gallery);
 			});
 
 			it('Переключение по точкам', () => {
-				galleryObject.checkItemChangeByDot(galleryContainer);
+				galleryObject.checkItemChangeByDot(gallery);
 			});
 		});
 	}
 
-	public checkingClickItemRedirect(galleryContainer: string, urlAfter: string) {
+	public checkingClickItemRedirect(gallery: IGallery, urlAfter: string) {
 		it('Переход по клику на galleryItem', () => {
-			cy.get(galleryContainer)
-				.find(galleryObject.galleryItems.itemsVisible)
-				.first()
+			cy.findFirstVisible(gallery.container, gallery.items)
 				.click()
 				.url()
 				.should('contains', urlAfter);

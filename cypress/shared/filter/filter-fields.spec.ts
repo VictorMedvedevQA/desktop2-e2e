@@ -24,7 +24,7 @@ export class FilterFieldsSpec {
 
 			if (field.fieldType === 'control') {
 				describe('Проверки контролов', () => {
-					it('Проверяем наличие иконок в результатах' + field.name, () => {
+					it('Проверяем наличие иконок в результатах ' + field.name, () => {
 						cy.then(() => {
 							filterObject.activateField(field);
 						}).then(() => {

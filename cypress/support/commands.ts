@@ -70,6 +70,15 @@ Cypress.Commands.add('blockIsOpenAfterClick', (link: string, content: string, op
 		});
 });
 
+Cypress.Commands.add('findFirstVisible', (container: string, item: string, options?: any) => {
+	cy.get(container)
+		.find(item + ':visible')
+		.first()
+		.then(firstVisibleEl => {
+			return firstVisibleEl;
+		});
+});
+
 Cypress.Commands.add('tabs', (container: string, content: string) => {
 	cy.get(container)
 		.find('.b-tabs aml-tab-nav-item')
@@ -122,6 +131,7 @@ declare global {
 			selectDropdown: (text: any) => Chainable<any>;
 			toggle: () => Chainable<any>;
 			visitRoute: (url: any) => Chainable<any>;
+			findFirstVisible: (container: string, item: string) => Chainable<any>;
 
 			// на десктоп
 			isTooltipsOpenAfterMousmove: (headers: string, options?: any) => Chainable<any>;

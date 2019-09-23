@@ -15,13 +15,10 @@ describe('Галерея "похожие авто"', () => {
 	});
 
 	it('Если  отфильтровано и есть авто  => "похожие авто"', () => {
-		cy.get(catalogPage.galleries.similarGalleryContainer).should('be.visible');
+		cy.get(catalogPage.similarGallery.container).should('be.visible');
 	});
-	gallerySpec.isGalleryWorking(catalogPage.galleries.similarGalleryContainer);
-	gallerySpec.checkingClickItemRedirect(
-		catalogPage.galleries.similarGalleryContainer,
-		catalogPage.galleries.urlCheckingClickItemCarsGallery
-	);
+	gallerySpec.isGalleryWorking(catalogPage.similarGallery);
+	gallerySpec.checkingClickItemRedirect(catalogPage.similarGallery, catalogPage.urlCheckingClickItemCarsGallery);
 });
 
 describe('Галерея "авто в наличии"', () => {
@@ -30,32 +27,25 @@ describe('Галерея "авто в наличии"', () => {
 	});
 
 	it('Если не отфильтровано => "авто в наличии"', () => {
-		cy.get(catalogPage.galleries.carsGalleryContainer).should('be.visible');
+		cy.get(catalogPage.carsGallery.container)
+			.scrollIntoView()
+			.should('be.visible');
 	});
 
 	it('Если  отфильтровано и нет авто  => "авто в наличии"', () => {
 		cy.visitRoute(urls.catalog.filterredNoCar)
-			.get(catalogPage.galleries.carsGalleryContainer)
+			.get(catalogPage.carsGallery.container)
 			.should('be.visible');
 	});
-	gallerySpec.isGalleryWorking(catalogPage.galleries.carsGalleryContainer);
-	gallerySpec.checkingClickItemRedirect(
-		catalogPage.galleries.carsGalleryContainer,
-		catalogPage.galleries.urlCheckingClickItemCarsGallery
-	);
+	gallerySpec.isGalleryWorking(catalogPage.carsGallery);
+	gallerySpec.checkingClickItemRedirect(catalogPage.carsGallery, catalogPage.urlCheckingClickItemCarsGallery);
 });
 
 describe('Галерея "подборки авто"', () => {
-	describe('Скролл', () => {
-		beforeEach(() => {
-			cy.server().visitRoute(urls.catalog.main);
-		});
-		gallerySpec.isGalleryWorking(catalogPage.galleries.carsTagsGalleryContainer);
+	beforeEach(() => {
+		cy.server().visitRoute(urls.catalog.main);
 	});
-
-	describe('Применение тега', () => {
-		carsTagsGallerySpec.isCarsTagsGalleryWorking(catalogPage.galleries.carsTagsGalleryContainer);
-	});
+	carsTagsGallerySpec.isCarsTagsGalleryWorking();
 });
 
 seoLinksSpec.isSeoLinksWorking();

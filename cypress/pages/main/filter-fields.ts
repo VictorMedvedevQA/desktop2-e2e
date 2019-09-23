@@ -77,7 +77,7 @@ export const filterFields: IFilterField[] = [
 	{
 		activateClearButton: true,
 		breadcrumbsChange: false,
-		fieldType: filterFieldType.dropdown,
+		fieldType: filterFieldType.input,
 		formcontrolname: '[formcontrolname ="priceFrom"]',
 		hide: false,
 		inputData: '40000',

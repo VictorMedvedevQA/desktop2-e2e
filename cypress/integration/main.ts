@@ -58,5 +58,5 @@ describe('Главная', () => {
 
 	filterSpec.isFilterWorking(filterFields);
 	paginationSpec.isPaginationWorking(mainPage.pagination.container, filterObject.carItem.auctionItemsResult);
-	reviewGallerySpec.isReviewGalleryWorking(mainPage.reviewGalleryContainer);
+	reviewGallerySpec.isReviewGalleryWorking();
 });
