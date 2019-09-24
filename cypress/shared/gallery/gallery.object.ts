@@ -8,43 +8,40 @@ export interface IGallery {
 export class GalleryObject {
 	public commonGalleryItems = {
 		dotNav: '.b-dotnav__dot',
+		activeDot: '.b-dotnav__dot_active',
 	};
 
 	public checkItemChangeByArrow(gallery: IGallery) {
 		cy.get(gallery.container)
-			.find(this.commonGalleryItems.dotNav)
-			.each(dot => {
-				if (!dot.hasClass('active')) {
-					cy.findFirstVisible(gallery.container, gallery.items).then(item => {
-						const firstItemBefore = item;
-						cy.get(gallery.container)
-							.find(gallery.right)
-							.scrollIntoView()
-							.click()
-							.then(() => {
-								const firstItemAfter = cy.findFirstVisible(gallery.container, gallery.items);
-								expect(firstItemBefore).not.to.be.equal(firstItemAfter);
-							});
-					});
-				}
+			.find(this.commonGalleryItems.activeDot)
+			.nextAll()
+			.each(() => {
+				cy.findFirstVisible(gallery.container, gallery.items).then(firstItemBefore => {
+					cy.get(gallery.container)
+						.find(gallery.right)
+						.scrollIntoView()
+						.click()
+						.then(() => {
+							const firstItemAfter = cy.findFirstVisible(gallery.container, gallery.items);
+							expect(firstItemBefore).not.to.be.equal(firstItemAfter);
+						});
+				});
 			});
 	}
 	public checkItemChangeByDot(gallery: IGallery) {
 		cy.get(gallery.container)
-			.find(this.commonGalleryItems.dotNav)
+			.find(this.commonGalleryItems.activeDot)
+			.nextAll()
 			.each(dot => {
-				if (!dot.hasClass('active')) {
-					cy.findFirstVisible(gallery.container, gallery.items).then(item => {
-						const firstItemBefore = item;
-						cy.wrap(dot)
-							.scrollIntoView()
-							.click()
-							.then(() => {
-								const firstItemAfter = cy.findFirstVisible(gallery.container, gallery.items);
-								expect(firstItemBefore).not.to.be.equal(firstItemAfter);
-							});
-					});
-				}
+				cy.findFirstVisible(gallery.container, gallery.items).then(firstItemBefore => {
+					cy.wrap(dot)
+						.scrollIntoView()
+						.click()
+						.then(() => {
+							const firstItemAfter = cy.findFirstVisible(gallery.container, gallery.items);
+							expect(firstItemBefore).not.to.be.equal(firstItemAfter);
+						});
+				});
 			});
 	}
 }

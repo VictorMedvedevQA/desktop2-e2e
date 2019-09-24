@@ -8,7 +8,7 @@ export interface IFilterField {
 	breadcrumbsChange: boolean;
 	fieldType: filterFieldType;
 	formcontrolname?: string;
-	hide: boolean;
+	isHidden: boolean;
 	iconSelector?: string;
 	inputData?: string;
 	outputData?: string;

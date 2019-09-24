@@ -99,7 +99,7 @@ export class FilterObject {
 			})
 			.wait('@getSearch');
 	}
-	public checkItem(param: string, value: string) {
+	public checkItem(value: string) {
 		cy.get(this.carItem.auctionItemsResult).each(car => {
 			cy.wrap(car)
 				.find(this.itemDescription.title)

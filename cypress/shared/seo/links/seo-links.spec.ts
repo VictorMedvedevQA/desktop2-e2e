@@ -63,7 +63,7 @@ export class SeoLinksSpec {
 
 					if (el.name !== 'generation') {
 						it('Смена auctionItems', () => {
-							filterObject.checkItem(el.name, el.value);
+							filterObject.checkItem(el.value);
 						});
 					}
 				});

@@ -48,7 +48,7 @@ export class FilterFieldsSpec {
 				});
 			}
 
-			if (field.hide) {
+			if (field.isHidden) {
 				it('Развернуть и скрыть ' + field.name, () => {
 					if (field.formcontrolname) {
 						cy.get(field.formcontrolname)

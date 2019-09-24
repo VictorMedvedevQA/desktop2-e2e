@@ -54,8 +54,7 @@ export class FormTestingObject {
 		cy.get(link)
 			.find('[formcontrolname]')
 			.each(field => {
-				let a = field.attr('formcontrolname');
-				let el = formFields.find(field => field.name === a);
+				let el = formFields.find(formField => formField.name === field.attr('formcontrolname'));
 				if (el) {
 					fieldList.push(el);
 				}

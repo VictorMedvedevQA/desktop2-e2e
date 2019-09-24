@@ -1,66 +1,66 @@
 export interface IAppraisalParameter {
 	name?: string;
-	isHide: boolean;
+	isHidden: boolean;
 	type: 'item' | 'input';
 	data: string;
 }
 
 export class AppraisalPage {
 	public defaultData: IAppraisalParameter[] = [
-		{ name: 'make', isHide: true, type: 'item', data: 'Ford' },
-		{ name: 'model', isHide: true, type: 'item', data: 'Mondeo' },
-		{ name: 'year', isHide: false, type: 'item', data: '2014' },
-		{ name: 'generation', isHide: false, type: 'item', data: 'IV Рестайлинг' },
-		{ name: 'bodyType', isHide: false, type: 'item', data: 'Седан' },
-		{ isHide: false, type: 'item', data: 'Автомат' },
-		{ isHide: false, type: 'item', data: 'Бензиновый' },
-		{ isHide: false, type: 'item', data: 'Передний' },
-		{ isHide: false, type: 'input', data: '123' },
-		{ isHide: false, type: 'input', data: '123' },
-		{ isHide: false, type: 'item', data: 'Базовая' },
-		{ name: 'city', isHide: false, type: 'item', data: 'Краснодар' },
+		{ name: 'make', isHidden: true, type: 'item', data: 'Ford' },
+		{ name: 'model', isHidden: true, type: 'item', data: 'Mondeo' },
+		{ name: 'year', isHidden: false, type: 'item', data: '2014' },
+		{ name: 'generation', isHidden: false, type: 'item', data: 'IV Рестайлинг' },
+		{ name: 'bodyType', isHidden: false, type: 'item', data: 'Седан' },
+		{ isHidden: false, type: 'item', data: 'Автомат' },
+		{ isHidden: false, type: 'item', data: 'Бензиновый' },
+		{ isHidden: false, type: 'item', data: 'Передний' },
+		{ isHidden: false, type: 'input', data: '123' },
+		{ isHidden: false, type: 'input', data: '123' },
+		{ isHidden: false, type: 'item', data: 'Базовая' },
+		{ name: 'city', isHidden: false, type: 'item', data: 'Краснодар' },
 	];
 	public liquidity4th: IAppraisalParameter[] = [
-		{ name: 'make', isHide: true, type: 'item', data: 'Kia ' },
-		{ name: 'model', isHide: true, type: 'item', data: 'Rio' },
-		{ name: 'year', isHide: false, type: 'item', data: '2014' },
-		{ name: 'generation', isHide: false, type: 'item', data: 'III' },
-		{ name: 'bodyType', isHide: false, type: 'item', data: 'Седан' },
-		{ isHide: false, type: 'item', data: 'Автомат' },
-		{ isHide: false, type: 'item', data: 'Бензиновый' },
-		{ isHide: false, type: 'item', data: 'Передний' },
-		{ isHide: false, type: 'input', data: '123' },
-		{ isHide: false, type: 'input', data: '123' },
-		{ isHide: false, type: 'item', data: 'Базовая' },
-		{ name: 'city', isHide: false, type: 'item', data: 'Ростов' },
+		{ name: 'make', isHidden: true, type: 'item', data: 'Kia ' },
+		{ name: 'model', isHidden: true, type: 'item', data: 'Rio' },
+		{ name: 'year', isHidden: false, type: 'item', data: '2014' },
+		{ name: 'generation', isHidden: false, type: 'item', data: 'III' },
+		{ name: 'bodyType', isHidden: false, type: 'item', data: 'Седан' },
+		{ isHidden: false, type: 'item', data: 'Автомат' },
+		{ isHidden: false, type: 'item', data: 'Бензиновый' },
+		{ isHidden: false, type: 'item', data: 'Передний' },
+		{ isHidden: false, type: 'input', data: '123' },
+		{ isHidden: false, type: 'input', data: '123' },
+		{ isHidden: false, type: 'item', data: 'Базовая' },
+		{ name: 'city', isHidden: false, type: 'item', data: 'Ростов' },
 	];
 	public notRetailQuality: IAppraisalParameter[] = [
-		{ name: 'make', isHide: true, type: 'item', data: 'Mercedes-Benz' },
-		{ name: 'model', isHide: true, type: 'item', data: 'S-klasse' },
-		{ name: 'year', isHide: false, type: 'item', data: '2019' },
-		{ name: 'generation', isHide: false, type: 'item', data: 'VI (W222' },
-		{ name: 'bodyType', isHide: false, type: 'item', data: 'Седан' },
-		{ isHide: false, type: 'item', data: 'Автомат' },
-		{ isHide: false, type: 'item', data: 'Бензиновый' },
-		{ isHide: false, type: 'item', data: 'Передний' },
-		{ isHide: false, type: 'input', data: '123' },
-		{ isHide: false, type: 'input', data: '123' },
-		{ isHide: false, type: 'item', data: 'Базовая' },
-		{ name: 'city', isHide: false, type: 'item', data: 'Москва' },
+		{ name: 'make', isHidden: true, type: 'item', data: 'Mercedes-Benz' },
+		{ name: 'model', isHidden: true, type: 'item', data: 'S-klasse' },
+		{ name: 'year', isHidden: false, type: 'item', data: '2019' },
+		{ name: 'generation', isHidden: false, type: 'item', data: 'VI (W222' },
+		{ name: 'bodyType', isHidden: false, type: 'item', data: 'Седан' },
+		{ isHidden: false, type: 'item', data: 'Автомат' },
+		{ isHidden: false, type: 'item', data: 'Бензиновый' },
+		{ isHidden: false, type: 'item', data: 'Передний' },
+		{ isHidden: false, type: 'input', data: '123' },
+		{ isHidden: false, type: 'input', data: '123' },
+		{ isHidden: false, type: 'item', data: 'Базовая' },
+		{ name: 'city', isHidden: false, type: 'item', data: 'Москва' },
 	];
 	public failAppraisal: IAppraisalParameter[] = [
-		{ name: 'make', isHide: true, type: 'item', data: 'Buick' },
-		{ name: 'model', isHide: true, type: 'item', data: 'Rendezvous' },
-		{ name: 'year', isHide: false, type: 'item', data: '2004' },
-		{ name: 'generation', isHide: false, type: 'item', data: 'Rendez' },
-		{ name: 'bodyType', isHide: false, type: 'item', data: 'Внедорожник' },
-		{ isHide: false, type: 'item', data: 'Автомат' },
-		{ isHide: false, type: 'item', data: 'Бензиновый' },
-		{ isHide: false, type: 'item', data: 'Передний' },
-		{ isHide: false, type: 'input', data: '123' },
-		{ isHide: false, type: 'input', data: '123' },
-		{ isHide: false, type: 'item', data: 'Базовая' },
-		{ name: 'city', isHide: false, type: 'item', data: 'Краснодар' },
+		{ name: 'make', isHidden: true, type: 'item', data: 'Buick' },
+		{ name: 'model', isHidden: true, type: 'item', data: 'Rendezvous' },
+		{ name: 'year', isHidden: false, type: 'item', data: '2004' },
+		{ name: 'generation', isHidden: false, type: 'item', data: 'Rendez' },
+		{ name: 'bodyType', isHidden: false, type: 'item', data: 'Внедорожник' },
+		{ isHidden: false, type: 'item', data: 'Автомат' },
+		{ isHidden: false, type: 'item', data: 'Бензиновый' },
+		{ isHidden: false, type: 'item', data: 'Передний' },
+		{ isHidden: false, type: 'input', data: '123' },
+		{ isHidden: false, type: 'input', data: '123' },
+		{ isHidden: false, type: 'item', data: 'Базовая' },
+		{ name: 'city', isHidden: false, type: 'item', data: 'Краснодар' },
 	];
 	public itemsList = {
 		itemText: '.b-link-item__text',
@@ -91,7 +91,7 @@ export class AppraisalPage {
 		for (const parameter in data) {
 			if (parameter) {
 				cy.then(() => {
-					if (data[parameter].isHide   ) {
+					if (data[parameter].isHidden) {
 						cy.get(this.itemsList.showAll).click();
 					}
 				}).then(() => {
