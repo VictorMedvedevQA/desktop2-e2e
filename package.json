@@ -1,0 +1,24 @@
+{
+	"name": "desktop2-e2e",
+	"version": "1.0.0",
+	"description": "Example showing TypeScript tests with Cypress",
+	"scripts": {
+		"start": "./node_modules/cypress/bin/cypress open",
+		"cypress:run": "./node_modules/.bin/cypress run",
+		"cypress:release": "./node_modules/.bin/cypress run --record --key 8f0b3664-2646-4046-8b69-1216280465fb",
+		"cypress:open": "./node_modules/.bin/cypress open",
+		"build": "./node_modules/.bin/webpack --output-filename out.js --entry ./cypress/integration/spec.ts",
+		"lint": "./node_modules/.bin/tslint --project ./tsconfig.json",
+		"postlint": "npm run tsc",
+		"tsc": "./node_modules/.bin/tsc --pretty --noEmit"
+	},
+	"devDependencies": {
+		"cypress": "^3.4.1"
+	},
+	"dependencies": {
+		"@cypress/webpack-preprocessor": "^4.0.2",
+		"ts-loader": "^5.3.1",
+		"typescript": "^3.2.1",
+		"webpack": "^4.27.0"
+	}
+}

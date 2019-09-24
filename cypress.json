@@ -1,0 +1,9 @@
+{
+  "supportFile": "cypress/support/index.ts",
+  "viewportWidth": 1920,
+  "viewportHeight": 1080,
+  "defaultCommandTimeout": 5000,
+  "requestTimeout": 5000,
+  "chromeWebSecurity": false,
+  "projectId": "ycvbgo"
+}

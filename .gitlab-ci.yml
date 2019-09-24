@@ -1,0 +1,21 @@
+variables:
+    name: mobile-e2e
+stages:
+    - tslint
+    - master-build
+
+tslint:
+    stage: tslint
+    script:
+        - tslint ./src/**/*.ts
+
+master-build:
+    stage: master-build
+    script:
+        - docker build -t registry.automama.ru/$name:$CI_COMMIT_TAG .
+        - docker tag registry.automama.ru/$name:$CI_COMMIT_TAG registry.automama.ru/$name:latest
+        - docker push registry.automama.ru/$name:$CI_COMMIT_TAG
+        - docker push registry.automama.ru/$name:latest;
+        - docker rmi -f registry.automama.ru/$name:$CI_COMMIT_TAG;
+    only:
+        - tags
