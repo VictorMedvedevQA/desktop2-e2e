@@ -1,5 +1,5 @@
 variables:
-    name: mobile-e2e
+    name: desktop2-e2e
 stages:
     - tslint
     - master-build
