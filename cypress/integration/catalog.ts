@@ -60,7 +60,6 @@ describe('Проданные авто', () => {
 			.should('not.be.visible')
 			.get(catalogPage.catalog.showSoldCars)
 			.click();
-		// tslint:disable-next-line:no-unused-expression
 		expect(catalogPage.catalog.soldCars).to.exist;
 	});
 
@@ -69,7 +68,6 @@ describe('Проданные авто', () => {
 			.click()
 			.get(catalogPage.catalog.hideSoldCars)
 			.click();
-		// tslint:disable-next-line:no-unused-expression
 		expect(catalogPage.catalog.soldCars).not.visible;
 	});
 });

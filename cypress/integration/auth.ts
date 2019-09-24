@@ -1,4 +1,4 @@
-import * as authFormData from '..//pages/auth/auth.form.data';
+import * as authFormData from '../pages/auth/auth.form.data';
 import { AuthPage } from '../pages/auth/auth.page';
 import { FormTestingObject, validData } from '../shared/form-testing/form-testing.object';
 import { FormTestingSpec } from '../shared/form-testing/form-testing.spec';
