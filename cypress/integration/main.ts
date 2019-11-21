@@ -22,35 +22,35 @@ describe('Главная', () => {
 		cy.isTooltipsOpenAfterMousmove(mainPage.utpsText);
 	});
 
-	// it('Переход в статьи', () => {
-	// 	cy.get(mainPage.news.link)
-	// 		.click()
-	// 		.url()
-	// 		.should('contains', '/blog');
-	// });
+	it('Переход в статьи', () => {
+		cy.get(mainPage.news.link)
+			.click()
+			.url()
+			.should('contains', '/blog');
+	});
 
-	// it('Открытие блока инфо подробнее', () => {
-	// 	cy.blockIsOpenAfterClick(mainPage.seoText.showMore, mainPage.seoText.link);
-	// });
+	it('Открытие блока инфо подробнее', () => {
+		cy.blockIsOpenAfterClick(mainPage.seoText.showMore, mainPage.seoText.link);
+	});
 
-	// it('Переход по якорной ссылке в каталог', () => {
-	// 	cy.get(mainPage.seoText.showMore)
-	// 		.click()
-	// 		.get(mainPage.seoText.link)
-	// 		.click()
-	// 		.url()
-	// 		.should('contains', '/cars');
-	// });
+	it('Переход по якорной ссылке в каталог', () => {
+		cy.get(mainPage.seoText.showMore)
+			.click()
+			.get(mainPage.seoText.link)
+			.click()
+			.url()
+			.should('contains', '/cars');
+	});
 
-	// it('При наведении на карточку появилась инфо', () => {
-	// 	cy.get(filterObject.carItem.auctionItemsResult)
-	// 		.first()
-	// 		.trigger('mouseenter')
-	// 		.get(mainPage.carItems.info)
-	// 		.should('be.visible');
-	// });
+	it('При наведении на карточку появилась инфо', () => {
+		cy.get(filterObject.carItem.auctionItemsResult)
+			.first()
+			.trigger('mouseenter')
+			.get(mainPage.carItems.info)
+			.should('be.visible');
+	});
 
-	action.maybeIt('Переход в detail-car по клику на auction-item', () => {
+	it('Переход в detail-car по клику на auction-item', () => {
 		cy.get(filterObject.carItem.auctionItemsResult)
 			.first()
 			.click()
@@ -58,7 +58,7 @@ describe('Главная', () => {
 			.should('contains', '/car/');
 	});
 
-	// filterSpec.isFilterWorking(filterFields);
-	// paginationSpec.isPaginationWorking(mainPage.pagination.container, filterObject.carItem.auctionItemsResult);
-	// reviewGallerySpec.isReviewGalleryWorking();
+	filterSpec.isFilterWorking(filterFields);
+	paginationSpec.isPaginationWorking(mainPage.pagination.container, filterObject.carItem.auctionItemsResult);
+	reviewGallerySpec.isReviewGalleryWorking();
 });

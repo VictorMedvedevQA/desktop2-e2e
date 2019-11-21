@@ -39,7 +39,4 @@ describe('Видимость к-ва ставок и текущей ставки
 		);
 	});
 
-	describe('Фильтр', () => {
-		filterSpec.isFilterWorking(filterFields);
-	});
 });

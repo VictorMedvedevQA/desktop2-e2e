@@ -1,6 +1,5 @@
 export const SITE_URL_API_V2 = '/api/v2/';
 export const SITE_URL = '';
-export const PROD_URL = 'https://automama.ru';
 
 export const urls = {
 	appraisal: `${SITE_URL}ocenka-avto`,

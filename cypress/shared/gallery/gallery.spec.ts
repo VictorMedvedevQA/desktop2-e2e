@@ -22,7 +22,8 @@ export class GallerySpec {
 	public checkingClickItemRedirect(gallery: IGallery, urlAfter: string) {
 		it('Переход по клику на galleryItem', () => {
 			cy.findFirstVisible(gallery.container, gallery.items)
-				.click()
+				.click('top')
+				.wait('@getAuctionIndividual')
 				.url()
 				.should('contains', urlAfter);
 		});
