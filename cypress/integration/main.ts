@@ -5,13 +5,11 @@ import { FilterSpec } from '../shared/filter/filter.spec';
 import { ReviewGallerySpec } from '../shared/gallery/review-gallery/review-gallery.spec';
 import { PaginationSpec } from '../shared/pagination/pagination.spec';
 import { urls } from '../support/urls';
-import { Action } from '../shared/action';
 const filterObject = new FilterObject();
 const filterSpec = new FilterSpec();
 const mainPage = new MainPage();
 const paginationSpec = new PaginationSpec();
 const reviewGallerySpec = new ReviewGallerySpec();
-const action = new Action();
 
 describe('Главная', () => {
 	beforeEach(() => {

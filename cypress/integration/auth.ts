@@ -3,11 +3,10 @@ import { AuthPage } from '../pages/auth/auth.page';
 import { FormTestingObject, validData } from '../shared/form-testing/form-testing.object';
 import { FormTestingSpec } from '../shared/form-testing/form-testing.spec';
 import { urls } from '../support/urls';
-import { Action } from '../shared/action';
+import { OnlyDev } from '../shared/action';
 const authPage = new AuthPage();
 const formTestingSpec = new FormTestingSpec();
 const formTestingObject = new FormTestingObject();
-const action = new Action();
 
 describe('Авторизация', () => {
 	beforeEach(() => {
@@ -87,7 +86,7 @@ describe('Регистрация', () => {
 		cy.visit(urls.express.main);
 	});
 
-	action.onlyDevDescribe('Форма "Подтверждение номера телефона"', () => {
+	OnlyDev.describe('Форма "Подтверждение номера телефона"', () => {
 		formTestingSpec.isPopupFormWorking(
 			authPage.confirmNumberFrom.formLink,
 			authPage.confirmNumberFrom.submitFormButton,
@@ -107,7 +106,7 @@ describe('Регистрация', () => {
 		);
 	});
 
-	action.onlyDevIt('Успешно отправили данные для регистрации', () => {
+	OnlyDev.it('Успешно отправили данные для регистрации', () => {
 		cy.then(() => {
 			authPage.refreshSignupForm();
 			formTestingObject.sendValidData(authPage.signupForm.formLink, authPage.signupForm.submitFormButton);
@@ -127,7 +126,7 @@ describe('Регистрация', () => {
 			.should('be.visible');
 	});
 
-	action.onlyDevIt('При возврате на "изменить номер" не сброшены заполненные данные', () => {
+	OnlyDev.it('При возврате на "изменить номер" не сброшены заполненные данные', () => {
 		cy.then(() => {
 			authPage.refreshSignupForm();
 			formTestingObject.sendValidData(authPage.signupForm.formLink, authPage.signupForm.submitFormButton);
