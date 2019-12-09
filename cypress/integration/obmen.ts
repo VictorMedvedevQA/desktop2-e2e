@@ -17,6 +17,7 @@ describe('Обмен', () => {
 	});
 	reviewGallerySpec.isReviewGalleryWorking();
 	carGallerySpec.isCarGalleryWorking();
+	faqSpec.isFaqWorking();
 
 	describe('Hero form', () => {
 		formTestingSpec.isFormWorking(
@@ -35,5 +36,4 @@ describe('Обмен', () => {
 			obmenPage.assertion.bind(obmenPage)
 		);
 	});
-	faqSpec.isFaqWorking();
 });

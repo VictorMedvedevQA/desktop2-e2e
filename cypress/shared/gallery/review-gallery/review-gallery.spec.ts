@@ -40,6 +40,7 @@ export class ReviewGallerySpec {
 			it('Переход на детальную страницу авто из попапа', () => {
 				cy.get(reviewGalleryObject.reviewGallery.container)
 					.find(reviewGalleryObject.galleryItems.moreLink)
+					.contains('Подробнее')
 					.first()
 					.click()
 					.get(reviewGalleryObject.galleryItems.reviewCardPopup)

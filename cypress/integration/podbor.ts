@@ -36,6 +36,7 @@ describe('Подбор', () => {
 			podborPage.assertion.bind(podborPage)
 		);
 	});
+
 	describe('Inline form last', () => {
 		formTestingSpec.isFormWorking(
 			podborPage.inlineFormLast.formLink,
@@ -43,5 +44,26 @@ describe('Подбор', () => {
 			podborPage.refreshForm.bind(podborPage),
 			podborPage.assertion.bind(podborPage)
 		);
+	});
+
+	describe('Блок "Как мы делаем осмотр и диагностику авто"', () => {
+		it('Переход в каталог по кнопке "посмотреть авто в наличии"', () => {
+			cy.get(podborPage.matchHow.container)
+				.find(podborPage.matchHow.btnBlock)
+				.find(podborPage.matchHow.showCarsBtn)
+				.click()
+				.url()
+				.should('contain', '/cars');
+		});
+
+		describe('Popup form "Подбор авто для меня"', () => {
+			formTestingSpec.isPopupFormWorking(
+				podborPage.mutchCarForMe.formLink,
+				podborPage.mutchCarForMe.submitFormButton,
+				podborPage.mutchCarForMe.openFormButton,
+				podborPage.refreshMutchCarForMeForm.bind(podborPage),
+				podborPage.assertion.bind(podborPage)
+			);
+		});
 	});
 });
