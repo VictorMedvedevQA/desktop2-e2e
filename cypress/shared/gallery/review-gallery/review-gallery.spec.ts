@@ -11,6 +11,7 @@ export class ReviewGallerySpec {
 			it('Открытие попапа полного текста комментария', () => {
 				cy.get(reviewGalleryObject.reviewGallery.container)
 					.find(reviewGalleryObject.galleryItems.moreLink)
+					.contains('Подробнее')
 					.first()
 					.click()
 					.get(reviewGalleryObject.galleryItems.reviewCardPopup)
