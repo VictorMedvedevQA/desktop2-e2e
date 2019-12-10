@@ -25,4 +25,7 @@ export const urls = {
 	obmen: `${SITE_URL}obmen-avto`,
 	podbor: `${SITE_URL}podbor-auto`,
 	selling: `${SITE_URL}srochnyi-vykup-avto`,
+	autocredit: {
+		main: `${SITE_URL}autocredit`,
+	},
 };
