@@ -22,4 +22,7 @@ export const urls = {
 		filtered: `${SITE_URL}moscow/cars/audi?fromFilter=true`,
 		main: `${SITE_URL}`,
 	},
+	obmen: `${SITE_URL}obmen-avto`,
+	podbor: `${SITE_URL}podbor-auto`,
+	selling: `${SITE_URL}srochnyi-vykup-avto`,
 };

@@ -9,7 +9,9 @@ export class ReviewGallerySpec {
 			gallerySpec.isGalleryWorking(reviewGalleryObject.reviewGallery);
 
 			it('Открытие попапа полного текста комментария', () => {
-				cy.get(reviewGalleryObject.galleryItems.moreLink)
+				cy.get(reviewGalleryObject.reviewGallery.container)
+					.find(reviewGalleryObject.galleryItems.moreLink)
+					.contains('Подробнее')
 					.first()
 					.click()
 					.get(reviewGalleryObject.galleryItems.reviewCardPopup)
@@ -17,7 +19,8 @@ export class ReviewGallerySpec {
 			});
 
 			it('Переход на страницу отзывов', () => {
-				cy.get(reviewGalleryObject.galleryItems.dotNav)
+				cy.get(reviewGalleryObject.reviewGallery.container)
+					.find(reviewGalleryObject.galleryItems.dotNav)
 					.last()
 					.click()
 					.get(reviewGalleryObject.galleryItems.reviewCardButton)
@@ -27,7 +30,8 @@ export class ReviewGallerySpec {
 			});
 
 			it('Переход на детальную страницу авто', () => {
-				cy.get(reviewGalleryObject.galleryItems.detailCarLink)
+				cy.get(reviewGalleryObject.reviewGallery.container)
+					.find(reviewGalleryObject.galleryItems.detailCarLink)
 					.first()
 					.click()
 					.get(reviewGalleryObject.galleryItems.singleSlideGallery)
@@ -35,7 +39,9 @@ export class ReviewGallerySpec {
 			});
 
 			it('Переход на детальную страницу авто из попапа', () => {
-				cy.get(reviewGalleryObject.galleryItems.moreLink)
+				cy.get(reviewGalleryObject.reviewGallery.container)
+					.find(reviewGalleryObject.galleryItems.moreLink)
+					.contains('Подробнее')
 					.first()
 					.click()
 					.get(reviewGalleryObject.galleryItems.reviewCardPopup)

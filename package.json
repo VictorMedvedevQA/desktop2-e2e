@@ -13,7 +13,9 @@
 		"postlint": "npm run tsc",
 		"tsc": "./node_modules/.bin/tsc --pretty --noEmit",
 		"cypress:run-prod": "./node_modules/.bin/cypress run --env configFile=prod",
-		"cypress:open-prod": "./node_modules/.bin/cypress open --env configFile=prod"
+		"cypress:open-prod": "./node_modules/.bin/cypress open --env configFile=prod",
+		"cypress:open-team1": "./node_modules/.bin/cypress open --env configFile=team1",
+		"cypress:open-team2": "./node_modules/.bin/cypress open --env configFile=team2"
 	},
 	"devDependencies": {
 		"cypress": "^3.4.1",
