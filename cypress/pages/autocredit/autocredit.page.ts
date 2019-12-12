@@ -8,7 +8,12 @@ export class AutocreditPage {
 		openFormButton: '.b-faq .b-button',
 		submitFormButton: '[type="submit"]',
 	};
-
+	public creditGallery: IGallery = {
+		container: 'am-credit-gallery am-gallery',
+		items: '.b-slider__item',
+		left: '.b-slider__arrow.b-slider__arrow_prev',
+		right: '.b-slider__arrow.b-slider__arrow_next',
+	};
 	public assertion() {
 		cy.get(this.successPopup).should('not.exist');
 	}

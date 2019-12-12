@@ -28,4 +28,5 @@ export const urls = {
 	autocredit: {
 		main: `${SITE_URL}autocredit`,
 	},
+	leasing: `${SITE_URL}leasing`,
 };

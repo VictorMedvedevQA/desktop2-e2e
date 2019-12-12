@@ -76,9 +76,16 @@ export class FormTestingObject {
 			if (el) {
 				cy.get(link)
 					.find('[formcontrolname="' + fieldName + '"]')
-					.parent()
-					.find('input')
-					.type(el.data);
+					.then(field => {
+						if (!field.is('input') && el) {
+							cy.wrap(field)
+								.parent()
+								.find('input')
+								.type(el.data);
+						} else if (field.is('input') && el) {
+							cy.wrap(field).type(el.data);
+						}
+					});
 			}
 		});
 	}
@@ -127,11 +134,13 @@ export class FormTestingObject {
 							this.fillElement(link, allFieldsArray[elAllFields].name, validData);
 						});
 					}
-					cy.then(() => {
-						assertion();
-					}).then(() => {
-						refreshForm();
-					});
+					cy.wait(500)
+						.then(() => {
+							assertion();
+						})
+						.then(() => {
+							refreshForm();
+						});
 				});
 			});
 		});
