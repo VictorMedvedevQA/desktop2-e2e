@@ -76,6 +76,24 @@ Cypress.Commands.add('selectDropdown', { prevSubject: true }, (subject: any, tex
 		});
 });
 
+Cypress.Commands.add(
+	'inputAutocomplete',
+	{ prevSubject: true },
+	(subject: any, textInput: string, textOutput: string) => {
+		cy.wrap(subject)
+			.find('input')
+			.type(textInput)
+			.parent()
+			.find('.b-input__dropdown')
+			.find('.b-input__dropdown-field')
+			.contains(textOutput)
+			.click()
+			.then(() => {
+				return subject;
+			});
+	}
+);
+
 Cypress.Commands.add('toggle', { prevSubject: true }, (subject: any) => {
 	cy.wrap(subject)
 		.click()
@@ -150,6 +168,7 @@ declare global {
 			blockIsOpenAfterClick: (headers: string, content: string, options?: any) => Chainable<any>;
 			input: (textInput: string) => Chainable<any>;
 			inputDropdown: (textInput: string, textOutput: string) => Chainable<any>;
+			inputAutocomplete: (textInput: string, textOutput: string) => Chainable<any>;
 			selectDropdown: (text: any) => Chainable<any>;
 			toggle: () => Chainable<any>;
 			visitRoute: (url: any) => Chainable<any>;

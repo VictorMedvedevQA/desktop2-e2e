@@ -1,5 +1,12 @@
-import { IFilterField, filterFieldType } from '../../shared/filter/filter-fields.object';
-export const filterFields: IFilterField[] = [
+import { filterFieldType, IFilterField } from '../filter-fields.object';
+export interface ICarsFilterField extends IFilterField {
+	breadcrumbsChange: boolean;
+	isHidden: boolean;
+	seoTextChange: boolean;
+	iconSelector?: string;
+	activateClearButton: boolean;
+}
+export const filterFields: ICarsFilterField[] = [
 	{
 		activateClearButton: true,
 		breadcrumbsChange: false,

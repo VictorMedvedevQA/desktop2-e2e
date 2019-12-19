@@ -1,10 +1,10 @@
 import { urls } from '../../../support/urls';
 import { BreadcrumbsObject } from '../../breadcrumbs/breadcrumbs.object';
-import { FilterObject } from '../../filter/filter.object';
+import { CarFilterObject } from '../../filter/cars-filter/car-filter.object';
 import { SeoLinksObject } from './seo-links.object';
 
 const breadcrumbsObject = new BreadcrumbsObject();
-const filterObject = new FilterObject();
+const filterObject = new CarFilterObject();
 const seoLinksObject = new SeoLinksObject();
 export class SeoLinksSpec {
 	public isSeoLinksWorking() {

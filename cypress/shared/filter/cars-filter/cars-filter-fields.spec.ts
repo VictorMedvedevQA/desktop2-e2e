@@ -1,10 +1,10 @@
-import { BreadcrumbsObject } from '../breadcrumbs/breadcrumbs.object';
-import { IFilterField } from './filter-fields.object';
-import { FilterObject } from './filter.object';
-const filterObject = new FilterObject();
+import { BreadcrumbsObject } from '../../breadcrumbs/breadcrumbs.object';
+import { CarFilterObject } from './car-filter.object';
+import { ICarsFilterField } from './cars-filter-fields';
+const filterObject = new CarFilterObject();
 const breadcrumbsObject = new BreadcrumbsObject();
-export class FilterFieldsSpec {
-	public checkField(field: IFilterField) {
+export class CarsFieldsSpec {
+	public checkCatalogField(field: ICarsFilterField) {
 		describe('Поведение контролов и странцы после применения ' + field.name, () => {
 			describe(field.name, () => {
 				beforeEach(() => {
