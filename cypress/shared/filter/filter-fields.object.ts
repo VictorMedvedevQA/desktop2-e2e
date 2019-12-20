@@ -4,6 +4,7 @@ export enum filterFieldType {
 	inputDropdown = 'inputDropdown',
 	control = 'control',
 	inputAutocomplete = 'inputAutocomplete',
+	tab = 'tab',
 }
 export interface IFilterField {
 	fieldType: filterFieldType;

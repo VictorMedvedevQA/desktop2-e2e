@@ -82,6 +82,7 @@ Cypress.Commands.add(
 	(subject: any, textInput: string, textOutput: string) => {
 		cy.wrap(subject)
 			.find('input')
+			.scrollIntoView()
 			.type(textInput)
 			.parent()
 			.find('.b-input__dropdown')

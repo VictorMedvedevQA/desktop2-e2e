@@ -18,15 +18,15 @@ describe('Автокредит', () => {
 		cy.visitRoute(urls.autocredit.main);
 	});
 	autocreditFilterSpec.isAutocreditFilterWorking(filterFields);
-	// faqSpec.isFaqWorking();
-	// programGallerySpec.isProgramGalleryWorking(autocreditPage.creditGallery);
-	// describe('Заявка  после ЧАВО', () => {
-	// 	formTestingSpec.isPopupFormWorking(
-	// 		autocreditPage.mainPopupForm.formLink,
-	// 		autocreditPage.mainPopupForm.submitFormButton,
-	// 		autocreditPage.mainPopupForm.openFormButton,
-	// 		autocreditPage.refreshmainPopupForm.bind(autocreditPage),
-	// 		autocreditPage.assertion.bind(autocreditPage)
-	// 	);
-	// });
+	faqSpec.isFaqWorking();
+	programGallerySpec.isProgramGalleryWorking(autocreditPage.creditGallery);
+	describe('Заявка  после ЧАВО', () => {
+		formTestingSpec.isPopupFormWorking(
+			autocreditPage.mainPopupForm.formLink,
+			autocreditPage.mainPopupForm.submitFormButton,
+			autocreditPage.mainPopupForm.openFormButton,
+			autocreditPage.refreshmainPopupForm.bind(autocreditPage),
+			autocreditPage.assertion.bind(autocreditPage)
+		);
+	});
 });
