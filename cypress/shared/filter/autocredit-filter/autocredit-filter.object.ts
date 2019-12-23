@@ -1,6 +1,5 @@
 import { IAutocreditFilterField } from './autocredit-filter-fields';
 import { filterFieldType } from '../filter-fields.object';
-import { urls, SITE_URL_API_V2, SITE_URL } from '../../../support/urls';
 
 export class AutocreditFilterObject {
 	public creditCalculator = {
@@ -21,7 +20,6 @@ export class AutocreditFilterObject {
 
 	public activateField(field: IAutocreditFilterField) {
 		cy.then(() => {
-			// tslint:disable-next-line:switch-default
 			switch (field.fieldType) {
 				case 'inputAutocomplete':
 					{
@@ -50,12 +48,21 @@ export class AutocreditFilterObject {
 						}
 					}
 					break;
-				case 'input': {
-					if (field.formcontrolname && field.inputData) {
-						cy.get(field.formcontrolname)
-							.type(field.inputData)
-							.blur();
+				case 'input':
+					{
+						if (field.formcontrolname && field.inputData) {
+							cy.get(field.formcontrolname)
+								.type(field.inputData)
+								.blur();
+						}
 					}
+					break;
+				case 'tab':
+					{
+					}
+					break;
+				default: {
+					throw new Error(`Не найден тип  ${field.fieldType}`);
 				}
 			}
 		})
