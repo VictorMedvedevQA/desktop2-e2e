@@ -3,6 +3,7 @@ import { AuthPage } from '../pages/auth/auth.page';
 import { FormTestingObject, validData } from '../shared/form-testing/form-testing.object';
 import { FormTestingSpec } from '../shared/form-testing/form-testing.spec';
 import { urls } from '../support/urls';
+import { OnlyDev } from '../shared/action';
 const authPage = new AuthPage();
 const formTestingSpec = new FormTestingSpec();
 const formTestingObject = new FormTestingObject();
@@ -65,7 +66,7 @@ describe('Авторизация', () => {
 			.click()
 			.wait('@me')
 			.get(authPage.linkContainer)
-			.contains('rbarinov@gmail.com')
+			.contains(authFormData.mixedCaseLogin[0].data.toLowerCase())
 			.should('be.visible');
 	});
 
@@ -85,7 +86,7 @@ describe('Регистрация', () => {
 		cy.visit(urls.express.main);
 	});
 
-	describe('Форма "Подтверждение номера телефона"', () => {
+	OnlyDev.describe('Форма "Подтверждение номера телефона"', () => {
 		formTestingSpec.isPopupFormWorking(
 			authPage.confirmNumberFrom.formLink,
 			authPage.confirmNumberFrom.submitFormButton,
@@ -105,7 +106,7 @@ describe('Регистрация', () => {
 		);
 	});
 
-	it('Успешно отправили данные для регистрации', () => {
+	OnlyDev.it('Успешно отправили данные для регистрации', () => {
 		cy.then(() => {
 			authPage.refreshSignupForm();
 			formTestingObject.sendValidData(authPage.signupForm.formLink, authPage.signupForm.submitFormButton);
@@ -125,7 +126,7 @@ describe('Регистрация', () => {
 			.should('be.visible');
 	});
 
-	it('При возврате на "изменить номер" не сброшены заполненные данные', () => {
+	OnlyDev.it('При возврате на "изменить номер" не сброшены заполненные данные', () => {
 		cy.then(() => {
 			authPage.refreshSignupForm();
 			formTestingObject.sendValidData(authPage.signupForm.formLink, authPage.signupForm.submitFormButton);

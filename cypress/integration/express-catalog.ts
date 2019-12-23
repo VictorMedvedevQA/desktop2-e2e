@@ -1,14 +1,11 @@
 import { AuthPage } from '../pages/auth/auth.page';
 import { ExpressCatalogPage } from '../pages/express-catalog/express-catalog.page';
-import { filterFields } from '../pages/express-catalog/filter-fields';
-import { FilterSpec } from '../shared/filter/filter.spec';
 import { PaginationSpec } from '../shared/pagination/pagination.spec';
 import { urls } from '../support/urls';
 
 const paginationSpec = new PaginationSpec();
 const authPage = new AuthPage();
 const expressCatalogPage = new ExpressCatalogPage();
-const filterSpec = new FilterSpec();
 
 describe('Видимость к-ва ставок и текущей ставки ', () => {
 	beforeEach(() => {
@@ -37,9 +34,5 @@ describe('Видимость к-ва ставок и текущей ставки
 			expressCatalogPage.pagination.container,
 			expressCatalogPage.carItem.expressItemsResult
 		);
-	});
-
-	describe('Фильтр', () => {
-		filterSpec.isFilterWorking(filterFields);
 	});
 });

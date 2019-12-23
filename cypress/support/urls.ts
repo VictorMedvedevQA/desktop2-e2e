@@ -1,5 +1,5 @@
-export const SITE_URL_API_V2 = 'https://test.automama.ru/api/v2/';
-export const SITE_URL = 'https://test.automama.ru/';
+export const SITE_URL_API_V2 = '/api/v2/';
+export const SITE_URL = '';
 
 export const urls = {
 	appraisal: `${SITE_URL}ocenka-avto`,
@@ -22,4 +22,11 @@ export const urls = {
 		filtered: `${SITE_URL}moscow/cars/audi?fromFilter=true`,
 		main: `${SITE_URL}`,
 	},
+	obmen: `${SITE_URL}obmen-avto`,
+	podbor: `${SITE_URL}podbor-auto`,
+	selling: `${SITE_URL}srochnyi-vykup-avto`,
+	autocredit: {
+		main: `${SITE_URL}autocredit`,
+	},
+	leasing: `${SITE_URL}leasing`,
 };

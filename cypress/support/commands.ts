@@ -21,6 +21,24 @@ Cypress.Commands.add('visitRoute', (url: any) => {
 			case urls.catalog:
 			case urls.catalog.main:
 			case urls.catalog.filterredAudi:
+				{
+					cy.server()
+						.route(`${SITE_URL_API_V2}auctions/individual/*`)
+						.as('getAuctionIndividual')
+						.route(`${SITE_URL_API_V2}auctions/search?*`)
+						.as('getSearch')
+						.route(`${SITE_URL_API_V2}auctions/search?offset=*`)
+						.as('getSearchOffset')
+						.route(`${SITE_URL_API_V2}filter/*`)
+						.as('getFilterSearch')
+						.route(`${SITE_URL_API_V2}filter/models?makeId=**`)
+						.as('getFilterMake')
+						.route(`${SITE_URL_API_V2}filter/generations?modelId=**`)
+						.as('getFilterModel')
+						.route(`${SITE_URL_API_V2}auctions/search?p1=audi&p2=a1&generation=6187`)
+						.as('getFilterGeneration');
+				}
+				break;
 			case urls.catalog.filterredAudiA1:
 				{
 					cy.server()
@@ -39,7 +57,11 @@ Cypress.Commands.add('visitRoute', (url: any) => {
 				}
 				break;
 		}
-	}).visit(url);
+	}).visit(url, {
+		onBeforeLoad: window => {
+			window.localStorage.clear();
+		},
+	});
 });
 
 Cypress.Commands.add('selectDropdown', { prevSubject: true }, (subject: any, text: any) => {
@@ -53,6 +75,25 @@ Cypress.Commands.add('selectDropdown', { prevSubject: true }, (subject: any, tex
 			return subject;
 		});
 });
+
+Cypress.Commands.add(
+	'inputAutocomplete',
+	{ prevSubject: true },
+	(subject: any, textInput: string, textOutput: string) => {
+		cy.wrap(subject)
+			.find('input')
+			.scrollIntoView()
+			.type(textInput)
+			.parent()
+			.find('.b-input__dropdown')
+			.find('.b-input__dropdown-field')
+			.contains(textOutput)
+			.click()
+			.then(() => {
+				return subject;
+			});
+	}
+);
 
 Cypress.Commands.add('toggle', { prevSubject: true }, (subject: any) => {
 	cy.wrap(subject)
@@ -128,12 +169,11 @@ declare global {
 			blockIsOpenAfterClick: (headers: string, content: string, options?: any) => Chainable<any>;
 			input: (textInput: string) => Chainable<any>;
 			inputDropdown: (textInput: string, textOutput: string) => Chainable<any>;
+			inputAutocomplete: (textInput: string, textOutput: string) => Chainable<any>;
 			selectDropdown: (text: any) => Chainable<any>;
 			toggle: () => Chainable<any>;
 			visitRoute: (url: any) => Chainable<any>;
 			findFirstVisible: (container: string, item: string) => Chainable<any>;
-
-			// на десктоп
 			isTooltipsOpenAfterMousmove: (headers: string, options?: any) => Chainable<any>;
 		}
 	}

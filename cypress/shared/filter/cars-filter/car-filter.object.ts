@@ -1,8 +1,8 @@
 // tslint:disable
-import { urls } from '../../support/urls';
-import { IFilterField } from './filter-fields.object';
+import { urls } from '../../../support/urls';
+import { ICarsFilterField } from './cars-filter-fields';
 
-export class FilterObject {
+export class CarFilterObject {
 	public filter = {
 		cleanAll: 'amc-row-col:contains(Сбросить)',
 		showAll: 'amc-row-col:contains(Все параметры)',
@@ -23,7 +23,7 @@ export class FilterObject {
 		question: 'am-tags-control [name="question"]',
 		tags: 'am-tags-control',
 	};
-	public checkingTagsControl(control: IFilterField) {
+	public checkingTagsControl(control: ICarsFilterField) {
 		cy.get(this.controls.active)
 			.should('be.visible')
 			.get(this.carItem.auctionItemsResult)
@@ -36,7 +36,7 @@ export class FilterObject {
 			});
 	}
 
-	public activateField(field: IFilterField) {
+	public activateField(field: ICarsFilterField) {
 		cy.url()
 			.then(url => {
 				if (url !== urls.express.main) {
