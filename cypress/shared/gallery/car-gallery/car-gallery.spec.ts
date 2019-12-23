@@ -1,4 +1,3 @@
-import { urls } from '../../../support/urls';
 import { GallerySpec } from '../gallery.spec';
 import { CarGalleryObject } from './car-gallery.object';
 

@@ -134,13 +134,11 @@ export class FormTestingObject {
 							this.fillElement(link, allFieldsArray[elAllFields].name, validData);
 						});
 					}
-					cy.wait(500)
-						.then(() => {
-							assertion();
-						})
-						.then(() => {
-							refreshForm();
-						});
+					cy.then(() => {
+						assertion();
+					}).then(() => {
+						refreshForm();
+					});
 				});
 			});
 		});

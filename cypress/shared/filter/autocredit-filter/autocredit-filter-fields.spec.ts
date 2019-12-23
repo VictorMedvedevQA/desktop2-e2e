@@ -1,8 +1,6 @@
 import { AutocreditFilterObject } from './autocredit-filter.object';
 import { IAutocreditFilterField } from './autocredit-filter-fields';
-import { PaginationObject } from '../../pagination/pagination.object';
 const autocreditFilterObject = new AutocreditFilterObject();
-const paginationObject = new PaginationObject();
 
 export class AutocreditFieldsSpec {
 	public checkAutocreditField(field: IAutocreditFilterField) {

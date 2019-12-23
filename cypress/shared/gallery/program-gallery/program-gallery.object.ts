@@ -1,4 +1,3 @@
-import { IGallery } from '../gallery.object';
 export interface IProgramDescription {
 	showDescriptionButton: string;
 	descriptionBlock: string;
