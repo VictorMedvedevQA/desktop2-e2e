@@ -1,13 +1,22 @@
 import { FormTestingObject } from './form-testing.object';
+import { OnlyDev } from '../action';
 
 const formTestingObject = new FormTestingObject();
 
 export class FormTestingSpec {
-	public isFormWorking(link: string, submit: string, refreshForm: any, assertion: any) {
+	public isFormWorking(link: string, submit: string, refreshForm: any, assertion: any, successAssertion?: any) {
 		describe('Общий тест формы', () => {
 			it('Проверяем отправку без обязательных полей', () => {
-				formTestingObject.submitWithoutRequiredFields(link, submit, refreshForm, assertion);
+				formTestingObject.submitWithoutRequiredFields(link, refreshForm, assertion);
 			});
+			if (successAssertion) {
+				OnlyDev.it('Корректная отправка формы', () => {
+					cy.then(() => {
+						formTestingObject.sendValidData(link, submit);
+						successAssertion();
+					});
+				});
+			}
 		});
 	}
 

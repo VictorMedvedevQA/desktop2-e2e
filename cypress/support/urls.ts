@@ -3,6 +3,10 @@ export const SITE_URL = '';
 
 export const urls = {
 	appraisal: `${SITE_URL}ocenka-avto`,
+	contacts: {
+		moscow: `${SITE_URL}contacts/moscow`,
+		detail: `${SITE_URL}contacts/45`,
+	},
 	catalog: {
 		filterredAudi: `${SITE_URL}cars/audi`,
 		filterredAudiA1: `${SITE_URL}cars/audi/a1`,

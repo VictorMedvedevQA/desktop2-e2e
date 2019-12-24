@@ -1,3 +1,6 @@
+import { FormTestingObject } from '../../shared/form-testing/form-testing.object';
+const formTestingObject = new FormTestingObject();
+
 export interface IAppraisalParameter {
 	name?: string;
 	isHidden: boolean;
@@ -38,7 +41,7 @@ export class AppraisalPage {
 		{ name: 'make', isHidden: true, type: 'item', data: 'Mercedes-Benz' },
 		{ name: 'model', isHidden: true, type: 'item', data: 'S-klasse' },
 		{ name: 'year', isHidden: false, type: 'item', data: '2019' },
-		{ name: 'generation', isHidden: false, type: 'item', data: 'VI (W222' },
+		{ name: 'generation', isHidden: false, type: 'item', data: 'III (C257)' },
 		{ name: 'bodyType', isHidden: false, type: 'item', data: 'Седан' },
 		{ isHidden: false, type: 'item', data: 'Автомат' },
 		{ isHidden: false, type: 'item', data: 'Бензиновый' },
@@ -79,6 +82,12 @@ export class AppraisalPage {
 			thirtyTooltipPrice: '.b-estimate-graf__tooltip-title.b-h2',
 			closePopup: '.b-popup-close.b-icon-close',
 			benefits: 'am-appraisal-benefits',
+			floatingPanel: 'am-floating-panel',
+			floatingPanelText: '.b-h4',
+			expectText: 'Получить предложение о продаже Вашего авто',
+		},
+		tooltipPrice: {
+			container: 'am-tooltip-price',
 		},
 		fail: {
 			result: 'am-appraisal-fail',
@@ -95,6 +104,7 @@ export class AppraisalPage {
 						cy.get(this.itemsList.showAll).click();
 					}
 				}).then(() => {
+					// tslint:disable-next-line:switch-default
 					switch (data[parameter].type) {
 						case 'item':
 							{
@@ -103,18 +113,50 @@ export class AppraisalPage {
 									.click();
 							}
 							break;
-						case 'input':
-							{
-								cy.get(this.itemsList.inputValue)
-									.type(data[parameter].data)
-									.get(this.itemsList.submitButton)
-									.click();
-							}
-							break;
-						default:
+						case 'input': {
+							cy.get(this.itemsList.inputValue)
+								.type(data[parameter].data)
+								.get(this.itemsList.submitButton)
+								.click();
+						}
 					}
 				});
 			}
 		}
+	}
+	public successPopup = '.b-form_success';
+	public closePopupButoon = '.b-popup-close';
+
+	public failAppraisalForm = {
+		formLink: 'am-appraisal-fail form',
+		submitFormButton: '[type="submit"]',
+	};
+
+	public sellRequestForm = {
+		formLink: 'am-popup .b-popup',
+		openFormButton: `am-button:contains(Продать)`,
+		submitFormButton: '[type="submit"]',
+	};
+	public shootingPopupForm = {
+		formLink: 'am-popup .b-popup',
+	};
+	public refreshSellRequestForm() {
+		cy.get('body')
+			.then(body => {
+				if (body.find(this.sellRequestForm.formLink).length > 1) {
+					cy.get(this.closePopupButoon).click();
+				}
+			})
+			.get(this.sellRequestForm.openFormButton)
+			.click();
+	}
+	public refreshFailAppraisalForm() {
+		formTestingObject.clearAllFiealds(this.failAppraisalForm.formLink);
+	}
+	public successAssertion() {
+		cy.get(this.successPopup).should('be.visible');
+	}
+	public assertion() {
+		cy.get(this.successPopup).should('not.exist');
 	}
 }

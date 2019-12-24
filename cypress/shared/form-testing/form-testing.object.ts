@@ -121,7 +121,34 @@ export class FormTestingObject {
 			.should('be.not.visible');
 	}
 
-	submitWithoutRequiredFields(link: string, submit: string, refreshForm: any, assertion: any) {
+	clearAllFiealds(link: string) {
+		cy.then(() => {
+			let allFieldsArray: IForm[] = this.createFieldsList(link);
+			cy.get(link).then(() => {
+				for (let field in allFieldsArray) {
+					if (allFieldsArray[field].name !== 'agreement') {
+						this.clearField(link, allFieldsArray[field].name);
+					}
+				}
+			});
+		});
+	}
+	clearField(link: string, fieldName: string) {
+		cy.get(link)
+			.find('[formcontrolname="' + fieldName + '"]')
+			.then(field => {
+				if (!field.is('input')) {
+					cy.wrap(field)
+						.parent()
+						.find('input')
+						.clear();
+				} else if (field.is('input')) {
+					cy.wrap(field).clear();
+				}
+			});
+	}
+
+	submitWithoutRequiredFields(link: string, refreshForm: any, assertion: any) {
 		cy.then(() => {
 			let allFieldsArray: IForm[] = this.createFieldsList(link);
 			cy.then(() => {
