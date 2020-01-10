@@ -24,7 +24,7 @@ export class AppraisalPage {
 		{ name: 'city', isHidden: false, type: 'item', data: 'Краснодар' },
 	];
 	public liquidity4th: IAppraisalParameter[] = [
-		{ name: 'make', isHidden: true, type: 'item', data: 'Kia ' },
+		{ name: 'make', isHidden: true, type: 'item', data: 'Kia' },
 		{ name: 'model', isHidden: true, type: 'item', data: 'Rio' },
 		{ name: 'year', isHidden: false, type: 'item', data: '2014' },
 		{ name: 'generation', isHidden: false, type: 'item', data: 'III' },
@@ -104,7 +104,6 @@ export class AppraisalPage {
 						cy.get(this.itemsList.showAll).click();
 					}
 				}).then(() => {
-					// tslint:disable-next-line:switch-default
 					switch (data[parameter].type) {
 						case 'item':
 							{
@@ -113,12 +112,16 @@ export class AppraisalPage {
 									.click();
 							}
 							break;
-						case 'input': {
-							cy.get(this.itemsList.inputValue)
-								.type(data[parameter].data)
-								.get(this.itemsList.submitButton)
-								.click();
-						}
+						case 'input':
+							{
+								cy.get(this.itemsList.inputValue)
+									.type(data[parameter].data)
+									.get(this.itemsList.submitButton)
+									.click();
+							}
+							break;
+						default:
+							throw new Error(`Не найдены дейстия для типа ${data[parameter].type}`);
 					}
 				});
 			}
@@ -135,20 +138,22 @@ export class AppraisalPage {
 	public sellRequestForm = {
 		formLink: 'am-popup .b-popup',
 		openFormButton: `am-button:contains(Продать)`,
-		submitFormButton: '[type="submit"]',
+		submitFormButton: 'am-button:contains(Продать авто)',
 	};
 	public shootingPopupForm = {
 		formLink: 'am-popup .b-popup',
 	};
 	public refreshSellRequestForm() {
-		cy.get('body')
-			.then(body => {
-				if (body.find(this.sellRequestForm.formLink).length > 1) {
-					cy.get(this.closePopupButoon).click();
-				}
-			})
-			.get(this.sellRequestForm.openFormButton)
-			.click();
+		cy.get('body').then(body => {
+			if (body.find(this.sellRequestForm.formLink).length > 0) {
+				cy.get(this.closePopupButoon)
+					.click()
+					.get(this.sellRequestForm.openFormButton)
+					.click();
+			} else {
+				cy.get(this.sellRequestForm.openFormButton).click();
+			}
+		});
 	}
 	public refreshFailAppraisalForm() {
 		formTestingObject.clearAllFiealds(this.failAppraisalForm.formLink);

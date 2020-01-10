@@ -83,4 +83,7 @@ export class AuthPage {
 			.find(this.commonSubmit)
 			.should('be.disabled');
 	}
+	public successAssertion() {
+		cy.get(this.confirmNumberFrom.formLink).should('contain', '70000000011');
+	}
 }

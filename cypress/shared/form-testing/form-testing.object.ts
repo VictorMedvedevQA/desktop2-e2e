@@ -27,6 +27,7 @@ export const formFields: IForm[] = [
 	{ type: formFieldType.input, name: 'confirm' },
 	{ type: formFieldType.input, name: 'phoneNumber' },
 	{ type: formFieldType.input, name: 'code' },
+	{ type: formFieldType.select, name: 'city' },
 ];
 
 export const validData: IFormData[] = [
@@ -38,6 +39,7 @@ export const validData: IFormData[] = [
 	{ name: 'confirm', data: '1' },
 	{ name: 'phoneNumber', data: '00000000111' },
 	{ name: 'code', data: '0000' },
+	{ name: 'city', data: 'Краснодар' },
 ];
 
 export class FormTestingObject {
@@ -70,20 +72,36 @@ export class FormTestingObject {
 		});
 	}
 
-	fillElement(link: string, fieldName: string, data: IFormData[]) {
-		let el = data.find(field => field.name === fieldName);
+	fillElement(link: string, fieldName: string, elementNameAndDataArray: IFormData[]) {
+		let thisElementNameAndData = elementNameAndDataArray.find(field => field.name === fieldName);
+		let thisElementNameAndType = formFields.find(field => field.name === fieldName);
 		cy.then(() => {
-			if (el) {
+			if (thisElementNameAndData) {
 				cy.get(link)
 					.find('[formcontrolname="' + fieldName + '"]')
 					.then(field => {
-						if (!field.is('input') && el) {
-							cy.wrap(field)
-								.parent()
-								.find('input')
-								.type(el.data);
-						} else if (field.is('input') && el) {
-							cy.wrap(field).type(el.data);
+						if (thisElementNameAndType) {
+							switch (thisElementNameAndType.type) {
+								case formFieldType.chekbox:
+									break;
+								case formFieldType.input:
+									if (!field.is('input') && thisElementNameAndData) {
+										cy.wrap(field)
+											.parent()
+											.find('input')
+											.type(thisElementNameAndData.data);
+									} else if (field.is('input') && thisElementNameAndData) {
+										cy.wrap(field).type(thisElementNameAndData.data);
+									}
+									break;
+								case formFieldType.select:
+									if (thisElementNameAndData) {
+										cy.wrap(field).amSelect(thisElementNameAndData.data);
+									}
+									break;
+								default:
+									throw new Error(`Не найдены дейстия для типа ${thisElementNameAndType.type}`);
+							}
 						}
 					});
 			}

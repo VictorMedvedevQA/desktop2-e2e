@@ -11,7 +11,7 @@ export const filterFields: IAutocreditFilterField[] = [
 	{
 		fieldType: filterFieldType.inputAutocomplete,
 		formcontrolname: '[formcontrolname="makeId"]',
-		inputData: 'Au',
+		inputData: 'Audi',
 		name: 'Марка',
 		outputData: 'Audi',
 		tags: 'audi',

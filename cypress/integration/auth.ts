@@ -102,17 +102,9 @@ describe('Регистрация', () => {
 			authPage.signupForm.submitFormButton,
 			authPage.signupForm.openFormButton,
 			authPage.refreshSignupForm.bind(authPage),
-			authPage.assertion.bind(authPage)
+			authPage.assertion.bind(authPage),
+			authPage.successAssertion.bind(authPage)
 		);
-	});
-
-	OnlyDev.it('Успешно отправили данные для регистрации', () => {
-		cy.then(() => {
-			authPage.refreshSignupForm();
-			formTestingObject.sendValidData(authPage.signupForm.formLink, authPage.signupForm.submitFormButton);
-		})
-			.get(authPage.confirmNumberFrom.formLink)
-			.should('contain', '70000000011');
 	});
 
 	it('Переход из попапа регистрации в попап входа  ', () => {

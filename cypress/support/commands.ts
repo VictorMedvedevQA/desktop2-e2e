@@ -75,6 +75,18 @@ Cypress.Commands.add('selectDropdown', { prevSubject: true }, (subject: any, tex
 			return subject;
 		});
 });
+Cypress.Commands.add('amSelect', { prevSubject: true }, (subject: any, text: any) => {
+	cy.wrap(subject)
+		.find('.b-select')
+		.click()
+		.find('.b-select__dropdown-field')
+		.contains(text)
+		.click()
+		.get(subject)
+		.then(() => {
+			return subject;
+		});
+});
 
 Cypress.Commands.add(
 	'inputAutocomplete',
@@ -152,8 +164,6 @@ Cypress.Commands.add('inputDropdown', { prevSubject: true }, (subject: any, text
 		});
 });
 
-// на десктоп
-
 Cypress.Commands.add('isTooltipsOpenAfterMousmove', (headers: string, options?: any) => {
 	cy.get(headers)
 		.trigger('mouseenter')
@@ -175,6 +185,7 @@ declare global {
 			visitRoute: (url: any) => Chainable<any>;
 			findFirstVisible: (container: string, item: string) => Chainable<any>;
 			isTooltipsOpenAfterMousmove: (headers: string, options?: any) => Chainable<any>;
+			amSelect: (text: any) => Chainable<any>;
 		}
 	}
 }

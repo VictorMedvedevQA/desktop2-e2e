@@ -20,7 +20,14 @@ export class FormTestingSpec {
 		});
 	}
 
-	public isPopupFormWorking(link: string, submit: string, openFormButton: string, refreshForm: any, assertion: any) {
+	public isPopupFormWorking(
+		link: string,
+		submit: string,
+		openFormButton: string,
+		refreshForm: any,
+		assertion: any,
+		successAssertion?: any
+	) {
 		describe('Попап', () => {
 			it('Форма закрывается по крестику', () => {
 				cy.then(() => {
@@ -36,7 +43,7 @@ export class FormTestingSpec {
 					refreshForm();
 				});
 			});
-			this.isFormWorking(link, submit, refreshForm, assertion);
+			this.isFormWorking(link, submit, refreshForm, assertion, successAssertion);
 		});
 	}
 }
