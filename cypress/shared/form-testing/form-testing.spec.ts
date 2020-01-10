@@ -6,7 +6,7 @@ const formTestingObject = new FormTestingObject();
 export class FormTestingSpec {
 	public isFormWorking(link: string, submit: string, refreshForm: any, assertion: any, successAssertion?: any) {
 		describe('Общий тест формы', () => {
-			it('Проверяем отправку без обязательных полей', () => {
+			OnlyDev.it('Проверяем отправку без обязательных полей', () => {
 				formTestingObject.submitWithoutRequiredFields(link, refreshForm, assertion);
 			});
 			if (successAssertion) {
