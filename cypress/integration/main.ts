@@ -1,11 +1,11 @@
-import { filterFields } from '../pages/main/filter-fields';
 import { MainPage } from '../pages/main/main.page';
-import { FilterObject } from '../shared/filter/filter.object';
-import { FilterSpec } from '../shared/filter/filter.spec';
+import { CarFilterObject } from '../shared/filter/cars-filter/car-filter.object';
 import { ReviewGallerySpec } from '../shared/gallery/review-gallery/review-gallery.spec';
 import { PaginationSpec } from '../shared/pagination/pagination.spec';
 import { urls } from '../support/urls';
-const filterObject = new FilterObject();
+import { FilterSpec } from '../shared/filter/cars-filter/cars-filter.spec';
+import { filterFields } from '../shared/filter/cars-filter/cars-filter-fields';
+const filterObject = new CarFilterObject();
 const filterSpec = new FilterSpec();
 const mainPage = new MainPage();
 const paginationSpec = new PaginationSpec();

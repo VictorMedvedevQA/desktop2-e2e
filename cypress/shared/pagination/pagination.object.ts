@@ -20,7 +20,8 @@ export class PaginationObject {
 	}
 
 	public goToLastPage() {
-		cy.get(this.paginationItems.item)
+		cy.get(this.paginationItems.block)
+			.find(this.paginationItems.item)
 			.last()
 			.click();
 	}

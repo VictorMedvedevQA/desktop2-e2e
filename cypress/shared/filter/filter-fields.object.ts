@@ -3,17 +3,14 @@ export enum filterFieldType {
 	dropdown = 'dropdown',
 	inputDropdown = 'inputDropdown',
 	control = 'control',
+	inputAutocomplete = 'inputAutocomplete',
+	tab = 'tab',
 }
 export interface IFilterField {
-	breadcrumbsChange: boolean;
 	fieldType: filterFieldType;
 	formcontrolname?: string;
-	isHidden: boolean;
-	iconSelector?: string;
 	inputData?: string;
 	outputData?: string;
 	name: string;
-	seoTextChange: boolean;
-	tags: string;
-	activateClearButton: boolean;
+	tags?: string;
 }
