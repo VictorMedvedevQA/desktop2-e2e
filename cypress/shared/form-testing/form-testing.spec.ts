@@ -7,7 +7,7 @@ export class FormTestingSpec {
 	public isFormWorking(link: string, submit: string, refreshForm: any, assertion: any, successAssertion?: any) {
 		describe('Общий тест формы', () => {
 			OnlyDev.it('Проверяем отправку без обязательных полей', () => {
-				formTestingObject.submitWithoutRequiredFields(link, refreshForm, assertion);
+				formTestingObject.submitWithoutRequiredFields(link, refreshForm, assertion, submit);
 			});
 			if (successAssertion) {
 				OnlyDev.it('Корректная отправка формы', () => {

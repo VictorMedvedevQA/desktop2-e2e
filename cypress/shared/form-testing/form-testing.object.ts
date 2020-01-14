@@ -49,6 +49,7 @@ export class FormTestingObject {
 		errorField: 'ng-invalid',
 		inputInvalid: '.b-input_invalid',
 		checked: 'aml-checkbox .b-checkbox__inner_checked',
+		disabledSubmit: '.b-input_disable',
 	};
 
 	findDataByFieldName(fieldName: string, dataArrayForm: IFormData[]): string {
@@ -171,7 +172,7 @@ export class FormTestingObject {
 			});
 	}
 
-	submitWithoutRequiredFields(link: string, refreshForm: any, assertion: any) {
+	submitWithoutRequiredFields(link: string, refreshForm: any, assertion: any, submit: string) {
 		cy.then(() => {
 			let allFieldsArray: IForm[] = this.createFieldsList(link);
 			cy.then(() => {
@@ -191,7 +192,13 @@ export class FormTestingObject {
 							this.fillElement(link, allFieldsArray[elAllFields].name, validData);
 						});
 					}
-					cy.wait(1000) //ожидание для проверки появления sucsess-popup
+					cy.get(submit)
+						.then(submitButton => {
+							if (!submitButton.is(this.formButtons.disabledSubmit)) {
+								this.submitForm(link, submit);
+							}
+						})
+						.wait(1000) //ожидание для проверки появления sucsess-popup
 						.then(() => {
 							assertion();
 						})
