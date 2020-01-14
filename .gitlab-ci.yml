@@ -1,5 +1,3 @@
-variables:
-    name: desktop2-e2e
 stages:
     - tslint
     - master-build
@@ -12,10 +10,11 @@ tslint:
 master-build:
     stage: master-build
     script:
-        - docker build -t registry.automama.ru/$name:$CI_COMMIT_TAG .
-        - docker tag registry.automama.ru/$name:$CI_COMMIT_TAG registry.automama.ru/$name:latest
-        - docker push registry.automama.ru/$name:$CI_COMMIT_TAG
-        - docker push registry.automama.ru/$name:latest;
-        - docker rmi -f registry.automama.ru/$name:$CI_COMMIT_TAG;
+        - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+        - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG .
+        - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG $CI_REGISTRY_IMAGE:latest
+        - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
+        - docker push $CI_REGISTRY_IMAGE:latest;
+        - docker rmi -f $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG;
     only:
         - tags

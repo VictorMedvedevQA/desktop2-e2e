@@ -2,16 +2,19 @@ import { AuthPage } from '../pages/auth/auth.page';
 import { ExpressCatalogPage } from '../pages/express-catalog/express-catalog.page';
 import { PaginationSpec } from '../shared/pagination/pagination.spec';
 import { urls } from '../support/urls';
+import { ExpressFilterSpec } from '../shared/filter/express-filter/express-filter.spec';
+import { filterFields } from '../shared/filter/express-filter/express-filter-fields';
 
 const paginationSpec = new PaginationSpec();
 const authPage = new AuthPage();
 const expressCatalogPage = new ExpressCatalogPage();
+const expressFilterSpec = new ExpressFilterSpec();
 
 describe('Видимость к-ва ставок и текущей ставки ', () => {
 	beforeEach(() => {
 		cy.visitRoute(urls.express.main);
 	});
-
+	expressFilterSpec.isExpressFilterWorking(filterFields);
 	it('Если не залогинены - не видим ставку и к-во ставок ', () => {
 		cy.get(authPage.loginForm.openFormButton)
 			.should('be.visible')
