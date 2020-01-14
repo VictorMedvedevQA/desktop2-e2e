@@ -5,7 +5,7 @@ const filterObject = new CarFilterObject();
 const breadcrumbsObject = new BreadcrumbsObject();
 export class CarsFieldsSpec {
 	public checkCatalogField(field: ICarsFilterField) {
-		describe('Поведение контролов и странцы после применения ' + field.name, () => {
+		describe('Поведение контролов и страницы после применения ' + field.name, () => {
 			describe(field.name, () => {
 				beforeEach(() => {
 					filterObject.activateField(field);

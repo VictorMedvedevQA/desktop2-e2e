@@ -18,7 +18,7 @@ export class AutocreditPage {
 		cy.get(this.successPopup).should('not.exist');
 	}
 
-	public refreshmainPopupForm() {
+	public refreshMainPopupForm() {
 		cy.reload()
 			.get(this.mainPopupForm.openFormButton)
 			.click();

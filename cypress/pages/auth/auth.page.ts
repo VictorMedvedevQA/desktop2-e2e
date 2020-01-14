@@ -1,4 +1,4 @@
-import { FormTestingObject } from '../../shared/form-testing/form-testing.object';
+import { FormTestingObject, validData } from '../../shared/form-testing/form-testing.object';
 import { urls } from '../../support/urls';
 
 const formTestingObject = new FormTestingObject();
@@ -63,7 +63,7 @@ export class AuthPage {
 				formTestingObject.sendValidData(this.signupForm.formLink, this.signupForm.submitFormButton);
 			})
 			.get(this.confirmNumberFrom.formLink)
-			.should('contain', '70000000011');
+			.should('contain', formTestingObject.findDataByFieldName('phoneNumber', validData));
 	}
 
 	public refreshForgotPasswordForm() {
@@ -84,6 +84,9 @@ export class AuthPage {
 			.should('be.disabled');
 	}
 	public successAssertion() {
-		cy.get(this.confirmNumberFrom.formLink).should('contain', '70000000011');
+		cy.get(this.confirmNumberFrom.formLink).should(
+			'contain',
+			formTestingObject.findDataByFieldName('phoneNumber', validData)
+		);
 	}
 }

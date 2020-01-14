@@ -56,8 +56,7 @@ describe('Автокредит', () => {
 				.get(appraisalPage.appraisalResult.shedule.floatingPanel)
 				.find(appraisalPage.appraisalResult.shedule.floatingPanelText)
 				.then(el => {
-					const currentText = el.text();
-					expect(currentText).to.equal(appraisalPage.appraisalResult.shedule.expectText);
+					expect(el.text()).to.equal(appraisalPage.appraisalResult.shedule.expectText);
 				});
 		});
 	});
