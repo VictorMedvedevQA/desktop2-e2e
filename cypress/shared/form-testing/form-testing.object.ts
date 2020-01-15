@@ -53,9 +53,9 @@ export class FormTestingObject {
 	};
 
 	findDataByFieldName(fieldName: string, dataArrayForm: IFormData[]): string {
-		let thisElementNameAndData = dataArrayForm.find(field => field.name === fieldName);
-		if (thisElementNameAndData) {
-			return thisElementNameAndData.data;
+		let field = dataArrayForm.find(field => field.name === fieldName);
+		if (field) {
+			return field.data;
 		} else {
 			throw new Error(`Не найдены данные для ввода по  ${fieldName}`);
 		}
