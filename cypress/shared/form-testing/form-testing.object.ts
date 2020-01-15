@@ -83,13 +83,14 @@ export class FormTestingObject {
 	}
 
 	fillElement(link: string, fieldName: string, dataArrayForm: IFormData[]) {
-		let thisElementNameAndType = formFields.find(field => field.name === fieldName);
+		let formField = formFields.find(field => field.name === fieldName);
+		let data = this.findDataByFieldName(fieldName, dataArrayForm);
 		cy.then(() => {
 			cy.get(link)
 				.find('[formcontrolname="' + fieldName + '"]')
 				.then(field => {
-					if (thisElementNameAndType) {
-						switch (thisElementNameAndType.type) {
+					if (formField) {
+						switch (formField.type) {
 							case formFieldType.chekbox:
 								break;
 							case formFieldType.input:
@@ -97,16 +98,16 @@ export class FormTestingObject {
 									cy.wrap(field)
 										.parent()
 										.find('input')
-										.type(this.findDataByFieldName(fieldName, dataArrayForm));
+										.type(data);
 								} else if (field.is('input')) {
-									cy.wrap(field).type(this.findDataByFieldName(fieldName, dataArrayForm));
+									cy.wrap(field).type(data);
 								}
 								break;
 							case formFieldType.select:
-								cy.wrap(field).amSelect(this.findDataByFieldName(fieldName, dataArrayForm));
+								cy.wrap(field).amSelect(data);
 								break;
 							default:
-								throw new Error(`Не найдены дейстия для типа ${thisElementNameAndType.type}`);
+								throw new Error(`Не найдены дейстия для типа ${formField.type}`);
 						}
 					}
 				});
@@ -146,11 +147,11 @@ export class FormTestingObject {
 
 	clearAllFiealds(link: string) {
 		cy.then(() => {
-			let allFieldsArray: IForm[] = this.createFieldsList(link);
+			let fields: IForm[] = this.createFieldsList(link);
 			cy.get(link).then(() => {
-				for (let field in allFieldsArray) {
-					if (allFieldsArray[field].name !== 'agreement') {
-						this.clearField(link, allFieldsArray[field].name);
+				for (let field in fields) {
+					if (fields[field].name !== 'agreement') {
+						this.clearField(link, fields[field].name);
 					}
 				}
 			});
