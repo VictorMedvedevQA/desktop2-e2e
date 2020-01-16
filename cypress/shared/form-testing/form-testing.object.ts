@@ -84,7 +84,6 @@ export class FormTestingObject {
 
 	fillElement(link: string, fieldName: string, dataArrayForm: IFormData[]) {
 		let formField = formFields.find(field => field.name === fieldName);
-		let data = this.findDataByFieldName(fieldName, dataArrayForm);
 		cy.then(() => {
 			cy.get(link)
 				.find('[formcontrolname="' + fieldName + '"]')
@@ -98,13 +97,13 @@ export class FormTestingObject {
 									cy.wrap(field)
 										.parent()
 										.find('input')
-										.type(data);
+										.type(this.findDataByFieldName(fieldName, dataArrayForm));
 								} else if (field.is('input')) {
-									cy.wrap(field).type(data);
+									cy.wrap(field).type(this.findDataByFieldName(fieldName, dataArrayForm));
 								}
 								break;
 							case formFieldType.select:
-								cy.wrap(field).amSelect(data);
+								cy.wrap(field).amSelect(this.findDataByFieldName(fieldName, dataArrayForm));
 								break;
 							default:
 								throw new Error(`Не найдены дейстия для типа ${formField.type}`);

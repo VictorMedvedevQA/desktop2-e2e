@@ -4,7 +4,7 @@ import { FormTestingSpec } from '../shared/form-testing/form-testing.spec';
 
 const formTestingSpec = new FormTestingSpec();
 const appraisalPage = new AppraisalPage();
-describe('Автокредит', () => {
+describe('Оценка', () => {
 	beforeEach(() => {
 		cy.visitRoute(urls.appraisal);
 	});
