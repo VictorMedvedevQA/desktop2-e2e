@@ -1,3 +1,6 @@
+import { FormTestingObject } from '../../shared/form-testing/form-testing.object';
+const formTestingObject = new FormTestingObject();
+
 export interface IAppraisalParameter {
 	name?: string;
 	isHidden: boolean;
@@ -21,7 +24,7 @@ export class AppraisalPage {
 		{ name: 'city', isHidden: false, type: 'item', data: 'Краснодар' },
 	];
 	public liquidity4th: IAppraisalParameter[] = [
-		{ name: 'make', isHidden: true, type: 'item', data: 'Kia ' },
+		{ name: 'make', isHidden: true, type: 'item', data: 'Kia' },
 		{ name: 'model', isHidden: true, type: 'item', data: 'Rio' },
 		{ name: 'year', isHidden: false, type: 'item', data: '2014' },
 		{ name: 'generation', isHidden: false, type: 'item', data: 'III' },
@@ -38,7 +41,7 @@ export class AppraisalPage {
 		{ name: 'make', isHidden: true, type: 'item', data: 'Mercedes-Benz' },
 		{ name: 'model', isHidden: true, type: 'item', data: 'S-klasse' },
 		{ name: 'year', isHidden: false, type: 'item', data: '2019' },
-		{ name: 'generation', isHidden: false, type: 'item', data: 'VI (W222' },
+		{ name: 'generation', isHidden: false, type: 'item', data: 'III (C257)' },
 		{ name: 'bodyType', isHidden: false, type: 'item', data: 'Седан' },
 		{ isHidden: false, type: 'item', data: 'Автомат' },
 		{ isHidden: false, type: 'item', data: 'Бензиновый' },
@@ -79,6 +82,12 @@ export class AppraisalPage {
 			thirtyTooltipPrice: '.b-estimate-graf__tooltip-title.b-h2',
 			closePopup: '.b-popup-close.b-icon-close',
 			benefits: 'am-appraisal-benefits',
+			floatingPanel: 'am-floating-panel',
+			floatingPanelText: '.b-h4',
+			expectText: 'Получить предложение о продаже Вашего авто',
+		},
+		tooltipPrice: {
+			container: 'am-tooltip-price',
 		},
 		fail: {
 			result: 'am-appraisal-fail',
@@ -112,9 +121,47 @@ export class AppraisalPage {
 							}
 							break;
 						default:
+							throw new Error(`Не найдены дейстия для типа ${data[parameter].type}`);
 					}
 				});
 			}
 		}
+	}
+	public successPopup = '.b-form_success';
+	public closePopupButoon = '.b-popup-close';
+
+	public failAppraisalForm = {
+		formLink: 'am-appraisal-fail form',
+		submitFormButton: '[type="submit"]',
+	};
+
+	public sellRequestForm = {
+		formLink: 'am-popup .b-popup',
+		openFormButton: `am-button:contains(Продать)`,
+		submitFormButton: 'am-button:contains(Продать авто)',
+	};
+	public shootingPopupForm = {
+		formLink: 'am-popup .b-popup',
+	};
+	public refreshSellRequestForm() {
+		cy.get('body').then(body => {
+			if (body.find(this.sellRequestForm.formLink).length > 0) {
+				cy.get(this.closePopupButoon)
+					.click()
+					.get(this.sellRequestForm.openFormButton)
+					.click();
+			} else {
+				cy.get(this.sellRequestForm.openFormButton).click();
+			}
+		});
+	}
+	public refreshFailAppraisalForm() {
+		formTestingObject.clearAllFiealds(this.failAppraisalForm.formLink);
+	}
+	public successAssertion() {
+		cy.get(this.successPopup).should('be.visible');
+	}
+	public failAssertion() {
+		cy.get(this.successPopup).should('not.exist');
 	}
 }

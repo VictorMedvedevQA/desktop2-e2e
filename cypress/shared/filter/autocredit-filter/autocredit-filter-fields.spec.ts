@@ -4,7 +4,7 @@ const autocreditFilterObject = new AutocreditFilterObject();
 
 export class AutocreditFieldsSpec {
 	public checkAutocreditField(field: IAutocreditFilterField) {
-		describe('Поведение странцы после применения ' + field.name, () => {
+		describe('Поведение страницы после применения ' + field.name, () => {
 			describe(field.name, () => {
 				beforeEach(() => {
 					autocreditFilterObject.activateField(field);

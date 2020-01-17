@@ -14,11 +14,11 @@ export class AutocreditPage {
 		left: '.b-slider__arrow.b-slider__arrow_prev',
 		right: '.b-slider__arrow.b-slider__arrow_next',
 	};
-	public assertion() {
+	public failAssertion() {
 		cy.get(this.successPopup).should('not.exist');
 	}
 
-	public refreshmainPopupForm() {
+	public refreshMainPopupForm() {
 		cy.reload()
 			.get(this.mainPopupForm.openFormButton)
 			.click();

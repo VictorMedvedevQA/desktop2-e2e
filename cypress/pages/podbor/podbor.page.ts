@@ -31,7 +31,7 @@ export class PodborPage {
 		cy.reload();
 	}
 
-	public assertion() {
+	public failAssertion() {
 		cy.get(this.successPopup).should('not.exist');
 	}
 

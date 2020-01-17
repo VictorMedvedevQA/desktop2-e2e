@@ -58,8 +58,6 @@ export class AutocreditFilterObject {
 					}
 					break;
 				case 'tab':
-					{
-					}
 					break;
 				default: {
 					throw new Error(`Не найден тип  ${field.fieldType}`);

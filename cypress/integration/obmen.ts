@@ -24,7 +24,7 @@ describe('Обмен', () => {
 			obmenPage.heroForm.formLink,
 			obmenPage.heroForm.submitFormButton,
 			obmenPage.refreshForm.bind(obmenPage),
-			obmenPage.assertion.bind(obmenPage)
+			obmenPage.failAssertion.bind(obmenPage)
 		);
 	});
 
@@ -33,7 +33,7 @@ describe('Обмен', () => {
 			obmenPage.inlineForm.formLink,
 			obmenPage.inlineForm.submitFormButton,
 			obmenPage.refreshForm.bind(obmenPage),
-			obmenPage.assertion.bind(obmenPage)
+			obmenPage.failAssertion.bind(obmenPage)
 		);
 	});
 });
