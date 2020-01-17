@@ -24,7 +24,7 @@ describe('Подбор', () => {
 			podborPage.heroForm.formLink,
 			podborPage.heroForm.submitFormButton,
 			podborPage.refreshForm.bind(podborPage),
-			podborPage.assertion.bind(podborPage)
+			podborPage.failAssertion.bind(podborPage)
 		);
 	});
 
@@ -33,7 +33,7 @@ describe('Подбор', () => {
 			podborPage.inlineFormFirst.formLink,
 			podborPage.inlineFormFirst.submitFormButton,
 			podborPage.refreshForm.bind(podborPage),
-			podborPage.assertion.bind(podborPage)
+			podborPage.failAssertion.bind(podborPage)
 		);
 	});
 
@@ -42,7 +42,7 @@ describe('Подбор', () => {
 			podborPage.inlineFormLast.formLink,
 			podborPage.inlineFormLast.submitFormButton,
 			podborPage.refreshForm.bind(podborPage),
-			podborPage.assertion.bind(podborPage)
+			podborPage.failAssertion.bind(podborPage)
 		);
 	});
 
@@ -62,7 +62,7 @@ describe('Подбор', () => {
 				podborPage.mutchCarForMe.submitFormButton,
 				podborPage.mutchCarForMe.openFormButton,
 				podborPage.refreshMutchCarForMeForm.bind(podborPage),
-				podborPage.assertion.bind(podborPage)
+				podborPage.failAssertion.bind(podborPage)
 			);
 		});
 	});

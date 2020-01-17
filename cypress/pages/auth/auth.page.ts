@@ -78,7 +78,7 @@ export class AuthPage {
 			.get(this.forgotPasswordForm.formLink)
 			.should('be.visible');
 	}
-	public assertion() {
+	public failAssertion() {
 		cy.get(this.commonLink)
 			.find(this.commonSubmit)
 			.should('be.disabled');

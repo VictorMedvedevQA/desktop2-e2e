@@ -18,7 +18,7 @@ describe('Оценка', () => {
 				appraisalPage.sellRequestForm.submitFormButton,
 				appraisalPage.sellRequestForm.openFormButton,
 				appraisalPage.refreshSellRequestForm.bind(appraisalPage),
-				appraisalPage.assertion.bind(appraisalPage),
+				appraisalPage.failAssertion.bind(appraisalPage),
 				appraisalPage.successAssertion.bind(appraisalPage)
 			);
 		});
@@ -43,7 +43,7 @@ describe('Оценка', () => {
 			appraisalPage.failAppraisalForm.formLink,
 			appraisalPage.failAppraisalForm.submitFormButton,
 			appraisalPage.refreshFailAppraisalForm.bind(appraisalPage),
-			appraisalPage.assertion.bind(appraisalPage),
+			appraisalPage.failAssertion.bind(appraisalPage),
 			appraisalPage.successAssertion.bind(appraisalPage)
 		);
 	});

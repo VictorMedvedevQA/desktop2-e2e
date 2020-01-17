@@ -17,7 +17,7 @@ describe('Продажа авто', () => {
 			sellingPage.heroForm.formLink,
 			sellingPage.heroForm.submitFormButton,
 			sellingPage.refreshForm.bind(sellingPage),
-			sellingPage.assertion.bind(sellingPage)
+			sellingPage.failAssertion.bind(sellingPage)
 		);
 	});
 
@@ -26,7 +26,7 @@ describe('Продажа авто', () => {
 			sellingPage.inlineForm.formLink,
 			sellingPage.inlineForm.submitFormButton,
 			sellingPage.refreshForm.bind(sellingPage),
-			sellingPage.assertion.bind(sellingPage)
+			sellingPage.failAssertion.bind(sellingPage)
 		);
 	});
 	faqSpec.isFaqWorking();

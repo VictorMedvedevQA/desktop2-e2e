@@ -4,10 +4,10 @@ import { OnlyDev } from '../action';
 const formTestingObject = new FormTestingObject();
 
 export class FormTestingSpec {
-	public isFormWorking(link: string, submit: string, refreshForm: any, assertion: any, successAssertion?: any) {
+	public isFormWorking(link: string, submit: string, refreshForm: any, failAssertion: any, successAssertion?: any) {
 		describe('Общий тест формы', () => {
 			OnlyDev.it('Проверяем отправку без обязательных полей', () => {
-				formTestingObject.submitWithoutRequiredFields(link, refreshForm, assertion, submit);
+				formTestingObject.submitWithoutRequiredFields(link, refreshForm, failAssertion, submit);
 			});
 			if (successAssertion) {
 				OnlyDev.it('Корректная отправка формы', () => {
@@ -25,7 +25,7 @@ export class FormTestingSpec {
 		submit: string,
 		openFormButton: string,
 		refreshForm: any,
-		assertion: any,
+		failAssertion: any,
 		successAssertion?: any
 	) {
 		describe('Попап', () => {
@@ -43,7 +43,7 @@ export class FormTestingSpec {
 					refreshForm();
 				});
 			});
-			this.isFormWorking(link, submit, refreshForm, assertion, successAssertion);
+			this.isFormWorking(link, submit, refreshForm, failAssertion, successAssertion);
 		});
 	}
 }

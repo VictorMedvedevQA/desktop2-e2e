@@ -161,7 +161,7 @@ export class AppraisalPage {
 	public successAssertion() {
 		cy.get(this.successPopup).should('be.visible');
 	}
-	public assertion() {
+	public failAssertion() {
 		cy.get(this.successPopup).should('not.exist');
 	}
 }

@@ -172,7 +172,7 @@ export class FormTestingObject {
 			});
 	}
 
-	submitWithoutRequiredFields(link: string, refreshForm: any, assertion: any, submit: string) {
+	submitWithoutRequiredFields(link: string, refreshForm: any, failAssertion: any, submit: string) {
 		cy.then(() => {
 			let allFieldsArray: IForm[] = this.createFieldsList(link);
 			cy.then(() => {
@@ -200,7 +200,7 @@ export class FormTestingObject {
 						})
 						.wait(1000) //ожидание для проверки появления sucsess-popup
 						.then(() => {
-							assertion();
+							failAssertion();
 						})
 						.then(() => {
 							refreshForm();

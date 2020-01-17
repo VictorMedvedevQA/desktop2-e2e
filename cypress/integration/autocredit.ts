@@ -24,7 +24,7 @@ describe('Автокредит', () => {
 			autocreditPage.mainPopupForm.submitFormButton,
 			autocreditPage.mainPopupForm.openFormButton,
 			autocreditPage.refreshMainPopupForm.bind(autocreditPage),
-			autocreditPage.assertion.bind(autocreditPage)
+			autocreditPage.failAssertion.bind(autocreditPage)
 		);
 	});
 });
