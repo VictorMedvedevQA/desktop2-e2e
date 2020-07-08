@@ -124,7 +124,7 @@ describe('Регистрация', () => {
 			formTestingObject.sendValidData(authPage.signupForm.formLink, authPage.signupForm.submitFormButton);
 		})
 			.get(authPage.confirmNumberFrom.formLink)
-			.should('contain', '70000000011')
+			.should('contain', '79100000011')
 			.get(authPage.insidePopupLink)
 			.contains('Изменить номер телефона')
 			.click()

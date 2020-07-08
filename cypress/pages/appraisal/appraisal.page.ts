@@ -53,9 +53,9 @@ export class AppraisalPage {
 	];
 	public failAppraisal: IAppraisalParameter[] = [
 		{ name: 'make', isHidden: true, type: 'item', data: 'Buick' },
-		{ name: 'model', isHidden: true, type: 'item', data: 'Rendezvous' },
-		{ name: 'year', isHidden: false, type: 'item', data: '2004' },
-		{ name: 'generation', isHidden: false, type: 'item', data: 'Rendez' },
+		{ name: 'model', isHidden: false, type: 'item', data: 'Enclave' },
+		{ name: 'year', isHidden: false, type: 'item', data: '2007' },
+		{ name: 'generation', isHidden: false, type: 'item', data: '1 поколение' },
 		{ name: 'bodyType', isHidden: false, type: 'item', data: 'Внедорожник' },
 		{ isHidden: false, type: 'item', data: 'Автомат' },
 		{ isHidden: false, type: 'item', data: 'Бензиновый' },
