@@ -7,7 +7,7 @@ export class ReviewGalleryObject {
 		dotActive: 'b-dotnav__dot_active',
 		dotNav: '.b-dotnav__dot',
 		giveFeedbackButton: '.b-button_center',
-		moreLink: '.b-slider__item .b-link',
+		moreLink: '.b-slider__item .b-card-review__text .b-link',
 		reviewCardButton: '.b-slider__item .b-button',
 		reviewCardPopup: '.b-card-review-popup',
 		singleSlideGallery: '.b-gallery-preview_auto',

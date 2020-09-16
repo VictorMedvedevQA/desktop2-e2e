@@ -1,6 +1,6 @@
 import { IFormData } from '../../shared/form-testing/form-testing.object';
 
 export const mixedCaseLogin: IFormData[] = [
-	{ data: 'kdS@automama.ru', name: 'username' },
+	{ data: 'mmm@mmm', name: 'username' },
 	{ data: '1', name: 'password' },
 ];

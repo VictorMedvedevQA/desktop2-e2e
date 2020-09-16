@@ -8,7 +8,7 @@ export class CarFilterObject {
 		showAll: 'amc-row-col:contains(Все параметры)',
 	};
 	public carItem = {
-		auctionItemsResult: '.am-cars-results__auctions auction-item',
+		auctionItemsResult: '.am-cars-results__auctions am-auction-item-wrapper',
 		auctionitem: 'auction-item',
 		itemCard: '.b-card',
 	};

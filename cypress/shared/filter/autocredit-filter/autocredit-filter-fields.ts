@@ -21,7 +21,7 @@ export const filterFields: IAutocreditFilterField[] = [
 	{
 		fieldType: filterFieldType.dropdown,
 		formcontrolname: '[formcontrolname="loanMonths"]',
-		inputData: '1',
+		inputData: 'A',
 		name: 'Срок кредита (лет)',
 		isUrlChange: false,
 		isSearchResultCheckable: false,

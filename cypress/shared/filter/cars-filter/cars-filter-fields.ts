@@ -63,7 +63,7 @@ export const filterFields: ICarsFilterField[] = [
 		activateClearButton: true,
 		breadcrumbsChange: true,
 		fieldType: filterFieldType.dropdown,
-		formcontrolname: '[formcontrolname ="gearbox"]',
+		formcontrolname: '[formcontrolname ="gearboxes"]',
 		isHidden: true,
 		inputData: 'Автомат',
 		name: 'КПП',

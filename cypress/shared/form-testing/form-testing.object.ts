@@ -33,9 +33,9 @@ export const formFields: IForm[] = [
 export const validData: IFormData[] = [
 	{ name: 'name', data: 'Вася' },
 	{ name: 'phone', data: '9100000011' },
-	{ name: 'email', data: 'kds@automama.ru' },
+	{ name: 'email', data: 'mmm@mmm' },
 	{ name: 'password', data: '1' },
-	{ name: 'username', data: 'kds@automama.ru' },
+	{ name: 'username', data: 'mmm@mmm' },
 	{ name: 'confirm', data: '1' },
 	{ name: 'phoneNumber', data: '9100000011' },
 	{ name: 'code', data: '0000' },
