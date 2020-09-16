@@ -23,7 +23,7 @@ Cypress.Commands.add('visitRoute', (url: any) => {
 			case urls.catalog.filterredAudi:
 				{
 					cy.server()
-						.route(`${SITE_URL_API_V2}auctions/individual/*`)
+						.route(`${SITE_URL_API_V2}individual/*`)
 						.as('getAuctionIndividual')
 						.route(`${SITE_URL_API_V2}auctions/search?*`)
 						.as('getSearch')
