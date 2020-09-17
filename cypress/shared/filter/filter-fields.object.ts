@@ -1,6 +1,7 @@
 export enum filterFieldType {
 	input = 'input',
 	dropdown = 'dropdown',
+	dropdownCheckbox = 'dropdownCheckbox',
 	inputDropdown = 'inputDropdown',
 	control = 'control',
 	inputAutocomplete = 'inputAutocomplete',

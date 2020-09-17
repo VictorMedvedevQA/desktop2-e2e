@@ -19,7 +19,7 @@ export class CarFilterObject {
 		year: '.b-card-description__year',
 	};
 	public controls = {
-		active: '.am-tag-control_active',
+		active: '[class*=control_active]',
 		question: 'am-tags-control [name="question"]',
 		tags: 'am-tags-control',
 	};
@@ -58,6 +58,13 @@ export class CarFilterObject {
 								cy.get(field.formcontrolname).selectDropdown(field.inputData);
 							}
 						}
+						break;
+					case 'dropdownCheckbox':
+					{
+						if (field.formcontrolname && field.inputData) {
+							cy.get(field.formcontrolname).dropdownCheckbox(field.inputData);
+						}
+					}
 						break;
 					case 'input':
 						{
