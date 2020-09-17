@@ -42,7 +42,7 @@ export class CarsFieldsSpec {
 						cy.then(() => {
 							filterObject.activateField(field);
 						})
-							.get(filterObject.controls.active)
+							.get(field.name === 'Гарантия'? filterObject.controls.activeWarranty : filterObject.controls.active)
 							.should('be.visible');
 					});
 				});

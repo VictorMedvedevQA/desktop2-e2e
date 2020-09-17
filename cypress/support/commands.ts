@@ -75,6 +75,19 @@ Cypress.Commands.add('selectDropdown', { prevSubject: true }, (subject: any, tex
 			return subject;
 		});
 });
+
+Cypress.Commands.add('dropdownCheckbox', { prevSubject: true }, (subject: any, text: any) => {
+	cy.wrap(subject)
+		.find('.amc-multi-select')
+		.click()
+		.find('.amc-multi-select__dropdown-item')
+		.contains(text)
+		.click()
+		.then(() => {
+			return subject;
+		});
+});
+
 Cypress.Commands.add('amSelect', { prevSubject: true }, (subject: any, text: any) => {
 	cy.wrap(subject)
 		.find('.b-select')
@@ -181,6 +194,7 @@ declare global {
 			inputDropdown: (textInput: string, textOutput: string) => Chainable<any>;
 			inputAutocomplete: (textInput: string, textOutput: string) => Chainable<any>;
 			selectDropdown: (text: any) => Chainable<any>;
+			dropdownCheckbox: (text: any) => Chainable<any>;
 			toggle: () => Chainable<any>;
 			visitRoute: (url: any) => Chainable<any>;
 			findFirstVisible: (container: string, item: string) => Chainable<any>;

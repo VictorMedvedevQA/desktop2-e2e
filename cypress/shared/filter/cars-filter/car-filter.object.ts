@@ -20,11 +20,12 @@ export class CarFilterObject {
 	};
 	public controls = {
 		active: '.am-tag-control_active',
+		activeWarranty: '.amd-warranty-control_active',
 		question: 'am-tags-control [name="question"]',
 		tags: 'am-tags-control',
 	};
 	public checkingTagsControl(control: ICarsFilterField) {
-		cy.get(this.controls.active)
+		cy.get(control.name === 'Гарантия'? this.controls.activeWarranty : this.controls.active)
 			.should('be.visible')
 			.get(this.carItem.auctionItemsResult)
 			.each(item => {
@@ -58,6 +59,13 @@ export class CarFilterObject {
 								cy.get(field.formcontrolname).selectDropdown(field.inputData);
 							}
 						}
+						break;
+					case 'dropdownCheckbox':
+					{
+						if (field.formcontrolname && field.inputData) {
+							cy.get(field.formcontrolname).dropdownCheckbox(field.inputData);
+						}
+					}
 						break;
 					case 'input':
 						{
