@@ -19,13 +19,12 @@ export class CarFilterObject {
 		year: '.b-card-description__year',
 	};
 	public controls = {
-		active: '.am-tag-control_active',
-		activeWarranty: '.amd-warranty-control_active',
+		active: '[class*=control_active]',
 		question: 'am-tags-control [name="question"]',
 		tags: 'am-tags-control',
 	};
 	public checkingTagsControl(control: ICarsFilterField) {
-		cy.get(control.name === 'Гарантия'? this.controls.activeWarranty : this.controls.active)
+		cy.get(this.controls.active)
 			.should('be.visible')
 			.get(this.carItem.auctionItemsResult)
 			.each(item => {
