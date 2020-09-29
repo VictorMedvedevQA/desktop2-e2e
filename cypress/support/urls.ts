@@ -13,6 +13,9 @@ export const urls = {
 		filterredNoCar: `${SITE_URL}moscow/cars/buick`,
 		main: `${SITE_URL}cars`,
 	},
+	carCard: {
+		main: `${SITE_URL}car/12152`,
+	},
 	detailCar: {
 		location: `${SITE_URL}car/5652/location`,
 		main: `${SITE_URL}car/5652`,

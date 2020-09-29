@@ -6,7 +6,7 @@
 		"start": "./node_modules/cypress/bin/cypress open",
 		"cypress:run": "./node_modules/.bin/cypress run",
 		"cypress:run-chrome": "./node_modules/.bin/cypress run --browser chrome",
-		"cypress:release": "./node_modules/.bin/cypress run --env configFile=dev",
+		"cypress:release": "./node_modules/.bin/cypress open --env configFile=dev",
 		"cypress:open": "./node_modules/.bin/cypress open",
 		"build": "./node_modules/.bin/webpack --output-filename out.js --entry ./cypress/integration/spec.ts",
 		"lint": "./node_modules/.bin/tslint --project ./tsconfig.json",
@@ -24,7 +24,7 @@
 	"dependencies": {
 		"@cypress/webpack-preprocessor": "^4.0.2",
 		"ts-loader": "^5.3.1",
-		"typescript": "^3.2.1",
+		"typescript": "^4.0.3",
 		"webpack": "^4.27.0"
 	}
 }

@@ -39,13 +39,13 @@ export class AppraisalPage {
 	];
 	public notRetailQuality: IAppraisalParameter[] = [
 		{ name: 'make', isHidden: true, type: 'item', data: 'Mercedes-Benz' },
-		{ name: 'model', isHidden: true, type: 'item', data: 'S-klasse' },
-		{ name: 'year', isHidden: false, type: 'item', data: '2019' },
-		{ name: 'generation', isHidden: false, type: 'item', data: 'III (C257)' },
+		{ name: 'model', isHidden: true, type: 'item', data: 'S-Класс' },
+		{ name: 'year', isHidden: false, type: 'item', data: '2017' },
+		{ name: 'generation', isHidden: false, type: 'item', data: 'X222' },
 		{ name: 'bodyType', isHidden: false, type: 'item', data: 'Седан' },
 		{ isHidden: false, type: 'item', data: 'Автомат' },
 		{ isHidden: false, type: 'item', data: 'Бензиновый' },
-		{ isHidden: false, type: 'item', data: 'Передний' },
+		{ isHidden: false, type: 'item', data: 'Задний' },
 		{ isHidden: false, type: 'input', data: '123' },
 		{ isHidden: false, type: 'input', data: '123' },
 		{ isHidden: false, type: 'item', data: 'Базовая' },

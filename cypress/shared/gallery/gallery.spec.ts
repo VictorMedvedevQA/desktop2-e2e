@@ -19,6 +19,15 @@ export class GallerySpec {
 		});
 	}
 
+	public isGalleryWithoutDotsWorking(gallery: IGallery): void {
+		describe('Тест галереи, без точек', () => {
+
+			it('Скролл по стрелке без точек', () => {
+				galleryObject.checkItemChangeByArrowWithoutDot(gallery);
+			});
+		});
+	}
+
 	public checkingClickItemRedirect(gallery: IGallery, urlAfter: string) {
 		it('Переход по клику на galleryItem', () => {
 			cy.findFirstVisible(gallery.container, gallery.items)

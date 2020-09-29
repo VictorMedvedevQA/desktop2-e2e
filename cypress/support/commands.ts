@@ -17,6 +17,15 @@ Cypress.Commands.add('visitRoute', (url: any) => {
 						.as('getFilterSearch');
 				}
 				break;
+			case urls.carCard.main:
+			{
+				cy.server()
+					.route(`${SITE_URL}cars`)
+					.as('getSearch')
+					.route(`${SITE_URL}car/12152`)
+					.as('getSearch')
+			}
+				break;
 			case urls.mainPage.main:
 			case urls.catalog:
 			case urls.catalog.main:
