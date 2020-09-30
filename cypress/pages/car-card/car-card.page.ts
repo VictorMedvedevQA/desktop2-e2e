@@ -1,13 +1,17 @@
 import { IGallery } from '../../shared/gallery/gallery.object';
-import { urls } from '../../support/urls';
 
 export class CarCardPage {
-	public carCardSelectors = {
+	public selectors = {
 		main: {
+			routerlinks: '.b-tab-panel__inner [routerlink]',
 			openCarImage: '.b-slider_full-preview',
 			carCreditPrice: '.b-card-price__description_xl.b-card-price__description_credit',
 			creditMainBar: '.b-credit-main__inner_tab',
 			creditMainBarButton: '.b-credit-item-tab__button',
+			creditApplicationButton: '.b-auto-requests__item:has(a:contains(Заявка на кредит))',
+			testDriveApplicationButton: '.b-auto-requests__item:has(a:contains(Записаться на тест-драйв))',
+			callbackApplicationButton: '.b-auto__footer span.b-link',
+			fillOutApplicationButton: '.b-credit-item-tab__button',
 		},
 		condition: {
 			conditionIcon: '[routerlink="condition"]',
@@ -37,12 +41,14 @@ export class CarCardPage {
 			locationIcon: '[routerlink="location"]',
 			container: 'am-car-location-tab .b-section',
 			mapField: '.b-router__map',
-			testDriveButton: '.b-router__btn',
+			testDriveButton: 'amc-section .b-button.b-router__btn',
 		},
 		popup: {
 			popupContainer: '.b-popup__container',
 			popupGalleryContainer: '.b-popup_gallery',
+			popupSubmit: '.b-button',
 			popupCloseButton: '.b-popup-close',
+			popupSuccess: '.b-form_success',
 		}
 	}
 
@@ -74,144 +80,42 @@ export class CarCardPage {
 		right: '.b-slider__arrow.b-slider__arrow_next',
 	}
 
-//проверка основных элементов страницы карточки авто
-	public creditButtonIsWorking(){
-		cy.get(this.carCardSelectors.main.carCreditPrice).click()
-			//добавить проверку на прокрутку страницы к форме кредита
-			.get(this.carCardSelectors.main.creditMainBarButton).click()
-			.get(this.carCardSelectors.popup.popupContainer).should('be.visible')
-			.get(this.carCardSelectors.popup.popupCloseButton).click()
-	}
-
-//проверка поля "техническое состояние"
-	public isCarDamageMapButtonsPresent(){
-		cy.get(this.carCardSelectors.condition.container)
-			.find(this.carCardSelectors.condition.buttons)
-			.should('have.length', this.carCardSelectors.condition.buttonsAmount);
-	}
-
-	public isCarDamageMapButtonsWorking(){
-		cy.get(this.carCardSelectors.condition.container)
-			.find(this.carCardSelectors.condition.damagedButtons)
-			.each(el => {
-				cy.wrap(el)
-					.scrollIntoView()
-					.click()
-				cy.get(this.carCardSelectors.condition.damagedButtonPhoto)
-					.first()
-					.should('be.visible')
-					.click()
-				cy.get(this.carCardSelectors.condition.damagedButtonPhotoCloseButton)
-					.click();
-			});
-	}
-
-//Проверка поля "Комплектация и документы"
-	public goToEquipment(){
-		cy.get(this.carCardSelectors.equipment.equipmentIcon)
-			.click()
-			.invoke('attr', 'class')
-			.then(attr => {
-				expect(attr).to.contains('selected');
-			})
-			.get(this.carCardSelectors.equipment.container)
-			.should('be.visible')
-	}
-
-	public isEquipmentFieldsPresent(){
-		cy.get(this.carCardSelectors.equipment.container)
-			.find(this.carCardSelectors.equipment.fields)
-			.each(el => {
-				cy.wrap(el).should('be.visible');
-			});
-	}
-
-	public isDocumentsPopupsWorking(){
-		cy.get(this.carCardSelectors.equipment.documentsContainer)
-			.find(this.carCardSelectors.equipment.documentsButtons)
-			.each(el => {
-				cy.wrap(el)
-					.click()
-					.get(this.carCardSelectors.popup.popupGalleryContainer)
-					.should('be.visible')
-					.get(this.carCardSelectors.popup.popupCloseButton)
-					.click();
-			});
-	}
-
-	public isCollectionsLinksWorking(){
-		cy.get(this.carCardSelectors.equipment.examplesContainer)
-			.find(this.carCardSelectors.equipment.examplesLinks)
-			.then(el => {
-				for(let i = 0; i < el.length; i++){
-					cy.get(this.carCardSelectors.equipment.examplesContainer)
-						.find(this.carCardSelectors.equipment.examplesLinks)
-						.eq(i)
-						.then(el => {
-							const href = el.attr('href');
-							cy.wrap(el).click().url().should('contain', href)
-						});
-					cy.visitRoute(urls.carCard.main);
-					cy.get(this.carCardSelectors.equipment.equipmentIcon)
-						.click();
-				};
-			});
-	}
-
-//Проверка поля "Юридическая чистота"
-	public goToJuridical(){
-		cy.get(this.carCardSelectors.juridical.juridicalIcon)
-			.click()
-			.invoke('attr', 'class')
-			.then(attr => {
-				expect(attr).to.contains('selected')
-			})
-			.get(this.carCardSelectors.juridical.container)
-			.should('be.visible');
-	}
-
-	public isJuridicalFieldsPresent(){
-		cy.get(this.carCardSelectors.juridical.container)
-			.find(this.carCardSelectors.juridical.fields)
-			.each(el => {
-				cy.wrap(el).should('be.visible');
-			});
-	}
-
-	public isAutotekaButtonWorking(){
-		cy.get(this.carCardSelectors.juridical.container)
-			.find(this.carCardSelectors.juridical.autotekaReportButton)
-			.click()
-			.get(this.carCardSelectors.popup.popupContainer)
-			.should('be.visible')
-			.get(this.carCardSelectors.popup.popupCloseButton)
+	public refreshCreditPopupForm() {
+		cy.reload()
+			.get(this.selectors.main.creditApplicationButton)
 			.click();
 	}
 
-//Проверка поля "Адрес тест-драйва"
-	public goToLocation(){
-		cy.get(this.carCardSelectors.location.locationIcon)
-			.click()
-			.invoke('attr', 'class')
-			.then(attr => {
-				expect(attr).to.contains('selected');
-			})
-			.get(this.carCardSelectors.location.container)
-			.should('be.visible');
-	}
-
-	public isMapPresent(){
-		cy.get(this.carCardSelectors.location.container)
-			.find(this.carCardSelectors.location.mapField)
-			.should('be.visible');
-	}
-
-	public isTestDriveFormWorking(){
-		cy.get(this.carCardSelectors.location.testDriveButton)
-			.click()
-			.get(this.carCardSelectors.popup.popupContainer)
-			.should('be.visible')
-			.get(this.carCardSelectors.popup.popupCloseButton)
+	public refreshTestDrivePopupForm() {
+		cy.reload()
+			.get(this.selectors.main.testDriveApplicationButton)
 			.click();
 	}
+
+	public refreshCallBackPopupForm() {
+		cy.reload()
+			.get(this.selectors.main.callbackApplicationButton)
+			.click();
+	}
+
+	public refreshFilloutPopupForm() {
+		cy.reload()
+			.get(this.selectors.main.fillOutApplicationButton)
+			.click();
+	}
+
+	public failAssertion() {
+		cy.get(this.selectors.popup.popupSuccess).should('not.exist');
+	}
+
+
+
+
+
+
+
+
+
+
+
 }
