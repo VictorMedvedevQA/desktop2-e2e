@@ -8,9 +8,6 @@ const gallerySpec = new GallerySpec();
 const formTestingSpec = new FormTestingSpec();
 
 describe('Секции', () => {
-	beforeEach(() => {
-		cy.visitRoute(urls.carCard.main);
-	});
 
 	it('переход по секциям', function() {
 		cy.visitRoute(urls.carCard.main);
@@ -71,16 +68,45 @@ describe('Попапы', () => {
 			carCardPage.failAssertion.bind(carCardPage)
 		);
 	});
-});
 
-describe.only('Работа галерей карточки Авто', () => {
-	before(() => {
-		cy.visitRoute(urls.carCard.main);
+	describe('тест формы "Autoteka"',() => {
+		before(() => {
+			cy.visitRoute(urls.carCard.main);
+			cy.get(carCardPage.selectors.juridical.juridicalIcon)
+				.click();
+		});
+
+		formTestingSpec.isPopupFormWorking(
+			carCardPage.selectors.popup.popupContainer,
+			carCardPage.selectors.popup.autotekaPopupSubmit,
+			carCardPage.selectors.juridical.autotekaReportButton,
+			carCardPage.refreshAutotekaPopupForm.bind(carCardPage),
+			carCardPage.failAssertion.bind(carCardPage)
+		);
 	});
 
-	describe('основная галерея карточки автомобиля', () => {
+	describe('тест формы "Оставить отзыв"',() => {
+		before(() => {
+			cy.visitRoute(urls.carCard.main);
+			cy.get(carCardPage.selectors.reviews.reviewsIcon)
+				.click();
+		});
 
-		it('переход к галерее',() => {
+		formTestingSpec.isPopupFormWorking(
+			carCardPage.selectors.popup.popupContainer,
+			carCardPage.selectors.popup.popupSubmit,
+			carCardPage.selectors.reviews.reviewsReportButton,
+			carCardPage.refreshReviewPopupForm.bind(carCardPage),
+			carCardPage.failAssertion.bind(carCardPage)
+		);
+	});
+});
+
+describe('Работа галерей карточки Авто', () => {
+
+	describe('основная галерея карточки автомобиля', () => {
+		before(() => {
+			cy.visitRoute(urls.carCard.main);
 			cy.get(carCardPage.selectors.main.openCarImage)
 				.click();
 		});
@@ -88,11 +114,9 @@ describe.only('Работа галерей карточки Авто', () => {
 	});
 
 	describe('Второстепенная Галерея автомобиля', () => {
-		before(() => {
-			cy.visitRoute(urls.carCard.main);
-		});
 
 		it('Галерея работает', () => {
+			cy.visitRoute(urls.carCard.main);
 			cy.get(carCardPage.secondaryGallery.container).should('be.visible');
 		});
 	});
@@ -197,11 +221,10 @@ describe('Проверка поля "Комплектация и докумен�
 });
 
 describe('Проверка поля "Юридическая чистота"', () => {
-
-	it('переход на вкладку', () => {
+	before(() => {
 		cy.get(carCardPage.selectors.juridical.juridicalIcon)
 			.click();
-	});
+	})
 
 	it('наличие полей', () => {
 		cy.get(carCardPage.selectors.juridical.container)
@@ -224,18 +247,15 @@ describe('Проверка поля "Юридическая чистота"', ()
 
 describe('Проверка поля "Адрес тест-драйва"', () => {
 
-	it('переход на вкладку', () => {
-		cy.get(carCardPage.selectors.location.locationIcon)
-			.click();
-	});
-
 	it('проверка наличия карты', () => {
-		cy.get(carCardPage.selectors.location.container)
+		cy.get(carCardPage.selectors.location.locationIcon)
+			.click()
+			.get(carCardPage.selectors.location.container)
 			.find(carCardPage.selectors.location.mapField)
 			.should('be.visible')
-			.get('ymaps[title="Найти"]')
+			.get(carCardPage.selectors.location.mapSearchButton)
 			.click()
-			.get('ymaps input[class*="searchbox-input"]')
+			.get(carCardPage.selectors.location.mapSearchbar)
 			.should('be.visible');
 	});
 
@@ -248,5 +268,47 @@ describe('Проверка поля "Адрес тест-драйва"', () => {
 			.click()
 			.get(carCardPage.selectors.popup.popupContainer)
 			.should('not.exist')
+	});
+});
+
+describe('проверка поля "Отзывы клиентов"', () => {
+	beforeEach(() => {
+		cy.visitRoute(urls.carCard.main);
+		cy.get(carCardPage.selectors.reviews.reviewsIcon)
+			.click();
+	});
+
+	it('проверка ссылки на авто в поле отзыва', () => {
+		cy.get(carCardPage.selectors.reviews.carLink)
+			.first()
+			.then(el => {
+				const hrefReview = el.attr('href');
+				cy.wrap(el)
+					.click()
+					.url()
+					.should('contains', hrefReview)
+			});
+	});
+
+	it('проверка разворачивания и сворачивания текста отзыва', () => {
+		cy.get(carCardPage.selectors.reviews.reviewItem)
+			.first()
+			.then(el => {
+			const textBefore = el.text();
+			cy.get(carCardPage.selectors.reviews.reviewItemWrapper)
+				.first()
+				.click();
+			cy.get(carCardPage.selectors.reviews.reviewItem)
+				.first()
+				.invoke('text')
+				.should('not.equal', textBefore);
+			cy.get(carCardPage.selectors.reviews.reviewItemWrapper)
+				.first()
+				.click();
+			cy.get(carCardPage.selectors.reviews.reviewItem)
+				.first()
+				.invoke('text')
+				.should('equal', textBefore);
+		});
 	});
 });

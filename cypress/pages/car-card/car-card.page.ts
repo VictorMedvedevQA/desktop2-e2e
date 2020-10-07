@@ -35,18 +35,29 @@ export class CarCardPage {
 			juridicalIcon: '[routerlink="juridical"]',
 			container: 'am-car-juristic-tab .b-container',
 			fields: '.juristic__row',
-			autotekaReportButton: 'amc-button',
+			autotekaReportButton: '.juristic__content .amc-button',
 		},
 		location: {
 			locationIcon: '[routerlink="location"]',
 			container: 'am-car-location-tab .b-section',
 			mapField: '.b-router__map',
 			testDriveButton: 'amc-section .b-button.b-router__btn',
+			mapSearchButton: 'ymaps[title="Найти"]',
+			mapSearchbar: 'ymaps input[class*="searchbox-input"]',
+
+		},
+		reviews: {
+			reviewsIcon: '[routerlink="reviews"]',
+			reviewsReportButton: 'amc-button:contains(Оставить свой отзыв)',
+			carLink: 'am-car-reviews-tab review-item a',
+			reviewItem: '.b-review__text:has(span)',
+			reviewItemWrapper: '.b-review__text span',
 		},
 		popup: {
 			popupContainer: '.b-popup__container',
 			popupGalleryContainer: '.b-popup_gallery',
 			popupSubmit: '.b-button',
+			autotekaPopupSubmit: 'amc-button',
 			popupCloseButton: '.b-popup-close',
 			popupSuccess: '.b-form_success',
 		}
@@ -104,18 +115,23 @@ export class CarCardPage {
 			.click();
 	}
 
+	public refreshAutotekaPopupForm() {
+		cy.reload()
+			.get(this.selectors.juridical.juridicalIcon)
+			.click()
+			.get(this.selectors.juridical.autotekaReportButton)
+			.click();
+	}
+
+	public refreshReviewPopupForm() {
+		cy.reload()
+			.get(this.selectors.reviews.reviewsIcon)
+			.click()
+			.get(this.selectors.reviews.reviewsReportButton)
+			.click();
+	}
+
 	public failAssertion() {
 		cy.get(this.selectors.popup.popupSuccess).should('not.exist');
 	}
-
-
-
-
-
-
-
-
-
-
-
 }
