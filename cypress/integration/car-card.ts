@@ -2,10 +2,12 @@ import { CarCardPage } from '../pages/car-card/car-card.page';
 import { GallerySpec } from '../shared/gallery/gallery.spec';
 import { FormTestingSpec } from '../shared/form-testing/form-testing.spec';
 import { urls } from '../support/urls';
+import { FormTestingObject } from '../shared/form-testing/form-testing.object';
 
 const carCardPage = new CarCardPage();
 const gallerySpec = new GallerySpec();
 const formTestingSpec = new FormTestingSpec();
+const formTestingObject = new FormTestingObject();
 
 describe('Секции', () => {
 
@@ -70,19 +72,23 @@ describe('Попапы', () => {
 	});
 
 	describe('тест формы "Autoteka"',() => {
-		before(() => {
-			cy.visitRoute(urls.carCard.main);
-			cy.get(carCardPage.selectors.juridical.juridicalIcon)
-				.click();
+		beforeEach(() => {
+			carCardPage.refreshAutotekaPopupForm();
 		});
 
-		formTestingSpec.isPopupFormWorking(
-			carCardPage.selectors.popup.popupContainer,
-			carCardPage.selectors.popup.autotekaPopupSubmit,
-			carCardPage.selectors.juridical.autotekaReportButton,
-			carCardPage.refreshAutotekaPopupForm.bind(carCardPage),
-			carCardPage.failAssertion.bind(carCardPage)
-		);
+		it('Форма закрывается по крестику', () => {
+			cy.then(() => {
+				formTestingObject.closingPopupForm(carCardPage.selectors.popup.popupContainer);
+			});
+		});
+
+		it('Проверяем отправку без обязательных полей', () => {
+			formTestingObject.submitWithoutRequiredFieldsAutoteka(
+				carCardPage.selectors.popup.popupContainer,
+				carCardPage.refreshAutotekaPopupForm.bind(carCardPage),
+				carCardPage.failAssertion.bind(carCardPage),
+				carCardPage.selectors.popup.autotekaPopupSubmit);
+		});
 	});
 
 	describe('тест формы "Оставить отзыв"',() => {

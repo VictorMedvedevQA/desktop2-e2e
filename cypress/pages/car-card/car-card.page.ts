@@ -17,7 +17,7 @@ export class CarCardPage {
 			conditionIcon: '[routerlink="condition"]',
 			container: 'am-car-condition-tab .b-container',
 			buttons: '.b-bullet_damage',
-			buttonsAmount: 35,
+			buttonsAmount: 46,
 			damagedButtons: '.b-bullet_damage-intermidiate,.b-bullet_damage-light,.b-bullet_damage-significant',
 			damagedButtonPhoto: 'am-tooltip-gallery .b-tooltip',
 			damagedButtonPhotoCloseButton: '.b-popup-close_gallery',
