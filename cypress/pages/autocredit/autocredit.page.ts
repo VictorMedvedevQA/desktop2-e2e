@@ -6,7 +6,7 @@ export class AutocreditPage {
 	public mainPopupForm = {
 		formLink: 'am-popup .b-popup',
 		openFormButton: '.b-faq .b-button',
-		submitFormButton: '[type="submit"]',
+		submitFormButton: 'amc-button.amc-button',
 	};
 	public creditGallery: IGallery = {
 		container: 'am-credit-gallery am-gallery',

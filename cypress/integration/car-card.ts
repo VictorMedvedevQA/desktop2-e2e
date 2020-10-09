@@ -179,8 +179,7 @@ describe('Проверка поля "Техническое состояние"'
 });
 
 describe('Проверка поля "Комплектация и документы"', () => {
-
-	it('переход на вкладку', () => {
+	before(() => {
 		cy.get(carCardPage.selectors.equipment.equipmentIcon)
 			.click();
 	});
