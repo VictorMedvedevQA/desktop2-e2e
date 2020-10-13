@@ -28,18 +28,25 @@ export const formFields: IForm[] = [
 	{ type: formFieldType.input, name: 'phoneNumber' },
 	{ type: formFieldType.input, name: 'code' },
 	{ type: formFieldType.select, name: 'city' },
+	{ type: formFieldType.input, name: 'review' },
+];
+
+export const formFieldsAutoteka: IForm[] = [
+	{ type: formFieldType.input, name: 'name' },
+	{ type: formFieldType.input, name: 'phone' },
 ];
 
 export const validData: IFormData[] = [
 	{ name: 'name', data: 'Вася' },
 	{ name: 'phone', data: '9100000011' },
-	{ name: 'email', data: 'mmm@mmm' },
-	{ name: 'password', data: '1' },
-	{ name: 'username', data: 'mmm@mmm' },
-	{ name: 'confirm', data: '1' },
+	{ name: 'email', data: 'autotest@automama.ru' },
+	{ name: 'password', data: '123' },
+	{ name: 'username', data: 'autotest@automama.ru' },
+	{ name: 'confirm', data: '123' },
 	{ name: 'phoneNumber', data: '9100000011' },
 	{ name: 'code', data: '0000' },
 	{ name: 'city', data: 'Краснодар' },
+	{ name: 'review', data: 'Тестовый комментарий' },
 ];
 
 export class FormTestingObject {
@@ -74,6 +81,19 @@ export class FormTestingObject {
 		return fieldList;
 	}
 
+	createFieldsListAutoteka(link: string) {
+		let fieldList: IForm[] = [];
+		cy.get(link)
+			.find('[formcontrolname]')
+			.each(field => {
+				let el = formFieldsAutoteka.find(formField => formField.name === field.attr('formcontrolname'));
+				if (el) {
+					fieldList.push(el);
+				}
+			});
+		return fieldList;
+	}
+
 	fillElements(link: string, fieldsList: IForm[], data: IFormData[]) {
 		cy.get(link).then(() => {
 			for (let field in fieldsList) {
@@ -95,7 +115,6 @@ export class FormTestingObject {
 							case formFieldType.input:
 								if (!field.is('input')) {
 									cy.wrap(field)
-										.parent()
 										.find('input')
 										.type(this.findDataByFieldName(fieldName, dataArrayForm));
 								} else if (field.is('input')) {
@@ -192,9 +211,49 @@ export class FormTestingObject {
 							this.fillElement(link, allFieldsArray[elAllFields].name, validData);
 						});
 					}
-					cy.get(submit)
+					cy.get(link)
+						.find(submit)
 						.then(submitButton => {
-							if (!submitButton.is(this.formButtons.disabledSubmit)) {
+							if (!submitButton.is(this.formButtons.disabledSubmit) && !submitButton.attr('class')?.includes('button_disabled')) {
+								this.submitForm(link, submit);
+							}
+						})
+						.wait(1000) //ожидание для проверки появления sucsess-popup
+						.then(() => {
+							failAssertion();
+						})
+						.then(() => {
+							refreshForm();
+						});
+				});
+			});
+		});
+	}
+
+	submitWithoutRequiredFieldsAutoteka(link: string, refreshForm: any, failAssertion: any, submit: string) {
+		cy.then(() => {
+			let allFieldsArray: IForm[] = this.createFieldsListAutoteka(link);
+			cy.then(() => {
+				allFieldsArray.forEach(elReq => {
+					for (let elAllFields in allFieldsArray) {
+						if (elReq.name === allFieldsArray[elAllFields].name) {
+							if (allFieldsArray[elAllFields].type === formFieldType.chekbox) {
+								cy.get(link)
+									.find('[formcontrolname="' + allFieldsArray[elAllFields].name + '"]')
+									.next()
+									.click();
+							} else {
+								continue;
+							}
+						}
+						cy.then(() => {
+							this.fillElement(link, allFieldsArray[elAllFields].name, validData);
+						});
+					}
+					cy.get(link)
+						.find(submit)
+						.then(submitButton => {
+							if (!submitButton.is(this.formButtons.disabledSubmit) && !submitButton.attr('class')?.includes('button_disabled')) {
 								this.submitForm(link, submit);
 							}
 						})

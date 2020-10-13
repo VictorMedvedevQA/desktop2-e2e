@@ -29,7 +29,7 @@ export class AuthPage {
 	};
 
 	public forgotPasswordForm = {
-		formLink: `${this.commonLink}:contains(Восстановление пароля )`,
+		formLink: `${this.commonLink}:contains(Восстановление пароля)`,
 		openFormButton: `${this.footerPopupLink}:contains(Регистрация)`,
 		submitFormButton: this.commonSubmit,
 	};

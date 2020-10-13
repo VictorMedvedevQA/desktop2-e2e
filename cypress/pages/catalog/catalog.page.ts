@@ -9,7 +9,7 @@ export class CatalogPage {
 		soldCars: '.b-card-header__title',
 	};
 	public similarGallery: IGallery = {
-		container: 'am-cars-similar  am-gallery',
+		container: 'am-cars-similar am-gallery',
 		items: '.b-slider__item',
 		left: '.b-slider__arrow.b-slider__arrow_prev',
 		right: '.b-slider__arrow.b-slider__arrow_next',
