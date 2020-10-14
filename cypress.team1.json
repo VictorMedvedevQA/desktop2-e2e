@@ -9,5 +9,9 @@
 	"baseUrl": "https://team1.automama.ru",
 	"env": {
 		"production": false
+	},
+	"retries": {
+		"runMode": 2,
+		"openMode": 0
 	}
 }
