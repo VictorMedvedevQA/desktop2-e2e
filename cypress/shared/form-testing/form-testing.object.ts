@@ -29,6 +29,9 @@ export const formFields: IForm[] = [
 	{ type: formFieldType.input, name: 'code' },
 	{ type: formFieldType.select, name: 'city' },
 	{ type: formFieldType.input, name: 'review' },
+	{ type: formFieldType.select, name: 'make' },
+	{ type: formFieldType.select, name: 'model' },
+	{ type: formFieldType.select, name: 'regionId' },
 ];
 
 export const formFieldsAutoteka: IForm[] = [
@@ -47,6 +50,10 @@ export const validData: IFormData[] = [
 	{ name: 'code', data: '0000' },
 	{ name: 'city', data: 'Краснодар' },
 	{ name: 'review', data: 'Тестовый комментарий' },
+	{ name: 'make', data: 'Audi' },
+	{ name: 'model', data: 'A3' },
+	{ name: 'regionId', data: 'Краснодар' },
+
 ];
 
 export class FormTestingObject {
@@ -122,7 +129,11 @@ export class FormTestingObject {
 								}
 								break;
 							case formFieldType.select:
-								cy.wrap(field).amSelect(this.findDataByFieldName(fieldName, dataArrayForm));
+								cy.wrap(field).find('div').then(el => {
+									if(!el.attr('class')?.includes('disabled')){
+										cy.wrap(field).amSelect(this.findDataByFieldName(fieldName, dataArrayForm));
+									}
+								});
 								break;
 							default:
 								throw new Error(`Не найдены дейстия для типа ${formField.type}`);

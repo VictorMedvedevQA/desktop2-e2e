@@ -28,24 +28,6 @@ describe('Подбор', () => {
 		);
 	});
 
-	describe('Inline form first', () => {
-		formTestingSpec.isFormWorking(
-			podborPage.inlineFormFirst.formLink,
-			podborPage.inlineFormFirst.submitFormButton,
-			podborPage.refreshForm.bind(podborPage),
-			podborPage.failAssertion.bind(podborPage)
-		);
-	});
-
-	describe('Inline form last', () => {
-		formTestingSpec.isFormWorking(
-			podborPage.inlineFormLast.formLink,
-			podborPage.inlineFormLast.submitFormButton,
-			podborPage.refreshForm.bind(podborPage),
-			podborPage.failAssertion.bind(podborPage)
-		);
-	});
-
 	describe('Блок "Как мы делаем осмотр и диагностику авто"', () => {
 		it('Переход в каталог по кнопке "посмотреть авто в наличии"', () => {
 			cy.get(podborPage.matchHow.container)
@@ -56,14 +38,13 @@ describe('Подбор', () => {
 				.should('contain', '/cars');
 		});
 
-		describe('Popup form "Подбор авто для меня"', () => {
-			formTestingSpec.isPopupFormWorking(
-				podborPage.mutchCarForMe.formLink,
-				podborPage.mutchCarForMe.submitFormButton,
-				podborPage.mutchCarForMe.openFormButton,
-				podborPage.refreshMutchCarForMeForm.bind(podborPage),
-				podborPage.failAssertion.bind(podborPage)
-			);
+		describe('button "Подбор авто для меня"', () => {
+			it('Кнопка скроллит страницу к форме "подобрать автомобиль"', function() {
+				cy.get(podborPage.mutchCarForMe.openFormButton)
+					.click()
+					.get(podborPage.heroForm.formLink)
+					.should('be.visible')
+			});
 		});
 	});
 });
