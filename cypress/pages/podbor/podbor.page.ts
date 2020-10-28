@@ -2,17 +2,7 @@ export class PodborPage {
 	successPopup = '.b-form_success';
 	public heroForm = {
 		formLink: '.b-form_hero',
-		submitFormButton: '[type="submit"]',
-	};
-
-	public inlineFormFirst = {
-		formLink: '.b-form_inline:first',
-		submitFormButton: '[type="submit"]',
-	};
-
-	public inlineFormLast = {
-		formLink: '.b-form_inline:last',
-		submitFormButton: '[type="submit"]',
+		submitFormButton: '.amc-button:contains(Подобрать авто)',
 	};
 
 	public matchHow = {
@@ -22,22 +12,24 @@ export class PodborPage {
 	};
 
 	public mutchCarForMe = {
-		formLink: 'am-popup .b-popup',
+		formLink: 'form.b-form_hero',
 		openFormButton: '.b-button:contains(Подбор авто для меня)',
 		submitFormButton: '[type="submit"]',
 	};
 
 	public refreshForm() {
 		cy.reload();
-	}
+	};
 
 	public failAssertion() {
-		cy.get(this.successPopup).should('not.exist');
-	}
+		cy.get(this.heroForm.submitFormButton).invoke('attr', 'class').then(el => {
+			expect(el).contain('disabled');
+		});
+	};
 
 	public refreshMutchCarForMeForm() {
 		cy.reload()
 			.get(this.mutchCarForMe.openFormButton)
 			.click();
-	}
+	};
 }

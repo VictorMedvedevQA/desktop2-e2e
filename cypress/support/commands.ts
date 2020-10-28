@@ -99,9 +99,8 @@ Cypress.Commands.add('dropdownCheckbox', { prevSubject: true }, (subject: any, t
 
 Cypress.Commands.add('amSelect', { prevSubject: true }, (subject: any, text: any) => {
 	cy.wrap(subject)
-		.find('.b-select')
 		.click()
-		.find('.b-select__dropdown-field')
+		.find('.amc-select__dropdown-item, .b-select__dropdown-field')
 		.contains(text)
 		.click()
 		.get(subject)
