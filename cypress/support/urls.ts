@@ -14,7 +14,7 @@ export const urls = {
 		main: `${SITE_URL}cars`,
 	},
 	carCard: {
-		main: `${SITE_URL}car/12152`,
+		main: `${SITE_URL}car/12805`,
 	},
 	detailCar: {
 		location: `${SITE_URL}car/5652/location`,

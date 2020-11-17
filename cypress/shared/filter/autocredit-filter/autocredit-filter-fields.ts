@@ -29,10 +29,10 @@ export const filterFields: IAutocreditFilterField[] = [
 	{
 		fieldType: filterFieldType.inputAutocomplete,
 		formcontrolname: '[formcontrolname="modelId"]',
-		inputData: 'a',
+		inputData: 'q',
 		name: 'Модель',
-		outputData: 'A6',
-		tags: 'a6',
+		outputData: 'Q5',
+		tags: 'q5',
 		isUrlChange: true,
 		isSearchResultCheckable: true,
 	},

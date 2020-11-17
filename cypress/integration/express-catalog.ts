@@ -39,3 +39,21 @@ describe('Видимость к-ва ставок и текущей ставки
 		);
 	});
 });
+
+describe('проверка работы кнопки "Получить статус Профи"', () => {
+	before(() => {
+		cy.visitRoute(urls.express.main);
+	});
+	it('кнопка появляется и активна', () => {
+		cy.then(() => {
+			authPage.loginWithNoProfy();
+		})
+			.get(expressCatalogPage.carItems)
+			.eq(0)
+			.click()
+			.get(expressCatalogPage.getProfy)
+			.click()
+			.get(expressCatalogPage.successPopup)
+			.should('be.visible')
+	});
+});

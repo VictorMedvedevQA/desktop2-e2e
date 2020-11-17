@@ -16,17 +16,17 @@ export class SeoLinksObject {
 	public seoLinks: ISeoLink[] = [
 		{
 			name: 'make',
-			nextStageValue: 'A1',
+			nextStageValue: 'Q5',
 			tags: 'audi',
 			urlToStart: urls.catalog.main,
 			value: 'Audi',
 		},
 		{
 			name: 'model',
-			nextStageValue: 'I (8X)',
-			tags: 'a1',
+			nextStageValue: 'I (8R)',
+			tags: 'q5',
 			urlToStart: urls.catalog.filterredAudi,
-			value: 'A1',
+			value: 'Q5',
 		},
 		{
 			name: 'generation',

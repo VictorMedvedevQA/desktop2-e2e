@@ -215,7 +215,7 @@ describe('Проверка поля "Комплектация и докумен�
 						.eq(i)
 						.then(el => {
 							const href = el.attr('href');
-							cy.wrap(el).click().url().should('contain', href)
+							cy.wrap(el).click().wait(1000).url().should('contain', href)
 						});
 					cy.visitRoute(urls.carCard.main);
 					cy.get(carCardPage.selectors.equipment.equipmentIcon)
@@ -227,6 +227,7 @@ describe('Проверка поля "Комплектация и докумен�
 
 describe('Проверка поля "Юридическая чистота"', () => {
 	before(() => {
+		cy.visitRoute(urls.carCard.main);
 		cy.get(carCardPage.selectors.juridical.juridicalIcon)
 			.click();
 	})

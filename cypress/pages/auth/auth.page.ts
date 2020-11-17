@@ -42,6 +42,14 @@ export class AuthPage {
 			});
 	}
 
+	public loginWithNoProfy() {
+		cy.get(this.loginForm.openFormButton)
+			.click()
+			.then(() => {
+				formTestingObject.sendValidNoProfyData(this.loginForm.formLink, this.loginForm.submitFormButton);
+			});
+	}
+
 	public refreshLoginForm() {
 		cy.visitRoute(urls.express.main)
 			.get(this.loginForm.openFormButton)
