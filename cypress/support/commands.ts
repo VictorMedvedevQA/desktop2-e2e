@@ -117,6 +117,7 @@ Cypress.Commands.add(
 			.find('input')
 			.scrollIntoView()
 			.type(textInput)
+			.wait(500)
 			.parent()
 			.find('.b-input__dropdown')
 			.find('.b-input__dropdown-field')

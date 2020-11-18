@@ -142,10 +142,10 @@ export const filterFields: ICarsFilterField[] = [
 		fieldType: filterFieldType.inputDropdown,
 		formcontrolname: '[formcontrolname="model"]',
 		isHidden: false,
-		inputData: '1',
+		inputData: '5',
 		name: 'Все модели',
-		outputData: 'A1',
+		outputData: 'Q5',
 		seoTextChange: true,
-		tags: 'a1',
+		tags: 'q5',
 	},
 ];

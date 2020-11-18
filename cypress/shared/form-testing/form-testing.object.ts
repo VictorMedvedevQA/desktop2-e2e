@@ -42,18 +42,24 @@ export const formFieldsAutoteka: IForm[] = [
 export const validData: IFormData[] = [
 	{ name: 'name', data: 'Вася' },
 	{ name: 'phone', data: '9100000011' },
-	{ name: 'email', data: 'autotest@automama.ru' },
-	{ name: 'password', data: '123' },
-	{ name: 'username', data: 'autotest@automama.ru' },
-	{ name: 'confirm', data: '123' },
+	{ name: 'email', data: 'kds@automama.ru' },
+	{ name: 'password', data: '1' },
+	{ name: 'username', data: 'kds@automama.ru' },
+	{ name: 'confirm', data: '1' },
 	{ name: 'phoneNumber', data: '9100000011' },
 	{ name: 'code', data: '0000' },
 	{ name: 'city', data: 'Краснодар' },
 	{ name: 'review', data: 'Тестовый комментарий' },
 	{ name: 'make', data: 'Audi' },
-	{ name: 'model', data: 'A3' },
+	{ name: 'model', data: 'Q5' },
 	{ name: 'regionId', data: 'Краснодар' },
 
+];
+
+export const validNoProfyData: IFormData[] = [
+	{ name: 'email', data: 'noprofy@automama.ru' },
+	{ name: 'username', data: 'noprofy@automama.ru' },
+	{ name: 'password', data: '1' },
 ];
 
 export class FormTestingObject {
@@ -154,6 +160,14 @@ export class FormTestingObject {
 	sendValidData(link: string, submit: string) {
 		cy.then(() => {
 			this.fillElements(link, this.createFieldsList(link), validData);
+		}).then(() => {
+			this.submitForm(link, submit);
+		});
+	}
+
+	sendValidNoProfyData(link: string, submit: string) {
+		cy.then(() => {
+			this.fillElements(link, this.createFieldsList(link), validNoProfyData);
 		}).then(() => {
 			this.submitForm(link, submit);
 		});

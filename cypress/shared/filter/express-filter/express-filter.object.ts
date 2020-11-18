@@ -7,6 +7,7 @@ export class ExpressFilterObject {
 		itemCard: '.b-card',
 	};
 	public result = 'express-results';
+	public getParameters = '.h-hide-tablet a';
 	public itemDescription = {
 		city: '.b-card-description__city',
 		info: '.b-card__info',

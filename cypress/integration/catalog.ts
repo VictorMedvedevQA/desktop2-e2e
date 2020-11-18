@@ -43,13 +43,6 @@ describe('Галерея "авто в наличии"', () => {
 	gallerySpec.checkingClickItemRedirect(catalogPage.carsGallery, catalogPage.urlCheckingClickItemCarsGallery);
 });
 
-describe('Галерея "подборки авто"', () => {
-	beforeEach(() => {
-		cy.server().visitRoute(urls.catalog.main);
-	});
-	carsTagsGallerySpec.isCarsTagsGalleryWorking();
-});
-
 seoLinksSpec.isSeoLinksWorking();
 
 describe('Проданные авто', () => {

@@ -1,11 +1,15 @@
 import { ExpressFilterObject } from './express-filter.object';
 import { IExpressFilterField } from './express-filter-fields';
+import { ExpressCatalogPage } from '../../../pages/express-catalog/express-catalog.page'
 const filterObject = new ExpressFilterObject();
 export class ExpressFieldsSpec {
 	public checkExpressField(field: IExpressFilterField) {
 		describe('Поведение контролов и странцы после применения ' + field.name, () => {
 			describe(field.name, () => {
 				beforeEach(() => {
+					if(cy.get(filterObject.getParameters).should('be.visible')){
+						cy.get(filterObject.getParameters).click();
+					}
 					filterObject.activateField(field);
 				});
 
