@@ -204,25 +204,6 @@ describe('Проверка поля "Комплектация и докумен�
 					.click();
 			});
 	});
-
-	it('проверка перехода по ссылкам в "Подборки"', () => {
-		cy.get(carCardPage.selectors.equipment.examplesContainer)
-			.find(carCardPage.selectors.equipment.examplesLinks)
-			.then(el => {
-				for(let i = 0; i < el.length; i++){
-					cy.get(carCardPage.selectors.equipment.examplesContainer)
-						.find(carCardPage.selectors.equipment.examplesLinks)
-						.eq(i)
-						.then(el => {
-							const href = el.attr('href');
-							cy.wrap(el).click().wait(1000).url().should('contain', href)
-						});
-					cy.visitRoute(urls.carCard.main);
-					cy.get(carCardPage.selectors.equipment.equipmentIcon)
-						.click();
-				};
-			});
-	});
 });
 
 describe('Проверка поля "Юридическая чистота"', () => {
