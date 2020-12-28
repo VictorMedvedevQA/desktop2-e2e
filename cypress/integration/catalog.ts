@@ -56,7 +56,7 @@ describe('Проданные авто', () => {
 
 	it('Показать проданные авто', () => {
 		cy.get(catalogPage.catalog.soldCars)
-			.should('not.be.visible')
+			.should('not.exist')
 			.get(catalogPage.catalog.showSoldCars)
 			.click()
 			.get(catalogPage.catalog.soldCars)
@@ -69,6 +69,6 @@ describe('Проданные авто', () => {
 			.get(catalogPage.catalog.hideSoldCars)
 			.click()
 			.get(catalogPage.catalog.soldCars)
-			.should('not.be.visible');
+			.should('not.exist');
 	});
 });

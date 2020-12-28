@@ -23,7 +23,7 @@ export class ProgramGallerySpec {
 					.find(programGalleryObject.programDescripition.showDescriptionButton)
 					.click('bottom')
 					.get(programGalleryObject.programDescripition.descriptionBlock)
-					.should('not.be.visible');
+					.should('not.exist');
 			});
 		});
 	}

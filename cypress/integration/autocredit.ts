@@ -17,7 +17,6 @@ describe('Автокредит', () => {
 	});
 	autocreditFilterSpec.isAutocreditFilterWorking(filterFields);
 	faqSpec.isFaqWorking();
-	programGallerySpec.isProgramGalleryWorking(autocreditPage.creditGallery);
 	describe('Заявка  после ЧАВО', () => {
 		formTestingSpec.isPopupFormWorking(
 			autocreditPage.mainPopupForm.formLink,

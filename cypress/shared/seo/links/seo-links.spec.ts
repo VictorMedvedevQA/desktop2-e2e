@@ -17,7 +17,7 @@ export class SeoLinksSpec {
 					.should('be.visible')
 					.get(seoLinksObject.linksItems)
 					.contains('ЗАЗ')
-					.should('not.be.visible');
+					.should('not.exist');
 			});
 
 			seoLinksObject.seoLinks.forEach(el => {

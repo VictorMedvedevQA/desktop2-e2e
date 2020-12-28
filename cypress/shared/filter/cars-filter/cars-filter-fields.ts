@@ -56,7 +56,7 @@ export const filterFields: ICarsFilterField[] = [
 		inputData: 'Бензиновый',
 		name: 'Двигатель',
 		seoTextChange: true,
-		tags: 'gasoline',
+		tags: 'engineType=1',
 	},
 	{
 		activateClearButton: true,

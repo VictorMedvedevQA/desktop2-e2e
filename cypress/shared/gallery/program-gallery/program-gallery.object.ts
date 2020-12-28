@@ -5,7 +5,7 @@ export interface IProgramDescription {
 export class ProgramGalleryObject {
 	public programDescripition: IProgramDescription = {
 		showDescriptionButton: '.b-automap-link',
-		descriptionBlock: '.b-credit-description',
+		descriptionBlock: '.b-credit-description__item',
 	};
 	public porgramItem = '.b-credit-item';
 }

@@ -18,4 +18,18 @@ export class MainPage {
 		creditPrice: '.b-card-price__description_credit',
 		info: '.b-card__info-txt',
 	};
+
+	public confirmCity = {
+		container: 'amc-container:has(amc-button:contains(Да, верно))',
+		confirmCityButton: 'amc-button:contains(Да, верно)',
+		chooseCity: {
+			chooseCityButton: 'amc-button:contains(Выбрать другой)',
+			container: '.b-popup__container',
+			selectCity: 'button:contains(Введите ваш город)',
+			rostov: '.amc-select__dropdown-item:contains(Ростов-на-Дону)',
+			acceptButton: '.amc-button',
+
+		},
+		catalogCity: '[formcontrolname ="city"]',
+	};
 }
