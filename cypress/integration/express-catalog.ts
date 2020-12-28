@@ -19,7 +19,7 @@ describe('Видимость к-ва ставок и текущей ставки
 		cy.get(authPage.loginForm.openFormButton)
 			.should('be.visible')
 			.get(expressCatalogPage.price)
-			.should('not.be.visible');
+			.should('not.exist');
 	});
 
 	it('Если залогинены - видим ставку и к-во ставок ', () => {

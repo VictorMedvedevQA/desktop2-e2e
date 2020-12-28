@@ -11,6 +11,40 @@ const mainPage = new MainPage();
 const paginationSpec = new PaginationSpec();
 const reviewGallerySpec = new ReviewGallerySpec();
 
+describe('Геолокация', () => {
+	beforeEach(() => {
+		cy.server().visitRoute(urls.catalog.main);
+	});
+
+	it('смена города в фильтре на "Москва" при подтверждении города', () => {
+		cy.get(mainPage.confirmCity.container)
+			.find(mainPage.confirmCity.confirmCityButton)
+			.click()
+			.wait(2000)
+			.get(mainPage.confirmCity.catalogCity)
+			.invoke('text')
+			.should('eq', 'Москва')
+	})
+
+	it('смена города в фильтре на "Ростов-на-Дону" при выборе города', () => {
+		cy.get(mainPage.confirmCity.container)
+			.find(mainPage.confirmCity.chooseCity.chooseCityButton)
+			.click()
+			.get(mainPage.confirmCity.chooseCity.container)
+			.find(mainPage.confirmCity.chooseCity.selectCity)
+			.click()
+			.get(mainPage.confirmCity.chooseCity.rostov)
+			.click()
+			.get(mainPage.confirmCity.chooseCity.container)
+			.find(mainPage.confirmCity.chooseCity.acceptButton)
+			.click()
+			.wait(2000)
+			.get(mainPage.confirmCity.catalogCity)
+			.invoke('text')
+			.should('eq', 'Ростов-на-Дону')
+	})
+});
+
 describe('Главная', () => {
 	beforeEach(() => {
 		cy.visitRoute(urls.mainPage.main);
@@ -43,8 +77,9 @@ describe('Главная', () => {
 	it('При наведении на карточку появилась инфо', () => {
 		cy.get(filterObject.carItem.auctionItemsResult)
 			.first()
-			.trigger('mouseenter')
+			.trigger('mouseover')
 			.get(mainPage.carItems.info)
+			.first()
 			.should('be.visible');
 	});
 

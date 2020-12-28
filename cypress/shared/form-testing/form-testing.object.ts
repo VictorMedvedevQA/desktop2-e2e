@@ -185,7 +185,7 @@ export class FormTestingObject {
 			.find(this.formButtons.closePopup)
 			.click()
 			.get(link)
-			.should('be.not.visible');
+			.should('not.exist');
 	}
 
 	clearAllFiealds(link: string) {

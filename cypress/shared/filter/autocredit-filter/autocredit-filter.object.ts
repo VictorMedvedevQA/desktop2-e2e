@@ -27,7 +27,7 @@ export class AutocreditFilterObject {
 							cy.get(field.formcontrolname).inputAutocomplete(field.inputData, field.outputData);
 						} else if (field.name === 'Модель') {
 							cy.get('[formcontrolname="makeId"]')
-								.inputAutocomplete('Au', 'Audi')
+								.inputAutocomplete('Hyu', 'Hyundai')
 								.then(() => {
 									if (field.formcontrolname && field.inputData && field.outputData) {
 										cy.get(field.formcontrolname).inputAutocomplete(
