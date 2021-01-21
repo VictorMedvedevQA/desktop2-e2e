@@ -13,9 +13,9 @@ export class ReviewGalleryObject {
 		singleSlideGallery: '.b-gallery-preview_auto',
 	};
 	public reviewGallery: IGallery = {
-		container: '.b-slider_review',
+		container: 'amc-section.b-section:has(div:contains(Отзывы наших покупателей))',
 		items: '.b-slider__item',
 		left: '.b-slider-controlls__item_prev',
-		right: '.b-slider-controlls__item_next',
+		right: '.b-slider__arrow_next',
 	};
 }

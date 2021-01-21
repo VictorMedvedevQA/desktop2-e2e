@@ -76,8 +76,9 @@ describe('Главная', () => {
 
 	it('При наведении на карточку появилась инфо', () => {
 		cy.get(filterObject.carItem.auctionItemsResult)
+			.find(filterObject.carItem.itemCard)
 			.first()
-			.trigger('mouseover')
+			.trigger('mouseover', {force: true})
 			.get(mainPage.carItems.info)
 			.first()
 			.should('be.visible');
@@ -85,8 +86,9 @@ describe('Главная', () => {
 
 	it('Переход в detail-car по клику на auction-item', () => {
 		cy.get(filterObject.carItem.auctionItemsResult)
+			.find(filterObject.carItem.itemCard)
 			.first()
-			.click()
+			.click({force: true})
 			.url()
 			.should('contains', '/car/');
 	});
