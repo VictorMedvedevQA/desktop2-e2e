@@ -8,9 +8,9 @@ export class CarCardPage {
 			carCreditPrice: '.b-card-price__description_xl.b-card-price__description_credit',
 			creditMainBar: '.b-credit-main__inner_tab',
 			creditMainBarButton: '.b-credit-item-tab__button',
-			creditApplicationButton: '.b-auto-requests amc-button:contains(Заявка на кредит)',
-			testDriveApplicationButton: '.b-auto-requests amc-button:contains(Связаться)',
-			callbackApplicationButton: '.b-auto__footer span.b-link',
+			creditApplicationButton: 'amc-button:contains(Заявка на кредит)',
+			testDriveApplicationButton: 'amc-button:contains(Связаться)',
+			callbackApplicationButton: 'span.b-link',
 			fillOutApplicationButton: '.b-credit-item-tab__button',
 		},
 		condition: {
@@ -78,10 +78,10 @@ export class CarCardPage {
 	}
 
 	public advantagesGallery: IGallery = {
-		container: '.b-auto__rating',
+		container: 'amc-row[amc-hide-tablet]',
 		items: '.car-ratings__card',
 		left: '.b-slider__arrow_prev',
-		right: '.b-slider__arrow_next',
+		right: '.b-slider__arrow_next:first',
 	}
 
 	public similarGallery: IGallery = {
