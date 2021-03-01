@@ -13,6 +13,8 @@ export class SeoLinksObject {
 	public container: string = 'am-cars-seo-links';
 	public linksItems: string = '.b-items-list__item';
 	public linksList: string = '.b-items-list';
+	public newLinksList: string = 'am-cars-seo-links-list';
+	public newLinksItems: string = '.seo-links-link';
 	public seoLinks: ISeoLink[] = [
 		{
 			name: 'make',

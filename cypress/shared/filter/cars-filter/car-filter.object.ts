@@ -10,7 +10,7 @@ export class CarFilterObject {
 	public carItem = {
 		auctionItemsResult: 'am-cars-results am-auction-item-wrapper',
 		auctionitem: 'auction-item',
-		itemCard: '.b-card__overlay-link',
+		itemCard: '.b-card-description__item',
 	};
 	public itemDescription = {
 		city: '.b-card-description__city',

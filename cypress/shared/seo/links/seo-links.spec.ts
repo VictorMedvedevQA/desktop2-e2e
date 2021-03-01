@@ -23,32 +23,64 @@ export class SeoLinksSpec {
 			seoLinksObject.seoLinks.forEach(el => {
 				describe('При переходе на ' + el.name, () => {
 					beforeEach(() => {
-						cy.visitRoute(el.urlToStart)
-							.get(seoLinksObject.linksList)
-							.find(seoLinksObject.linksItems)
-							.contains(el.value)
-							.click()
-							.then(() => {
-								// tslint:disable-next-line:switch-default
-								switch (el.name) {
-									case 'make':
-										cy.wait('@getFilterMake');
-										break;
-									case 'model':
-										cy.wait('@getFilterModel');
-										break;
-									case 'generation':
-										cy.wait('@getFilterGeneration');
-								}
-							});
+						if (el.name !== 'generation') {
+							cy.visitRoute(el.urlToStart)
+								.get(seoLinksObject.linksList)
+								.find(seoLinksObject.linksItems)
+								.contains(el.value)
+								.click()
+								.then(() => {
+									// tslint:disable-next-line:switch-default
+									switch (el.name) {
+										case 'make':
+											cy.wait('@getFilterMake');
+											break;
+										case 'model':
+											cy.wait('@getFilterModel');
+											break;
+									}
+								});
+						} else {
+							cy.visitRoute(el.urlToStart)
+								.get(seoLinksObject.newLinksList)
+								.find(seoLinksObject.newLinksItems)
+								.contains(el.value)
+								.click()
+								.wait('@getFilterGeneration');
+						}
+
 					});
 
-					it('Изменились ссылки в нижнем блоке ', () => {
-						cy.get(seoLinksObject.linksList)
-							.find(seoLinksObject.linksItems)
-							.contains(el.nextStageValue)
-							.should('be.visible');
-					});
+					if (el.name === 'make') {
+						it('Изменились ссылки в нижнем блоке ', () => {
+							cy.get(seoLinksObject.linksList)
+								.find(seoLinksObject.linksItems)
+								.contains(el.nextStageValue)
+								.should('be.visible');
+						});
+					} else {
+						it('Изменились ссылки в нижнем блоке Поколения', () => {
+							cy.get(seoLinksObject.newLinksList)
+								.eq(0)
+								.find(seoLinksObject.newLinksItems)
+								.each(el => {
+									cy.wrap(el)
+										.should('be.visible')
+								})
+						});
+
+						it('Изменились ссылки в нижнем блоке Годы выпуска', () => {
+							cy.get(seoLinksObject.newLinksList)
+								.eq(1)
+								.find(seoLinksObject.newLinksItems)
+								.each(el => {
+									const year = el.text();
+									cy.wrap(el)
+										.invoke('attr', 'href')
+										.should('contain', `yearFrom=${year}&yearTo=${year}`)
+								})
+						});
+					}
 
 					it('Изменились хк ', () => {
 						cy.get(breadcrumbsObject.container)

@@ -78,7 +78,8 @@ describe('Главная', () => {
 		cy.get(filterObject.carItem.auctionItemsResult)
 			.find(filterObject.carItem.itemCard)
 			.first()
-			.trigger('mouseover', {force: true})
+			.invoke('hover')
+			//.trigger('mouseover')
 			.get(mainPage.carItems.info)
 			.first()
 			.should('be.visible');
