@@ -13,7 +13,7 @@ const paginationObject = new PaginationObject();
 
 describe('Галерея "похожие авто"', () => {
 	beforeEach(() => {
-		cy.visitRoute(urls.catalog.filterredAudi);
+		cy.visitRoute(urls.catalog.filterredHyundai);
 	});
 
 	it('Если  отфильтровано и есть авто  => "похожие авто"', () => {

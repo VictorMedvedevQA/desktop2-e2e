@@ -13,7 +13,7 @@ export class SeoLinksSpec {
 				cy.visitRoute(urls.catalog.main)
 					.get(seoLinksObject.linksList)
 					.find(seoLinksObject.linksItems)
-					.contains('Audi')
+					.contains('Hyundai')
 					.should('be.visible')
 					.get(seoLinksObject.linksItems)
 					.contains('ЗАЗ')

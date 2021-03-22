@@ -50,8 +50,8 @@ export const validData: IFormData[] = [
 	{ name: 'code', data: '0000' },
 	{ name: 'city', data: 'Краснодар' },
 	{ name: 'review', data: 'Тестовый комментарий' },
-	{ name: 'make', data: 'Audi' },
-	{ name: 'model', data: 'Q5' },
+	{ name: 'make', data: 'Hyundai' },
+	{ name: 'model', data: 'Solaris' },
 	{ name: 'regionId', data: 'Краснодар' },
 
 ];

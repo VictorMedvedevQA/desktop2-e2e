@@ -79,7 +79,7 @@ describe('Главная', () => {
 			.find(filterObject.carItem.itemCard)
 			.first()
 			.invoke('hover')
-			//.trigger('mouseover')
+			.trigger('mouseover',{timeout:6000})
 			.get(mainPage.carItems.info)
 			.first()
 			.should('be.visible');

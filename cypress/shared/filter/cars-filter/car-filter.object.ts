@@ -86,7 +86,7 @@ export class CarFilterObject {
 								cy.get(field.formcontrolname).inputDropdown(field.inputData, field.outputData);
 							} else if (field.name === 'Все модели') {
 								cy.get('[formcontrolname="make"]')
-									.inputDropdown('Au', 'Audi')
+									.inputDropdown('Hy', 'Hyundai')
 									.wait('@getFilterSearch')
 									.wait('@getSearch')
 									// ".wait(2000)"  убрать когда исправят лишние запросы при фильтрации по модели на главном и в аукционах

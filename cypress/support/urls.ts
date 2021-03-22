@@ -8,8 +8,8 @@ export const urls = {
 		detail: `${SITE_URL}contacts/45`,
 	},
 	catalog: {
-		filterredAudi: `${SITE_URL}cars/audi`,
-		filterredAudiA1: `${SITE_URL}cars/audi/a1`,
+		filterredHyundai: `${SITE_URL}cars/hyundai`,
+		filterredHyundaiSolaris: `${SITE_URL}cars/hyundai/solaris`,
 		filterredNoCar: `${SITE_URL}moscow/cars/buick`,
 		main: `${SITE_URL}cars`,
 	},

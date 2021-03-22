@@ -29,7 +29,7 @@ Cypress.Commands.add('visitRoute', (url: any) => {
 			case urls.mainPage.main:
 			case urls.catalog:
 			case urls.catalog.main:
-			case urls.catalog.filterredAudi:
+			case urls.catalog.filterredHyundai:
 				{
 					cy.server()
 						.route(`${SITE_URL_API_V2}individual/*`)
@@ -44,11 +44,11 @@ Cypress.Commands.add('visitRoute', (url: any) => {
 						.as('getFilterMake')
 						.route(`${SITE_URL_API_V2}filter/generations?modelId=**`)
 						.as('getFilterModel')
-						.route(`${SITE_URL_API_V2}auctions/search?p1=audi&p2=a1&generation=6187`)
+						.route(`${SITE_URL_API_V2}auctions/search?p1=hyundai&p2=solaris&generation=886`)
 						.as('getFilterGeneration');
 				}
 				break;
-			case urls.catalog.filterredAudiA1:
+			case urls.catalog.filterredHyundaiSolaris:
 				{
 					cy.server()
 						.route(`${SITE_URL_API_V2}auctions/search?*`)
@@ -61,7 +61,7 @@ Cypress.Commands.add('visitRoute', (url: any) => {
 						.as('getFilterMake')
 						.route(`${SITE_URL_API_V2}filter/generations?modelId=**`)
 						.as('getFilterModel')
-						.route(`${SITE_URL_API_V2}auctions/search?p1=audi&p2=a1&generation=6187`)
+						.route(`${SITE_URL_API_V2}auctions/search?p1=hyundai&p2=solaris&generation=886`)
 						.as('getFilterGeneration');
 				}
 				break;

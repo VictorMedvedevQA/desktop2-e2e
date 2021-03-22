@@ -18,24 +18,24 @@ export class SeoLinksObject {
 	public seoLinks: ISeoLink[] = [
 		{
 			name: 'make',
-			nextStageValue: 'Q5',
-			tags: 'audi',
+			nextStageValue: 'Solaris',
+			tags: 'hyundai',
 			urlToStart: urls.catalog.main,
-			value: 'Audi',
+			value: 'Hyundai',
 		},
 		{
 			name: 'model',
-			nextStageValue: 'I (8R)',
-			tags: 'q5',
-			urlToStart: urls.catalog.filterredAudi,
-			value: 'Q5',
+			nextStageValue: 'I',
+			tags: 'solaris',
+			urlToStart: urls.catalog.filterredHyundai,
+			value: 'Solaris',
 		},
 		{
 			name: 'generation',
-			nextStageValue: 'I (8X)',
-			tags: 'generation=6187',
-			urlToStart: urls.catalog.filterredAudiA1,
-			value: 'I (8X)',
+			nextStageValue: 'I',
+			tags: 'generation=886',
+			urlToStart: urls.catalog.filterredHyundaiSolaris,
+			value: 'I',
 		},
 	];
 }
