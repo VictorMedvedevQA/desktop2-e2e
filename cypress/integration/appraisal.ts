@@ -2,6 +2,8 @@ import { urls } from '../support/urls';
 import { AppraisalPage } from '../pages/appraisal/appraisal.page';
 import { FormTestingSpec } from '../shared/form-testing/form-testing.spec';
 
+//коммент по dev-1
+
 const formTestingSpec = new FormTestingSpec();
 const appraisalPage = new AppraisalPage();
 describe('Оценка', () => {
